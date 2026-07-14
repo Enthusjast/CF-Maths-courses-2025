@@ -2,83 +2,84 @@
 
 \section{Vocabulaire de la logique}
 
-$\exists x$: il existe $x$.
+\textbf{Quantificateurs :}
+\begin{itemize}
+    \item $\exists x$: il existe $x$.
+    \item $\forall x$: pour tout $x$.
+\end{itemize}
 
-$\forall x$: pour tout $x$.
-
-Pour deux propositions $P$ et $Q$:
+\textbf{Pour deux propositions $P$ et $Q$ :}
 \begin{itemize}
     \item $P \land Q$: $P$ et $Q$.
     \item $P \lor Q$: $P$ ou $Q$.
     \item $\neg P$: non $P$ / la négation de $P$.
     \item $P \implies Q$: $P$ implique $Q$;
-        Si $P$, alors $Q$;
-        $P$ est une condition suffisante de $Q$;
-        $Q$ est une condition nécessaire de $P$.
+          Si $P$, alors $Q$;
+          $P$ est une condition suffisante de $Q$;
+          $Q$ est une condition nécessaire de $P$.
     \item $P \iff Q$: $P$ et $Q$ sont équivalentes;
-        $P$ si et seulement si (ssi) $Q$;
-        $P$ est une condition nécessaire et suffisante (CNS) de $Q$.
+          $P$ si et seulement si (ssi) $Q$;
+          $P$ est une condition nécessaire et suffisante (CNS) de $Q$.
 \end{itemize}
 
+\textbf{Variantes de l'implication :}
 \begin{itemize}
     \item $Q \implies P$: la réciproque de $P \implies Q$.
     \item $\neg P \implies \neg Q$: l'inverse de $P \implies Q$.
     \item $\neg Q \implies \neg P$: la contraposée de $P \implies Q$.
 \end{itemize}
 
-Notations (de Bourbaki) :
-$\bbN$: L'ensemble des entiers naturels.
-$\bbN = \{ 0, 1, 2, \ldots \}, \bbN^* = \bbN \backslash \{ 0 \}$
-
-$\bbZ$: L'ensemble des entiers relatifs.
-$\bbZ = \{ \ldots, -2, -1, 0, 1, 2, \ldots \}$
-
-$\bbQ$: L'ensemble des nombres rationnels.
-$\bbQ = \{ \frac{a}{b} : a \in \bbZ, b \in \bbZ^* \}$
-
-$\bbR$: L'ensemble des nombres réels.
-
-$\bbC$: L'ensemble des nombres complexes.
+\textbf{Notations (de Bourbaki) :}
+\begin{itemize}
+    \item $\bbN$: L'ensemble des entiers naturels.
+          $\bbN = \{ 0, 1, 2, \ldots \}, \bbN^* = \bbN \setminus \{ 0 \}$
+    \item $\bbZ$: L'ensemble des entiers relatifs.
+          $\bbZ = \{ \ldots, -2, -1, 0, 1, 2, \ldots \}$
+    \item $\bbQ$: L'ensemble des nombres rationnels.
+          $\bbQ = \{ \frac{a}{b} : a \in \bbZ, b \in \bbZ^* \}$
+    \item $\bbR$: L'ensemble des nombres réels.
+    \item $\bbC$: L'ensemble des nombres complexes.
+\end{itemize}
 
 \section{Opérations sur les ensembles}
 
-Un ensemble = Une collection d'objets (définition ``naïve'' / non axiomatique)
+\textbf{Définition (naïve) :} Un ensemble = Une collection d'objets (non axiomatique)
 
-Deux ensembles sont égaux ssi ils contiennent les mêmes éléments.
+\textbf{Égalité :} Deux ensembles sont égaux ssi ils contiennent les mêmes éléments.
 
-L'ensemble vide est noté $\varnothing$.
+\textbf{Ensemble vide :} L'ensemble vide est noté $\varnothing$.
 
-Soit $E$ un ensemble :
+\textbf{Soit $E$ un ensemble :}
 \begin{itemize}
     \item $x \in E$: $x$ appartient à $E$; $x$ est un élément de $E$.
     \item $A \subset E / A \subseteq E$: $\forall w \in A$, on a $w \in E$;
-        $A$ est inclus dans $E$;
-        $A$ est un sous-ensemble de $E$;
-        $A$ est une partie de $E$.
+          $A$ est inclus dans $E$;
+          $A$ est un sous-ensemble de $E$;
+          $A$ est une partie de $E$.
 \end{itemize}
 
-Soit $A, B$ deux parties de $E$:
+\textbf{Soient $A, B$ deux parties de $E$ :}
 \begin{itemize}
     \item $A \cup B := \{ w \in E: w \in A \text{ ou } w \in B \}$. union / réunion de $A$ et $B$.
     \item $A \cap B := \{ w \in E: w \in A \text{ et } w \in B \}$. intersection de $A$ et $B$.
     \item $A^C := \{ w \in E: w \notin A \}$. complémentaire de $A$ (par rapport à $E$).
-    \item $A \backslash B := A \cap (B^C)$. différence de $A$ et $B$.
-    \item $A \triangle B := (A \backslash B) \cup (B \backslash A)$. différence symétrique de $A$ et $B$.
+    \item $A \setminus B := A \cap (B^C)$. différence de $A$ et $B$.
+    \item $A \triangle B := (A \setminus B) \cup (B \setminus A)$. différence symétrique de $A$ et $B$.
 \end{itemize}
 
-Soit $I$ un ensemble d'indices, pour tout $i \in I$, soit $A_i$ un sous-ensemble de $E$:
+\textbf{Soit $I$ un ensemble d'indices, pour tout $i \in I$, soit $A_i$ un sous-ensemble de $E$ :}
 \begin{itemize}
     \item $(A_i)_{i \in I}$: famille de sous-ensembles de $E$.
     \item $\bigcup\limits_{i \in I} A_i := \{ w \in E: \exists i \in I \text{ tel que } w \in A_i \}$.
-        réunion de la famille $(A_i)_{i \in I}$.
+          réunion de la famille $(A_i)_{i \in I}$.
     \item $\bigcap\limits_{i \in I} A_i := \{ w \in E: \forall i \in I, w \in A_i \}$.
-        intersection de la famille $(A_i)_{i \in I}$.
+          intersection de la famille $(A_i)_{i \in I}$.
 \end{itemize}
 
-La famille $(A_i)_{i \in I}$ est \textcolor{red}{disjointe} si
-\[ \forall i, j \in I \text{ tels que } i \neq j, on a A_i \cap A_j = \varnothing \]
+\textbf{La famille $(A_i)_{i \in I}$ est \textcolor{red}{disjointe} si :}
+\[ \forall i, j \in I \text{ tels que } i \neq j, \text{ on a } A_i \cap A_j = \varnothing \]
 
-Distributivité entre $\cup, \cap, (\quad)^C$:
+\textbf{Distributivité entre $\cup, \cap, (\quad)^C$ :}
 \begin{itemize}
     \item $\left( \bigcup\limits_{i \in I} A_i \right) \cap B = \bigcup\limits_{i \in I} (A_i \cap B)$
     \item $\left( \bigcap\limits_{i \in I} A_i \right) \cup B = \bigcap\limits_{i \in I} (A_i \cup B)$
@@ -86,41 +87,45 @@ Distributivité entre $\cup, \cap, (\quad)^C$:
     \item $\left( \bigcap\limits_{i \in I} A_i \right)^C = \bigcup\limits_{i \in I} (A_i^C)$
 \end{itemize}
 
-Produit cartésien :
+\textbf{Produit cartésien :}
 \[ A \times B := \{ (a, b): a \in A, b \in B \} \]
 
-Pour $n \geq 2$ entier, on écrit $A^n = \underbrace{A \times A \times A \times \cdots \times A}_{n \text{ fois}}$.
+\textbf{Puissance cartésienne :} Pour $n \geq 2$ entier, on écrit $A^n = \underbrace{A \times A \times A \times \cdots \times A}_{n \text{ fois}}$.
 
-$\calP(E) := \{ A: A \subseteq E \}$: l'ensemble des sous-ensembles de $E$.
+\textbf{$\calP(E) := \{ A: A \subseteq E \}$ :} l'ensemble des sous-ensembles de $E$.
 
 \begin{rqq}
     On a toujours $\varnothing \in \calP(E)$ et $E \in \calP(E)$.
     $\varnothing$ et $E$ sont appelés sous-ensembles triviaux de $E$.
 \end{rqq}
 
-$\forall A \in \calP(E)$, on définit la fonction indicatrice de $A$ par
-\[ \bbI_A: E \to \bbR, \bbI_A(x) = \begin{cases} 1, & \text{si} x \in A \\ 0, & \text{si} x \notin A \end{cases} \]
+\textbf{$\forall A \in \calP(E)$, on définit la fonction indicatrice de $A$ par :}
+\[ \bbI_A: E \to \bbR, \bbI_A(x) =
+    \begin{cases}
+        1, & \text{si} x \in A \\ 0, & \text{si} x \notin A
+    \end{cases}
+\]
 
 \begin{deff}
     Une fonction $f: E \to F$ est
     \begin{itemize}
         \item \textbf{injective}, si tout élément de $F$ est l'image d'\textcolor{red}{au plus} un élément de $E$.
-            càd $\forall y \in F$, il existe au plus un élément $x \in E$ tel que $y = f(x)$.
+              càd $\forall y \in F$, il existe au plus un élément $x \in E$ tel que $y = f(x)$.
         \item \textbf{surjective}, si tout élément de $F$ est l'image d'\textcolor{red}{au moins} un élément de $E$.
-            càd $\forall y \in F, \exists x \in E$ tel que $y = f(x)$.
+              càd $\forall y \in F, \exists x \in E$ tel que $y = f(x)$.
         \item \textbf{bijective}, si $f$ est à la fois injective et surjective.
     \end{itemize}
 \end{deff}
 
-Si $f: E \to F$ est bijective, alors on peut définir son inverse $f^{-1}: F \to E$.
+\textbf{Inverse :} Si $f: E \to F$ est bijective, alors on peut définir son inverse $f^{-1}: F \to E$.
 
-Soit $B \subseteq F$, l'image réciproque de $B$ par $f$ est $f^{-1}(B)$.
+\textbf{Image réciproque :} Soit $B \subseteq F$, l'image réciproque de $B$ par $f$ est $f^{-1}(B)$.
 
-Soit $A \subseteq E$, l'image directe de $A$ par $f$ est $f(A)$.
+\textbf{Image directe :} Soit $A \subseteq E$, l'image directe de $A$ par $f$ est $f(A)$.
 
-\subsection{Ensembles finis}
+\section{Ensembles finis}
 
-Notation: Pour $n \in \bbN$, on note $\{1, 2, \ldots, n\} = \llb 1, n \rrb$ et
+\textbf{Notation :} Pour $n \in \bbN$, on note $\{1, 2, \ldots, n\} = \llb 1, n \rrb$ et
 par convention si $n = 0, \llb 1, 0 \rrb = \varnothing$.
 
 \begin{deff}
@@ -135,29 +140,29 @@ par convention si $n = 0, \llb 1, 0 \rrb = \varnothing$.
     On raisonne par récurrence sur $m$.
     \begin{itemize}
         \item (Initialisation)
-            Si $m = 0$, alors $\llb 1, m \rrb$ est vide.
-            L'application $f: \llb 1, n \rrb \to \varnothing$ peut exister seulement si
-            $\llb 1, n \rrb \neq \varnothing$.
-            Donc $n \leq m$ est vrai.
+              Si $m = 0$, alors $\llb 1, m \rrb$ est vide.
+              L'application $f: \llb 1, n \rrb \to \varnothing$ peut exister seulement si
+              $\llb 1, n \rrb = \varnothing$.
+              Donc $n \leq m$ est vrai.
         \item (Hérédité)
-            Supposons que le résultat est vrai pour $m$.
-            Soit $f: \llb 1, n \rrb \to \llb 1, m + 1 \rrb$ une injection.
-            Si $n = 0$, alors $n \leq m + 1$ et c'est fini.
-            Supposons $n \geq 1$.
-            Soit $p: \llb 1, m + 1 \rrb \to \llb 1, m + 1 \rrb$ la permutation qui échange $f(n)$ et $m + 1$.
-            Alors $g = p \circ f$ est une application $g: \llb 1, n \rrb \to \llb 1, m + 1 \rrb$ telle que $g(n) = m + 1$.
-            De plus, $g$ est injective.
-            La restriction de $g$ sur $\llb 1, n - 1 \rrb$ est une injection $\llb 1, n - 1 \rrb \to \llb 1, m \rrb$.
-            Par l'hypothèse de récurrence, on a $n - 1 \leq m$, donc $n \leq m + 1$.
+              Supposons que le résultat est vrai pour $m$.
+              Soit $f: \llb 1, n \rrb \to \llb 1, m + 1 \rrb$ une injection.
+              Si $n = 0$, alors $n \leq m + 1$ et c'est fini.
+              Supposons $n \geq 1$.
+              Soit $p: \llb 1, m + 1 \rrb \to \llb 1, m + 1 \rrb$ la permutation qui échange $f(n)$ et $m + 1$.
+              Alors $g = p \circ f$ est une application $g: \llb 1, n \rrb \to \llb 1, m + 1 \rrb$ telle que $g(n) = m + 1$.
+              De plus, $g$ est injective.
+              La restriction de $g$ sur $\llb 1, n - 1 \rrb$ est une injection $\llb 1, n - 1 \rrb \to \llb 1, m \rrb$.
+              Par l'hypothèse de récurrence, on a $n - 1 \leq m$, donc $n \leq m + 1$.
     \end{itemize}
 
     Donc le lemme est démontré par récurrence. \qedhere
 \end{proof}
 
 \begin{deff}
-    Pour un ensemble fini $E$.
-    S'il existe une bijection $f: \llb 1, n \rrb \to E$ pour l'entier $n$,
-    alors $n$ est appelé le cardinal de $E$, et on écrit $card(E) = |E| = \#E = n$.
+    Pour un ensemble fini $E$,
+    s'il existe une bijection $f: \llb 1, n \rrb \to E$ pour l'entier $n$,
+    alors $n$ est appelé le cardinal de $E$, et on écrit $\card(E) = |E| = \#E = n$.
 \end{deff}
 
 \begin{lem}
@@ -174,13 +179,13 @@ par convention si $n = 0, \llb 1, 0 \rrb = \varnothing$.
     Donc $n = m$, d'où l'unicité de la valeur de $n$. \qedhere
 \end{proof}
 
-Grâce au lemme précédent, la définition du cardinal pour les ensembles finis est bien posée.
+\textbf{Conséquence :} Grâce au lemme précédent, la définition du cardinal pour les ensembles finis est bien posée.
 
 \begin{rqq}
     L'ensemble vide $\varnothing$ est le seul ensemble de cardinal nul.
 \end{rqq}
 
-Si $card(E) = n$, alors on peut représenter les éléments de $E$ comme une série ordonnée finie
+\textbf{Représentation :} Si $\card(E) = n$, alors on peut représenter les éléments de $E$ comme une série ordonnée finie
 $E = \{ a_1, a_2, \ldots, a_n \}$ avec $a_i \neq a_j, \forall i \neq j$.
 
 \begin{deff}
@@ -204,30 +209,36 @@ $E = \{ a_1, a_2, \ldots, a_n \}$ avec $a_i \neq a_j, \forall i \neq j$.
     Soient $n = |E|, m = |F|$ et $u: \llb 1, n \rrb \to E, v: \llb 1, m \rrb \to F$ deux bijections.
     \begin{enumerate}
         \item
-            Supposons qu'il existe une injection $f: E \to F$.
-            Alors l'application $v^{-1} \circ f \circ u: \llb 1, n \rrb \to \llb 1, m \rrb$ est injective.
-            Selon le lemme fondamental, on a $n \leq m$, càd $|E| \leq |F|$.
-            Réciproquement, si $n \leq m$, alors l'application $h: \begin{array}[t]{ccc}
-            \llb 1, n \rrb & \to & \llb 1, m \rrb \\ k & \mapsto & k
-            \end{array} $ est injective.
-            Donc $v \circ h \circ u^{-1}: E \to F$ est une injection.
-            Donc il existe une injection $E \to F$.
+              Supposons qu'il existe une injection $f: E \to F$.
+              Alors l'application $v^{-1} \circ f \circ u: \llb 1, n \rrb \to \llb 1, m \rrb$ est injective.
+              Selon le lemme fondamental, on a $n \leq m$, càd $|E| \leq |F|$.
+              Réciproquement, si $n \leq m$, alors l'application $h:
+                  \begin{array}[t]{ccc}
+                      \llb 1, n \rrb & \to & \llb 1, m \rrb \\ k & \tp & k
+                  \end{array}
+              $ est injective.
+              Donc $v \circ h \circ u^{-1}: E \to F$ est une injection.
+              Donc il existe une injection $E \to F$.
         \item
-            Supposons qu'il existe une bijection $f: E \to F$.
-            Puisque $f$ est injective, selon le point 1, on a $|E| \leq |F|$.
-            De même, $f^{-1}: F \to E$ est aussi injective.
-            Donc $|F| \leq |E|$.
-            Donc $|E| = |F|$.
+              Supposons qu'il existe une bijection $f: E \to F$.
+              Puisque $f$ est injective, selon le point 1, on a $|E| \leq |F|$.
+              De même, $f^{-1}: F \to E$ est aussi injective.
+              Donc $|F| \leq |E|$.
+              Donc $|E| = |F|$.
         \item
-            Supposons $E \neq \varnothing$, càd $n \geq 1$.
-            Supposons qu'il existe une surjection $g: F \to E$.
-            Alors $q = v \circ g \circ u^{-1}$ est une surjection $\llb 1, m \rrb \to \llb 1, n \rrb$.
-            Pour chaque $i \in \llb 1, n \rrb$, on pose $r(i) =$ le plus petit élément de $q^{-1}(\{i\})$.
-            $r$ est une injection $\llb 1, n \rrb \to \llb 1, m \rrb$.
-            Donc $n \leq m$.
-            Réciproquement, si $n \leq m$, alors on peut définir la surjection $\llb 1, m \rrb \to \llb 1, n \rrb$.
-            $s(k) = \begin{cases} k, & \text{si} k \leq n \\ 1, & \text{si} k > n \end{cases}$
-            Alors $u \circ s \circ v^{-1}$ est une surjection $F \to E$.
+              Supposons $E \neq \varnothing$, càd $n \geq 1$.
+              Supposons qu'il existe une surjection $g: F \to E$.
+              Alors $q = v \circ g \circ u^{-1}$ est une surjection $\llb 1, m \rrb \to \llb 1, n \rrb$.
+              Pour chaque $i \in \llb 1, n \rrb$, on pose $r(i) =$ le plus petit élément de $q^{-1}(\{i\})$.
+              $r$ est une injection $\llb 1, n \rrb \to \llb 1, m \rrb$.
+              Donc $n \leq m$.
+              Réciproquement, si $n \leq m$, alors on peut définir la surjection $\llb 1, m \rrb \to \llb 1, n \rrb$.
+              $s(k) =
+                  \begin{cases}
+                      k, & \text{si} k \leq n \\ 1, & \text{si} k > n
+                  \end{cases}
+              $
+              Alors $u \circ s \circ v^{-1}$ est une surjection $F \to E$.
     \end{enumerate}
 \end{proof}
 
@@ -242,7 +253,7 @@ $E = \{ a_1, a_2, \ldots, a_n \}$ avec $a_i \neq a_j, \forall i \neq j$.
     \begin{itemize}
         \item Si $A \subseteq E$, alors $A$ est fini et $|A| \leq |E|$.
         \item Si $f: E \to F$ est une application, alors $f(E)$ est fini et $|f(E)| \leq |E|$.
-            De plus, $|f(E)|=|E|$ ssi $f$ est injective.
+              De plus, $|f(E)|=|E|$ ssi $f$ est injective.
         \item Si $f: E \to E$, alors $f$ est injective $\iff f$ est surjective $\iff f$ est bijective.
     \end{itemize}
 \end{cor}
@@ -251,27 +262,28 @@ $E = \{ a_1, a_2, \ldots, a_n \}$ avec $a_i \neq a_j, \forall i \neq j$.
     Soit $n=|E|$, alors on peut écrire $E=\{a_1, a_2, \dots, a_n\}$.
     \begin{itemize}
         \item Si $A \subseteq E$, alors $A$ s'écrit sous la forme
-            $A=\{a_{i_1}, a_{i_2}, \dots, a_{i_p}\}$ avec $1 \le i_1 < i_2 < \dots < i_p \le n$.
-            Donc $A$ est fini et $|A|=p \leq n$.
+              $A=\{a_{i_1}, a_{i_2}, \dots, a_{i_p}\}$ avec $1 \le i_1 < i_2 < \dots < i_p \le n$.
+              Donc $A$ est fini et $|A|=p \leq n$.
         \item On a $f(E)= \{f(a): a \in E\}=\{f(a_1), f(a_2), \dots, f(a_n)\}$,
-            donc $f(E)$ contient au plus $n$ éléments, d'où $|f(E)| \leq n$.
-            On a $|f(E)|= n$ ssi il n'y a pas de valeurs répétées parmi
-            $f(a_1), f(a_2), \dots, f(a_n)$ càd $f$ est injective.
+              donc $f(E)$ contient au plus $n$ éléments, d'où $|f(E)| \leq n$.
+              On a $|f(E)|= n$ ssi il n'y a pas de valeurs répétées parmi
+              $f(a_1), f(a_2), \dots, f(a_n)$ càd $f$ est injective.
         \item Si $f$ est injective, selon le point 2, $|f(E)|=|E|$.
-            Car $f(E) \subseteq E$ et $|f(E)|=|E|$, on a $f(E)=E$, donc $f$ est surjective.
-            Si $f$ est surjective, alors $|f(E)|=|E|$, et selon le point 2, $f$ est injective.
-            Donc $f$ est injective ssi $f$ est surjective.
+              Car $f(E) \subseteq E$ et $|f(E)|=|E|$, on a $f(E)=E$, donc $f$ est surjective.
+              Si $f$ est surjective, alors $|f(E)|=|E|$, et selon le point 2, $f$ est injective.
+              Donc $f$ est injective ssi $f$ est surjective.
     \end{itemize}
 \end{proof}
 
 \begin{rqq}
     L'hypothèse `` $E$ est fini '' est indispensable dans le corollaire 2.
-    Si $E$ est infini, on a le contre-exemple : 
+    Si $E$ est infini, on a le contre-exemple :
     \[
-    f: \begin{array}{ccc}
-    \mathbb{N} & \to & \mathbb{N} \\
-    n & \mapsto & n+1
-    \end{array}
+        f:
+        \begin{array}{ccc}
+            \bbN          & \to & \bbN       \\
+            n          & \tp & n+1
+        \end{array}
     \]
     qui est injective mais non surjective.
 \end{rqq}
@@ -284,5 +296,323 @@ $E = \{ a_1, a_2, \ldots, a_n \}$ avec $a_i \neq a_j, \forall i \neq j$.
     Soit $f: E = \text{l'ensemble des objets} \to F = \text{l'ensemble des tiroirs}$
     l'application qui décrit le placement des objets dans les tiroirs.
     On sait que $|E| > |F|$, alors $f$ n'est pas injective,
-    càd $\exists y \in F, x_1, x_2 \in E$ tels que $x_1 \neq x_2$ mais $f(x_1)=f(x_2)=y$.
+    càd $\exists y \in F, x_1, x_2 \in E$ tels que $x_1 \neq x_2$ mais $f(x_1)=f(x_2)=y$. \qedhere
+\end{proof}
+
+\section{Dénombrement}
+
+\textbf{Rappel (principe de bijection) :}
+Pour deux ensembles finis $E, F$, s'il existe une bijection $E \to F$, alors $|E| = |F|$.
+
+\textbf{Principe d'addition :}
+Soient $A, B$ deux ensembles finis, si $A$ et $B$ sont disjoints (càd $A \cap B = \varnothing$),
+alors $|A \cup B| = |A| + |B|$.
+
+\textit{Démonstration :} Soient $n = |A|, m = |B|$, construisons une bijection $f: \llb 1, m + n \rrb \to A \cup B$.
+
+\textbf{Principe de multiplication :}
+Soient $A, B$ deux ensembles finis, alors $|A \times B| = |A| \cdot |B|$.
+
+\textit{Démonstration :} Construisons une bijection $f: \llb 1, mn \rrb \to A \times B$, où $n = |A|, m = |B|$.
+
+\textbf{Généralisation :} Si $E_1, E_2, \ldots, E_k$ sont des ensembles finis,
+alors $|E_1 \times E_2 \times \cdots \times E_k| = \prod\limits_{j = 1}^k |E_j|$.
+Pour $n \in \bbN^*$, $|E^n| = |E|^n$.
+En particulier, $| \{ 0, 1 \} |^n = 2^n$.
+
+\begin{cor}
+    Si $E, F$ sont deux ensembles finis, alors $| \{ f: E \to F \} (=: \calF) | = |F|^{|E|}$
+\end{cor}
+
+\begin{proof}
+    Construisons une bijection $\varphi: \llb 1, |F|^{|E|} \rrb \to \calF$.
+\end{proof}
+
+\begin{cor}
+    Si $E$ est un ensemble fini, alors $\calP(E)$ est aussi fini, et $|\calP(E)| = 2^{|E|}$.
+\end{cor}
+
+\begin{proof}
+    La fonction indicatrice définit une bijection
+    \[ \bbI:
+        \begin{array}[t]{ccc}
+            \calP(E)      & \to & \{ f: E \to \{ 0, 1 \} \} \\
+            A \subseteq E & \tp & \bbI_A
+        \end{array}
+    \]
+    Donc $|\calP(E)| = | \{ f: E \to \{ 0, 1 \} \} | = 2^{|E|}$.
+\end{proof}
+
+\textbf{$p$-arrangement :}
+\begin{deff}
+    Soient $p \in \bbN^*$ et $E$ un ensemble fini.
+    On appelle $p$-arrangement d'éléments de $E$ tout $p$-liste (liste de longueur $p$)
+    d'éléments de $E$ deux-à-deux distincts.
+    On écrit $A^p_n = \card(\{ (x_1, x_2, \ldots, x_p) \in E^p: \forall i \neq j, x_i \neq x_j \})$.
+\end{deff}
+
+\begin{thm}
+    Pour $n \in \bbN, p \in \bbN^*$, on a
+    \[ A_n^p =
+        \begin{cases}
+            \frac{n!}{(n - p)!}, & \text{si} p \leq n \\
+            0,                   & \text{si} p > n
+        \end{cases}
+    \]
+\end{thm}
+
+\begin{proof}
+    Si $p > n$, alors il n'existe pas de $p$-liste à éléments deux-à-deux distincts de $E$.
+
+    Si $p \leq n$, pour construire un $p$-arrangement d'éléments de $E$, $(x_1, x_2, \ldots, x_p)$:
+    \begin{itemize}
+        \item On choisit $x_1 \in E \to n$ choix.
+        \item On choisit $x_2 \in E \setminus \{x_1\} \to n - 1$ choix.
+        \item $\cdots$
+        \item On choisit $x_p \in E \setminus \{x_1, x_2, \ldots, x_{p-1}\} \to n - (p - 1)$ choix.
+    \end{itemize}
+
+    Par le principe de multiplication, $A_n^p = n(n-1)(n-2)\cdots(n-p+1) = \frac{n!}{(n-p)!}$. \qedhere
+\end{proof}
+
+\begin{cor}
+    Soient $E, F$ deux ensembles finis,
+    alors $\card(\{ f: E \to F \mid f \text{ injective} \}) = A_n^p$ où $p = |E|$ et $n = |F|$.
+\end{cor}
+
+\begin{proof}
+    Soit $u: \llb 1, p \rrb \to E$ une bijection, alors on a la bijection
+    \[ \varphi:
+        \begin{array}[t]{ccc}
+            \{ p\text{-arrangements d'éléments de } F \} & \to & \{ f: E \to F \text{ injective} \} \\
+            (x_1, x_2, \cdots, x_p)                      & \tp & f(z) = x_{u^{-1}(z)}
+        \end{array}
+        \qedhere \]
+\end{proof}
+
+\begin{deff}
+    Une \textbf{permutation} d'un ensemble fini $E$ est une application bijective $E \to E$.
+\end{deff}
+
+\textbf{Conséquence :} On a vu que quand $E$ est fini, une application $f: E \to E$ est injective ssi elle est bijective.
+Donc $| \{ \text{permutations de } E \} | = | \{ f: E \to E \mid f \text{ injective} \} | = A_n^n = n!$.
+
+\textbf{Principe de quotient :}
+\begin{lem}
+    Soit $f: E \to F$ une surjection entre deux ensembles finis $E, F$.
+    S'il existe $r \in \bbN^*$ tel que $\forall y \in F$, on a $|f^{-1}(\{y\})| = r$,
+    Alors $|F| = \frac{|E|}{r}$.
+\end{lem}
+
+\textbf{$p$-combinaison :}
+Une $p$-combinaison d'éléments de $E$ est un sous-ensemble (les éléments sont non ordonnés et sans répétition) de $E$ de cardinal $p$.
+
+\begin{thm}
+    Le nombre de $p$-combinaisons d'un ensemble $E$ de cardinal $n$ est donné par $\frac{A_n^p}{p!}$.
+\end{thm}
+
+\begin{proof}
+    Appliquer le principe de quotient.
+\end{proof}
+
+\begin{deff}
+    On écrit $\binom{n}{p} = \frac{A_n^p}{p!} = \frac{n!}{p!(n-p)!}$.
+    $\binom{n}{p}$ est appelé le coefficient binomial.
+
+    \textbf{Convention :}
+    \begin{itemize}
+        \item $0! = 1$.
+        \item $\binom{n}{0} = 1$.
+        \item $\forall p > n, \binom{n}{p} = 0$.
+    \end{itemize}
+\end{deff}
+
+\textbf{Principe d'inclusion-exclusion :}
+Soient $A_1, A_2, \cdots, A_n$ $n$ ensembles finis (non nécessairement disjoints). On a
+\[ |A_1 \cup A_2 \cup \cdots \cup A_n|
+    = \sum\limits_{k = 1}^n (-1)^{k + 1}
+    \sum\limits_{\substack{(r_1, r_2, \ldots, r_k) \in \llb 1, n \rrb^k \\ 1 \leq r_1 < r_2 < \cdots < r_k \leq n}}
+    |A_{r_1} \cap A_{r_2} \cap \cdots \cap A_{r_k}| \]
+
+\textbf{Par exemple :}
+\begin{itemize}
+    \item $n = 2$: $|A \cup B| = |A| + |B| - |A \cap B|$.
+    \item $n = 3$: $|A \cup B \cup C| = |A| + |B| + |C| - (|A \cap B| + |A \cap C| + |B \cap C|) + |A \cap B \cap C|$.
+\end{itemize}
+
+\begin{thm}[formule du binôme (de Newton)]
+    Pour $n \in \bbN, a, b \in \bbC (\text{ou n'importe quel anneau commutatif})$, on a
+    \[ (a + b)^n = \sum\limits_{k = 0}^n \binom{n}{k} a^k b^{n-k} \]
+\end{thm}
+
+\section{Dénombrabilité}
+
+\begin{deff}
+    Un ensemble $A$ est \textbf{dénombrable} s'il existe une bijection $\bbN \to A$.
+    Il est dit \textbf{au plus dénombrable} s'il est dénombrable ou fini.
+\end{deff}
+
+\textbf{Interprétation :}
+Une bijection $\bbN \to A$ donne une liste infinie de tous les éléments de $A$ sans répétition,
+càd $A = \{ a_0, a_1, a_2, \ldots \}$ et $\forall i \neq j, a_i \neq a_j$.
+
+\begin{exem}
+    $\bbZ$ est un ensemble dénombrable.
+    Par exemple, $\varphi:
+        \begin{array}[t]{ccc}
+            \bbN                         & \to & \bbZ \\
+            \forall k \in \bbN, 2k       & \tp & k    \\
+            \forall k \in \bbN^*, 2k - 1 & \tp & -k
+        \end{array}
+    $ est une bijection.
+\end{exem}
+
+\begin{thm}[comparaison]
+    Soit $A$ un ensemble. Les propriétés suivantes sont équivalentes:
+    \begin{enumerate}[label=(\arabic*)]
+        \item $A$ est au plus dénombrable.
+        \item Il existe une injection $A \to \bbN$.
+        \item $A$ est en bijection avec une partie de $\bbN$.
+        \item Il existe une surjection $\bbN \to A$.
+    \end{enumerate}
+
+    $(2), (3), (4)$ sont des caractérisations de la propriété ``au plus dénombrable''.
+\end{thm}
+
+\begin{proof}
+    $\ $
+    \begin{itemize}
+        \item $(1) \Rightarrow (2)$:
+              Si $A$ est fini, alors il existe $p \in \bbN$ et une bijection $\varphi: \llb 1, p \rrb \to A$.
+              Alors $\varphi^{-1}$ donne une injection $A \to \llb 1, p \rrb \subseteq \bbN$.
+              Si $A$ est dénombrable, il existe une bijection $\bbN \to A$ par déf.
+        \item $(2) \Rightarrow (3)$:
+              Si $f: A \to \bbN$ est une injection alors $f: A \to f(A) \subseteq \bbN$ est une bijection vers une partie de $\bbN$.
+        \item $(3) \Rightarrow (4)$:
+              Soit $B \subseteq \bbN$ tel que $A$ est en bijection avec $B$.
+              Si $B$ est fini, alors $A$ est fini.
+              Si $B$ est infini, on définit $b_0 = \min B$.
+              $\forall n \geq 1, b_n = \min \{ b \in B: b > b_{n - 1} \}$.
+              Alors $n \tp b_n$ est une bijection $\bbN \to B$.
+              Donc $A$ est dénombrable.
+        \item $(4) \Rightarrow (1)$:
+              S'il existe une surjection $g: \bbN \to A$, alors pour tout $a \in A$, $g^{-1}(\{a\}) \neq \varnothing$.
+              On peut alors définir une injection $h: A \to \bbN$ en posant $h(a) = \min g^{-1}(\{a\})$.
+              Donc $A$ est au plus dénombrable.
+    \end{itemize}
+\end{proof}
+
+\begin{cor}
+    L'image d'un ensemble au plus dénombrable par une application (quelconque) est au plus dénombrable.
+    $f: A \to B$, $A$ au plus dénombrable $\implies$ $f(A)$ est au plus dénombrable.
+\end{cor}
+
+\begin{exem}
+    $\bbN^2$ est dénombrable.
+    On peut arranger tous les éléments de $\bbN^2$ dans la liste suivante:
+    \[ (0, 0), (0, 1), (1, 0), (0, 2), (1, 1), (2, 0), \ldots \]
+\end{exem}
+
+\begin{thm}[utile pour le chapitre 2] $\ $
+    \begin{enumerate}
+        \item Un produit fini d'ensembles au plus dénombrables est au plus dénombrable.
+        \item Si $(A_i)_{i \in I}$ est une famille d'ensembles au plus dénombrables,
+              indicée par un ensemble $I$ au plus dénombrable,
+              alors $\bigcup\limits_{i \in I} A_i$ est au plus dénombrable.
+    \end{enumerate}
+\end{thm}
+
+\begin{proof}
+    $\ $
+    \begin{enumerate}
+        \item
+              Soient $A, B$ deux ensembles au plus dénombrables.
+              Par le thm de comparaison, il existe deux injections $f: A \to \bbN, g: B \to \bbN$.
+              Alors $\varphi:
+                  \begin{array}[t]{ccc}
+                      A \times B & \to & \bbN^2       \\
+                      (a, b)     & \tp & (f(a), g(b))
+                  \end{array}
+              $ est injective.
+              On sait que $\bbN^2$ est en bijection avec $\bbN$,
+              donc il existe une injection $A \times B \to \bbN$,
+              donc $A \times B$ est au plus dénombrable.
+        \item
+              Soit $I$ un ensemble au plus dénombrable et $\forall i \in I, A_i$ est un ensemble au plus dénombrable.
+              Alors on peut lister les éléments de $I$ et les $A_i$:
+              \[ I = \{ i_0, i_1, i_2, \ldots \} \]
+              \[ \forall i_k \in I, A_{i_k} = \{ a_{k, 0}, a_{k, 1}, a_{k, 2}, \ldots \} \]
+              Alors $\bigcup\limits_{i \in I} A_i =
+                  \{ a_{k, j} \mid k \in \bbN \text{ tel que } i_k \in I, j \in \bbN \text{ tel que } a_{k, j} \in A_{i_k} \}$.
+              Cela nous donne une surjection $\bbN^2 \to \bigcup\limits_{i \in I} A_i$.
+              Par le thm de comparaison, $\bigcup\limits_{i \in I} A_i$ est au plus dénombrable.
+    \end{enumerate}
+\end{proof}
+
+\begin{cor}
+    $\ $
+    \begin{itemize}
+        \item $\bbQ$ est dénombrable.
+              $
+                  \begin{array}[t]{ccc}
+                      \bbZ \times \bbN^* & \to & \bbQ        \\
+                      (p, q)             & \tp & \frac{p}{q}
+                  \end{array}
+              $ est surjective, et $\bbZ \times \bbN^*$ est au plus dénombrable.
+        \item $\bbZ[x]$ est dénombrable.
+              $\bbZ[x] = \bigcup\limits_{n \in \bbN} \bbZ_n[x]$,
+              et $\forall n \in \bbN, \bbZ_n[x]$ est en bijection avec $\bbN^{n + 1}$.
+    \end{itemize}
+\end{cor}
+
+\textbf{Question :} Y a-t-il des ensembles infinis non dénombrables ? Si oui, exemples ?
+
+\begin{thm}
+    Soit $E$ un ensemble quelconque, il n'existe pas de bijection entre $E$ et $\calP(E)$.
+\end{thm}
+
+\begin{proof}[Démonstration par absurde]
+    Supposons qu'il existe une bijection $\Phi: E \to \calP(E)$.
+    Alors on peut définir $A = \{ x \in E \mid x \notin \Phi(x) \}$.
+    \begin{itemize}
+        \item On a $A \in \calP(E)$
+        \item Mais $\forall x \in E$ on a
+              \begin{itemize}
+                  \item si $x \in A$, alors $x \notin \Phi(x)$, donc $A \neq \Phi(x)$.
+                  \item si $x \notin A$, alors $x \in \Phi(x)$, donc $A \neq \Phi(x)$.
+              \end{itemize}
+
+              Donc on a $A \neq \Phi(x)$ pour tout $x \in E$.
+              Càd $A$ est un élément de l'ensemble d'arrivée $\calP(E)$, qui n'a pas d'antécédent.
+    \end{itemize}
+
+    Donc $\Phi$ n'est pas surjective. C'est absurde. Cela contredit l'hypothèse que $\Phi$ est bijective.
+    Donc il n'existe pas de bijection $E \to \calP(E)$. \qedhere
+\end{proof}
+
+\begin{cor}
+    $\calP(\bbN)$ n'est pas dénombrable.
+\end{cor}
+
+\textbf{Notation :} $\{ 0, 1 \}^\bbN = \{ f: \bbN \to \{ 0, 1 \} \} =
+\{ (d_0, d_1, d_2, \ldots) \mid \forall i \in \bbN, d_i \in \{ 0, 1 \} \} $
+
+\textbf{Conséquence :} On a vu que $\{ 0, 1 \}^\bbN$ est en bijection avec $\calP(\bbN)$. Donc il n'est pas dénombrable.
+
+\begin{thm}
+    $\bbR$ n'est pas dénombrable.
+\end{thm}
+
+\begin{proof}
+    On définit \[ \Phi: \begin{array}[t]{ccc}
+        \{ 0, 1 \}^\bbN & \to & \bbR \\
+        (d_n)_{n \in \bbN} & \tp & \sum\limits_{n = 0}^\infty \frac{2d_n}{3^{n + 1}}
+    \end{array} \]
+    
+    (\textit{Exercice :} Montrer que $\Phi$ est injective)
+    
+    Si $\bbR$ est dénombrable avec $f: \bbR \to \bbN$ une bijection,
+    alors $f \circ \Phi: \{ 0, 1 \}^\bbN \to \bbN$ est une injection.
+    Selon le thm de comparaison, cela implique que $\{ 0, 1 \}^\bbN$ est au plus dénombrable.
+    C'est absurde. Donc $\bbR$ n'est pas dénombrable. \qedhere
 \end{proof}
