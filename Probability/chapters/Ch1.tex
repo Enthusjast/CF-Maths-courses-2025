@@ -90,7 +90,7 @@
 \textbf{Produit cartésien :}
 \[ A \times B := \{ (a, b): a \in A, b \in B \} \]
 
-\textbf{Puissance cartésienne :} Pour $n \geq 2$ entier, on écrit $A^n = \underbrace{A \times A \times A \times \cdots \times A}_{n \text{ fois}}$.
+\textbf{Puissance cartésienne :} Pour $n \geqslant 2$ entier, on écrit $A^n = \underbrace{A \times A \times A \times \cdots \times A}_{n \text{ fois}}$.
 
 \textbf{$\calP(E) := \{ A: A \subseteq E \}$ :} l'ensemble des sous-ensembles de $E$.
 
@@ -133,7 +133,7 @@ par convention si $n = 0, \llb 1, 0 \rrb = \varnothing$.
 \end{deff}
 
 \begin{lem}[fondamental]
-    Soient $m, n \in \bbN$, s'il existe une injection $f: \llb 1, n \rrb \to \llb 1, m \rrb$, alors $n \leq m$.
+    Soient $m, n \in \bbN$, s'il existe une injection $f: \llb 1, n \rrb \to \llb 1, m \rrb$, alors $n \leqslant m$.
 \end{lem}
 
 \begin{proof}
@@ -143,17 +143,17 @@ par convention si $n = 0, \llb 1, 0 \rrb = \varnothing$.
               Si $m = 0$, alors $\llb 1, m \rrb$ est vide.
               L'application $f: \llb 1, n \rrb \to \varnothing$ peut exister seulement si
               $\llb 1, n \rrb = \varnothing$.
-              Donc $n \leq m$ est vrai.
+              Donc $n \leqslant m$ est vrai.
         \item (Hérédité)
               Supposons que le résultat est vrai pour $m$.
               Soit $f: \llb 1, n \rrb \to \llb 1, m + 1 \rrb$ une injection.
-              Si $n = 0$, alors $n \leq m + 1$ et c'est fini.
-              Supposons $n \geq 1$.
+              Si $n = 0$, alors $n \leqslant m + 1$ et c'est fini.
+              Supposons $n \geqslant 1$.
               Soit $p: \llb 1, m + 1 \rrb \to \llb 1, m + 1 \rrb$ la permutation qui échange $f(n)$ et $m + 1$.
               Alors $g = p \circ f$ est une application $g: \llb 1, n \rrb \to \llb 1, m + 1 \rrb$ telle que $g(n) = m + 1$.
               De plus, $g$ est injective.
               La restriction de $g$ sur $\llb 1, n - 1 \rrb$ est une injection $\llb 1, n - 1 \rrb \to \llb 1, m \rrb$.
-              Par l'hypothèse de récurrence, on a $n - 1 \leq m$, donc $n \leq m + 1$.
+              Par l'hypothèse de récurrence, on a $n - 1 \leqslant m$, donc $n \leqslant m + 1$.
     \end{itemize}
 
     Donc le lemme est démontré par récurrence. \qedhere
@@ -174,8 +174,8 @@ par convention si $n = 0, \llb 1, 0 \rrb = \varnothing$.
     \[ f: \llb 1, n \rrb \to E \quad \text{et} \quad g: \llb 1, m \rrb \to E \]
     Alors $g^{-1} \circ f$ est une bijection de $\llb 1, n \rrb$ dans $\llb 1, m \rrb$.
     En particulier, c'est une injection $\llb 1, n \rrb \to \llb 1, m \rrb$.
-    Selon le lemme fondamental, on a $n \leq m$.
-    De la même façon, $m \leq n$.
+    Selon le lemme fondamental, on a $n \leqslant m$.
+    De la même façon, $m \leqslant n$.
     Donc $n = m$, d'où l'unicité de la valeur de $n$. \qedhere
 \end{proof}
 
@@ -199,9 +199,9 @@ $E = \{ a_1, a_2, \ldots, a_n \}$ avec $a_i \neq a_j, \forall i \neq j$.
 \begin{thm}[comparaison]
     Soient $E, F$ deux ensembles finis.
     \begin{enumerate}
-        \item $|E| \leq |F|$ ssi $\exists$ une injection $f: E \to F$
+        \item $|E| \leqslant |F|$ ssi $\exists$ une injection $f: E \to F$
         \item $|E| = |F|$ ssi $\exists$ une bijection $f: E \to F$
-        \item Si $E \neq \varnothing$, $|E| \leq |F|$ ssi $\exists$ une surjection $F \to E$.
+        \item Si $E \neq \varnothing$, $|E| \leqslant |F|$ ssi $\exists$ une surjection $F \to E$.
     \end{enumerate}
 \end{thm}
 
@@ -211,8 +211,8 @@ $E = \{ a_1, a_2, \ldots, a_n \}$ avec $a_i \neq a_j, \forall i \neq j$.
         \item
               Supposons qu'il existe une injection $f: E \to F$.
               Alors l'application $v^{-1} \circ f \circ u: \llb 1, n \rrb \to \llb 1, m \rrb$ est injective.
-              Selon le lemme fondamental, on a $n \leq m$, càd $|E| \leq |F|$.
-              Réciproquement, si $n \leq m$, alors l'application $h:
+              Selon le lemme fondamental, on a $n \leqslant m$, càd $|E| \leqslant |F|$.
+              Réciproquement, si $n \leqslant m$, alors l'application $h:
                   \begin{array}[t]{ccc}
                       \llb 1, n \rrb & \to & \llb 1, m \rrb \\ k & \tp & k
                   \end{array}
@@ -221,21 +221,21 @@ $E = \{ a_1, a_2, \ldots, a_n \}$ avec $a_i \neq a_j, \forall i \neq j$.
               Donc il existe une injection $E \to F$.
         \item
               Supposons qu'il existe une bijection $f: E \to F$.
-              Puisque $f$ est injective, selon le point 1, on a $|E| \leq |F|$.
+              Puisque $f$ est injective, selon le point 1, on a $|E| \leqslant |F|$.
               De même, $f^{-1}: F \to E$ est aussi injective.
-              Donc $|F| \leq |E|$.
+              Donc $|F| \leqslant |E|$.
               Donc $|E| = |F|$.
         \item
-              Supposons $E \neq \varnothing$, càd $n \geq 1$.
+              Supposons $E \neq \varnothing$, càd $n \geqslant 1$.
               Supposons qu'il existe une surjection $g: F \to E$.
               Alors $q = v \circ g \circ u^{-1}$ est une surjection $\llb 1, m \rrb \to \llb 1, n \rrb$.
               Pour chaque $i \in \llb 1, n \rrb$, on pose $r(i) =$ le plus petit élément de $q^{-1}(\{i\})$.
               $r$ est une injection $\llb 1, n \rrb \to \llb 1, m \rrb$.
-              Donc $n \leq m$.
-              Réciproquement, si $n \leq m$, alors on peut définir la surjection $\llb 1, m \rrb \to \llb 1, n \rrb$.
+              Donc $n \leqslant m$.
+              Réciproquement, si $n \leqslant m$, alors on peut définir la surjection $\llb 1, m \rrb \to \llb 1, n \rrb$.
               $s(k) =
                   \begin{cases}
-                      k, & \text{si} k \leq n \\ 1, & \text{si} k > n
+                      k, & \text{si} k \leqslant n \\ 1, & \text{si} k > n
                   \end{cases}
               $
               Alors $u \circ s \circ v^{-1}$ est une surjection $F \to E$.
@@ -251,8 +251,8 @@ $E = \{ a_1, a_2, \ldots, a_n \}$ avec $a_i \neq a_j, \forall i \neq j$.
 \begin{cor}
     Soit $E$ un ensemble fini.
     \begin{itemize}
-        \item Si $A \subseteq E$, alors $A$ est fini et $|A| \leq |E|$.
-        \item Si $f: E \to F$ est une application, alors $f(E)$ est fini et $|f(E)| \leq |E|$.
+        \item Si $A \subseteq E$, alors $A$ est fini et $|A| \leqslant |E|$.
+        \item Si $f: E \to F$ est une application, alors $f(E)$ est fini et $|f(E)| \leqslant |E|$.
               De plus, $|f(E)|=|E|$ ssi $f$ est injective.
         \item Si $f: E \to E$, alors $f$ est injective $\iff f$ est surjective $\iff f$ est bijective.
     \end{itemize}
@@ -263,9 +263,9 @@ $E = \{ a_1, a_2, \ldots, a_n \}$ avec $a_i \neq a_j, \forall i \neq j$.
     \begin{itemize}
         \item Si $A \subseteq E$, alors $A$ s'écrit sous la forme
               $A=\{a_{i_1}, a_{i_2}, \dots, a_{i_p}\}$ avec $1 \le i_1 < i_2 < \dots < i_p \le n$.
-              Donc $A$ est fini et $|A|=p \leq n$.
+              Donc $A$ est fini et $|A|=p \leqslant n$.
         \item On a $f(E)= \{f(a): a \in E\}=\{f(a_1), f(a_2), \dots, f(a_n)\}$,
-              donc $f(E)$ contient au plus $n$ éléments, d'où $|f(E)| \leq n$.
+              donc $f(E)$ contient au plus $n$ éléments, d'où $|f(E)| \leqslant n$.
               On a $|f(E)|= n$ ssi il n'y a pas de valeurs répétées parmi
               $f(a_1), f(a_2), \dots, f(a_n)$ càd $f$ est injective.
         \item Si $f$ est injective, selon le point 2, $|f(E)|=|E|$.
@@ -355,7 +355,7 @@ En particulier, $| \{ 0, 1 \} |^n = 2^n$.
     Pour $n \in \bbN, p \in \bbN^*$, on a
     \[ A_n^p =
         \begin{cases}
-            \frac{n!}{(n - p)!}, & \text{si} p \leq n \\
+            \frac{n!}{(n - p)!}, & \text{si} p \leqslant n \\
             0,                   & \text{si} p > n
         \end{cases}
     \]
@@ -364,7 +364,7 @@ En particulier, $| \{ 0, 1 \} |^n = 2^n$.
 \begin{proof}
     Si $p > n$, alors il n'existe pas de $p$-liste à éléments deux-à-deux distincts de $E$.
 
-    Si $p \leq n$, pour construire un $p$-arrangement d'éléments de $E$, $(x_1, x_2, \ldots, x_p)$:
+    Si $p \leqslant n$, pour construire un $p$-arrangement d'éléments de $E$, $(x_1, x_2, \ldots, x_p)$:
     \begin{itemize}
         \item On choisit $x_1 \in E \to n$ choix.
         \item On choisit $x_2 \in E \setminus \{x_1\} \to n - 1$ choix.
@@ -431,7 +431,7 @@ Une $p$-combinaison d'éléments de $E$ est un sous-ensemble (les éléments son
 Soient $A_1, A_2, \cdots, A_n$ $n$ ensembles finis (non nécessairement disjoints). On a
 \[ |A_1 \cup A_2 \cup \cdots \cup A_n|
     = \sum\limits_{k = 1}^n (-1)^{k + 1}
-    \sum\limits_{\substack{(r_1, r_2, \ldots, r_k) \in \llb 1, n \rrb^k \\ 1 \leq r_1 < r_2 < \cdots < r_k \leq n}}
+    \sum\limits_{\substack{(r_1, r_2, \ldots, r_k) \in \llb 1, n \rrb^k \\ 1 \leqslant r_1 < r_2 < \cdots < r_k \leqslant n}}
     |A_{r_1} \cap A_{r_2} \cap \cdots \cap A_{r_k}| \]
 
 \textbf{Par exemple :}
@@ -492,7 +492,7 @@ càd $A = \{ a_0, a_1, a_2, \ldots \}$ et $\forall i \neq j, a_i \neq a_j$.
               Soit $B \subseteq \bbN$ tel que $A$ est en bijection avec $B$.
               Si $B$ est fini, alors $A$ est fini.
               Si $B$ est infini, on définit $b_0 = \min B$.
-              $\forall n \geq 1, b_n = \min \{ b \in B: b > b_{n - 1} \}$.
+              $\forall n \geqslant 1, b_n = \min \{ b \in B: b > b_{n - 1} \}$.
               Alors $n \tp b_n$ est une bijection $\bbN \to B$.
               Donc $A$ est dénombrable.
         \item $(4) \Rightarrow (1)$:

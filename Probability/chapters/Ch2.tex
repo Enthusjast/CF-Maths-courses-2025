@@ -1,0 +1,592 @@
+\chapter{Espace de probabilité}
+
+\section{Espace de probabilité}
+
+But~: modéliser une ``expérience aléatoire''
+
+\begin{exem}
+    Expérience aléatoire~: on lance un dé à 6 faces.
+    L'ensemble des résultats possibles de l'expérience $\Omega = \{ 1, 2, 3, 4, 5, 6 \}$.
+\end{exem}
+
+Informellement, une ``expérience'' est une question à laquelle on répond oui ou non,
+après avoir observé les résultats de l'expérience.
+
+\begin{exem}
+    Événement~: $A = \text{``le dé tombe sur un nombre pair''}$
+\end{exem}
+
+Formellement, un événement est représenté par un sous-ensemble de $\Omega$.
+
+Pour modéliser une expérience aléatoire, on doit préciser~:
+\begin{enumerate}
+    \item L'ensemble $\Omega$ des résultats possibles.
+    \item Une famille $\calF \subseteq \calP(\Omega)$ d'événements considérés.
+    \item Une valeur de probabilité $\bbP(A) \in [0, 1]$ pour chaque événement $A \in \calF$.
+\end{enumerate}
+
+La famille $\calF$ et les probabilités $\bbP(A)$ doivent satisfaire un certain nombre de conditions de cohérence.
+On va introduire ces conditions.
+
+\begin{deff}
+    Soit $\Omega$ un ensemble non vide.
+    Une famille $\calF \subseteq \calP(\Omega)$ est appelée une \textbf{tribu} sur $\Omega$ si
+    \begin{enumerate}
+        \item $\varnothing \in \calF$.
+        \item $A \in \calF \implies A^C \in \calF$.
+        \item Si $(A_n)_{n \in \bbN}$ est une famille dénombrable d'éléments de $\calF$,
+              alors $\bigcup\limits_{n \in \bbN} A_n \in \calF$.
+    \end{enumerate}
+\end{deff}
+
+\begin{deff}
+    Pour un ensemble $\Omega \neq \varnothing$ et $\calF$ une tribu sur $\Omega$,
+    on appelle le couple $(\Omega, \calF)$ \textbf{espace de probabilité}.
+    Dans ce cas, les éléments de $\calF$ sont appelés \textbf{événements}.
+\end{deff}
+
+\begin{prop}
+    Si $\calF$ est une tribu sur $\Omega$, alors
+    \begin{enumerate}
+        \item $\Omega \in \calF$.
+        \item Si $(A_n)_{n \in \bbN}$ est une famille dénombrable d'éléments de $\calF$,
+              alors $\bigcap\limits_{n \in \bbN} A_n \in \calF$.
+        \item Si $A, B \in \calF$, alors $A \setminus B \in \calF$.
+        \item $\calF$ est stable par intersections et unions finies.
+    \end{enumerate}
+\end{prop}
+
+\begin{proof}
+    $\ $
+    \begin{enumerate}
+        \item $\Omega = \varnothing^C$
+        \item $\bigcap\limits_{n \in \bbN} A_n = \left(\bigcup\limits_{n \in \bbN} A_n^C\right)^C$
+        \item $A \setminus B = A \cap B^C$
+        \item $A_1 \cap A_2 \cap \cdots \cap A_n = \bigcap_{k \in \bbN} A_k$
+              avec $A_{n + 1} = A_{n + 2} = \cdots = \Omega$ ;
+              $A_1 \cup A_2 \cup \cdots \cup A_n = \bigcup_{k \in \bbN} A_k$
+              avec $A_{n + 1} = A_{n + 2} = \cdots = \varnothing$.
+    \end{enumerate}
+\end{proof}
+
+\begin{exem}
+    $\ $
+    \begin{enumerate}
+        \item Pour tout $\Omega \neq \varnothing$,
+              \begin{itemize}
+                  \item $\{ \varnothing, \Omega \}$ est la plus petite tribu sur $\Omega$.
+                        (on l'appelle la tribu triviale sur $\Omega$)
+                  \item $\calP(\Omega)$ est la plus grande tribu sur $\Omega$.
+              \end{itemize}
+        \item Pour l'expérience du lancer de dé, supposons qu'on observe uniquement la parité du résultat.
+              Alors la tribu des événements observables est $\calF = \{ \varnothing, P, I, \Omega \}$, où
+              \[ \Omega = \{ 1, 2, 3, 4, 5, 6 \}, \quad P = \{ 2, 4, 6 \}, \quad I = \{ 1, 3, 5 \}. \]
+    \end{enumerate}
+\end{exem}
+
+\begin{lem}
+    L'intersection d'une famille non vide quelconque de tribus (sur $\Omega$) est encore une tribu sur $\Omega$.
+    Si $(\calF_i)_{i \in I}$ est une famille de tribus sur $\Omega$, alors
+    $\bigcap_{i \in I} \calF_i$ est une tribu.
+\end{lem}
+
+\begin{proof}
+    Voir TD.
+\end{proof}
+
+\begin{deff}
+    Soit $\calC \subseteq \calP(\Omega)$.
+    Soit $(\calF_i)_{i \in I}$ la famille des tribus sur $\Omega$ qui contiennent $\calC$.
+    On définit $\sigma(\calC) = \bigcap\limits_{i \in I} \calF_i$,
+    cette famille est non vide car elle contient $\calP(\Omega)$.
+    D'après le lemme, $\sigma(\calC)$ est une tribu sur $\Omega$,
+    $\sigma(\calC)$ est appelée la \textbf{tribu engendrée} par $\calC$.
+    C'est la plus petite tribu sur $\Omega$ qui contient $\calC$.
+\end{deff}
+
+\begin{exem}
+    La tribu borélienne sur $\bbR$ est $B(\bbR) := \sigma(\{ ]-\infty, t] : t \in \bbR \})$.
+\end{exem}
+
+\begin{exer}
+    Montrer que $B(\bbR)$ contient tous les intervalles.
+\end{exer}
+
+\begin{deff}
+    Soit $\Omega$ un ensemble non vide muni d'une tribu $\calF$.
+    Une application $\bbP: \calF \to [0, 1]$ est appelée \textbf{mesure de probabilité},
+    si elle satisfait les axiomes suivants~:
+    \begin{enumerate}
+        \item ($\sigma$-additivité) Pour toute suite d'événements $(A_n)_{n \in \bbN}$ deux à deux disjoints,
+              on a $\bbP \left(\bigcup\limits_{n \in \bbN} A_n\right) = \sum\limits_{n \in \bbN} \bbP(A_n)$.
+        \item $\bbP(\Omega) = 1$.
+    \end{enumerate}
+\end{deff}
+
+\begin{rqq}
+    Plus généralement, une application $\mu: \calF \to [0, \infty]$ est une mesure (positive),
+    si $\mu(\varnothing) = 0$ et $\mu$ est $\sigma$-additive.
+\end{rqq}
+
+\begin{exem}
+    La mesure de comptage sur $\bbN$ définie par
+    \[ \mu(A) =
+        \begin{cases}
+            \card(A), & \text{si } A \subseteq \bbN \text{ est fini}   \\
+            \infty,   & \text{si } A \subseteq \bbN \text{ est infini}
+        \end{cases}
+    \]
+
+    est une mesure (positive) mais pas une mesure de probabilité.
+\end{exem}
+
+\begin{deff}
+    Un \textbf{espace de probabilité} est un triplet $(\Omega, \calF, \bbP)$ tel que
+    \begin{itemize}
+        \item $\Omega$ est un ensemble non vide.
+        \item $\calF$ est une tribu sur $\Omega$.
+        \item $\bbP$ est une mesure de probabilité sur $\calF$.
+    \end{itemize}
+\end{deff}
+
+Modéliser une expérience aléatoire consiste à définir son espace de probabilité.
+
+Dans ce cours, on va étudier un cas particulier d'espace de probabilité
+pour éviter les constructions techniques de $\calF$ et de $\bbP$.
+
+\begin{thm}
+    Soit $\Omega$ un ensemble au plus dénombrable non vide, et soit $\calF = \calP(\Omega)$.
+    Alors une probabilité (mesure de probabilité) $\bbP$ sur $\calF$ est entièrement déterminée
+    par les valeurs $P_\omega := \bbP(\{ \omega \})$, pour tout $\omega \in \Omega$.
+\end{thm}
+
+\begin{rqq}
+    Plus précisément, pour toute famille de nombres $(P_\omega)_{\omega \in \Omega}$ telle que
+    $P_\omega \geqslant 0$ pour tout $\omega \in \Omega$ et $\sum_{\omega \in \Omega} P_\omega = 1$,
+    la formule
+    \[ \bbP(A) = \sum_{\omega \in A} P_\omega \]
+    définit une probabilité sur $(\Omega, \calF)$,
+    et toutes les probabilités sur $(\Omega, \calF)$ se définissent de cette façon.
+\end{rqq}
+
+\begin{proof}
+    Pour chaque probabilité $\bbP$ sur $\calP(\Omega)$,
+    on a une famille $(P_\omega := \bbP(\{ \omega \}))_{\omega \in \Omega}$.
+    Par la $\sigma$-additivité de $\bbP$, on a, pour tout $A \subseteq \Omega$~:
+    \[ \bbP(A) = \bbP \left(\bigcup_{\omega \in A} \{ \omega \} \right)
+        = \sum_{\omega \in A} \bbP(\{ \omega \}) = \sum_{\omega \in A} P_\omega. \]
+
+    Réciproquement, pour chaque famille $(P_\omega)_{\omega \in \Omega}$ telle que
+    $P_\omega \geqslant 0$ pour tout $\omega \in \Omega$ et $\sum_{\omega \in \Omega} P_\omega = 1$,
+    la formule $\bbP(A) = \sum_{\omega \in A} P_\omega$ définit une probabilité sur $(\Omega, \calF)$,
+    c'est-à-dire satisfait les axiomes d'une mesure de probabilité.
+\end{proof}
+
+\begin{exem}[Probabilité uniforme sur un ensemble fini]
+    Soit $\Omega$ un ensemble fini non vide et $\calF = \calP(\Omega)$.
+    La probabilité uniforme sur $\Omega$ est définie par
+    \[ P_\omega = \frac{1}{\card(\Omega)}, \quad \forall \omega \in \Omega. \]
+
+    Sous la probabilité uniforme, on a
+    \[ \bbP(A) = \frac{\card(A)}{\card(\Omega)}, \quad \forall A \subseteq \Omega. \]
+\end{exem}
+
+\begin{exem}[``Paradoxe'' des anniversaires]
+    Modèle~: on a $n$ personnes dont les anniversaires se trouvent tous les 365 jours d'une année.
+    On pose $\Omega = \{ 1, 2, \ldots, 365 \}^n$, $\calF = \calP(\Omega)$, et $\bbP$ la probabilité uniforme sur $\Omega$.
+
+    Soit $A =$ ``au moins 2 personnes ont le même anniversaire''.
+    Alors $A^C =$ ``les $n$ anniversaires sont tous différents''.
+    On cherche $\bbP(A)$.
+
+    Supposons $n \leqslant 365$. Alors
+    \[ A^C = \{ (a_1, a_2, \ldots, a_n) \mid \forall i \neq j, a_i \neq a_j \}, \]
+    d'où
+    \[ \lrvert{A^C} = A_{365}^n = \frac{365!}{(365-n)!} = 365 \times 364 \times \cdots \times (365 - n + 1). \]
+    Par conséquent,
+    \[ \bbP(A) = 1 - \bbP(A^C) = 1 - \frac{\lrvert{A^C}}{\lrvert{\Omega}}
+        = 1 - \prod_{k = 0}^{n - 1}\left(1 - \frac{k}{365}\right). \]
+
+    Le ``paradoxe'' (fait contre-intuitif)~: $\bbP(A)$ peut être ``grand'' même si $n \ll 365$
+
+    Par exercice~: $\bbP(A) > \frac{1}{2} \iff n \geqslant 23$.
+\end{exem}
+
+\textbf{Un modèle continu~:} on choisit un point ``au hasard uniformément'' dans l'intervalle $[0, 1]$.
+On pose
+\[ \Omega = [0, 1], \quad \calF = B([0, 1]), \quad \bbP([a, b]) = b - a, \quad \forall\, 0 \leqslant a \leqslant b \leqslant 1. \]
+
+\begin{rqq}
+    Conséquence de nos hypothèses~:
+    \[ \bbP(\{ x \}) = 0, \quad \forall x \in [0, 1]. \]
+
+    On voit une différence entre
+    \begin{itemize}
+        \item un événement de probabilité 0,
+        \item un événement impossible.
+    \end{itemize}
+\end{rqq}
+
+\begin{deff}[Événement négligeable et propriété presque sûre]
+    Soit $A$ un événement.
+    \begin{itemize}
+        \item $A$ est négligeable si $\bbP(A) = 0$.
+        \item $A$ est presque sûr si $\bbP(A) = 1$.
+        \item Une propriété est vraie presque sûrement si
+              il existe un événement $A \in \calF$ tel que $\bbP(A) = 1$
+              et la propriété est vraie pour tout $\omega \in A$.
+    \end{itemize}
+\end{deff}
+
+\begin{rqq}
+    L'ensemble $\{ \omega \in \Omega \mid \text{la propriété est vraie} \}$ peut ne pas être dans $\calF$.
+\end{rqq}
+
+\begin{rqq}
+    Soit $A$ un événement dans un espace de probabilité $(\Omega, \calF, \bbP)$.
+    \begin{itemize}
+        \item $A$ est \textbf{négligeable} $\iff \bbP(A) = 0$.
+        \item $A$ est \textbf{presque sûr} $\iff \bbP(A) = 1$.
+    \end{itemize}
+
+    Conséquence de la $\sigma$-additivité de $\bbP$~:
+    l'union (l'intersection) d'une famille au plus dénombrable d'événements négligeables (presque sûrs) est encore négligeable (presque sûre).
+
+    Abréviation~: p.s. = presque sûr, $\bbP$-p.s. = presque sûr sous la probabilité $\bbP$.
+\end{rqq}
+
+\begin{thm}
+    Soient $A, B$ deux événements dans un espace de probabilité $(\Omega, \calF, \bbP)$.
+    Alors
+    \begin{enumerate}
+        \item $\bbP(\varnothing) = 0$.
+        \item Si $A_1, A_2, \ldots, A_n \in \calF$ sont deux à deux disjoints,
+              alors $\bbP \left(\bigcup\limits_{k = 1}^n A_k \right) = \sum_{k = 1}^n \bbP(A_k)$.
+        \item $\bbP(A^C) = 1 - \bbP(A)$.
+        \item Si $A \subseteq B$, alors $\bbP(A) \leqslant \bbP(B)$.
+        \item $\bbP(A \cup B) = \bbP(A) + \bbP(B) - \bbP(A \cap B)$.
+        \item $\bbP \left(\bigcup\limits_{n \in \bbN} A_n\right) \leqslant \sum_{n \in \bbN} \bbP(A_n)$.
+    \end{enumerate}
+\end{thm}
+
+\begin{proof}
+    Exercice.
+\end{proof}
+
+Soit $(\Omega, \calF, \bbP)$ un espace de probabilité et $(A_n)_{n \in \bbN}$ une suite d'événements.
+
+\begin{thm}[continuité des probabilités]
+    Si la suite $(A_n)_{n \in \bbN}$ est croissante (càd $\forall m \leqslant n, A_m \subseteq A_n$),
+    alors $\bbP(A_n) \underset{n \to \infty}{\nearrow} \bbP\left(\bigcup_{n \in \bbN} A_n\right)$.
+    Si la suite $(A_n)_{n \in \bbN}$ est décroissante (càd $\forall m \leqslant n, A_n \subseteq A_m$),
+    alors $\bbP(A_n) \underset{n \to \infty}{\searrow} \bbP\left(\bigcap_{n \in \bbN} A_n\right)$.
+\end{thm}
+
+\begin{proof}
+    Supposons que $(A_n)_{n \in \bbN}$ est croissante.
+    Pour tout $n \geqslant 1$, soit $B_n = A_n \setminus A_{n-1}$.
+    Alors $\bigcup_{k \in \bbN} A_k = A_0 \cup \left(\bigcup_{k = 1}^\infty B_k\right)$,
+    et $\forall n \geqslant 0, A_n = A_0 \cup \left(\bigcup_{k = 1}^n B_k\right)$.
+
+    Par la $\sigma$-additivité de $\bbP$, on a
+    \[ \bbP\left(\bigcup_{k \in \bbN} B_k\right) = \bbP(A_0) + \sum_{k = 1}^\infty \bbP(B_k), \]
+    et pour tout $n$,
+    \[ \bbP(A_n) = \bbP(A_0) + \sum_{k = 1}^n \bbP(B_k). \]
+
+    Si $(A_n)_{n \in \bbN}$ est décroissante, $(A_n^C)_{n \in \bbN}$ est croissante.
+\end{proof}
+
+\begin{rqq}
+    Pour une suite d'événements $(A_n)_{n \in \bbN}$ quelconque, on peut écrire
+    \[ \bbP \left(\bigcup\limits_{n \in \bbN} A_n\right) = \lim\limits_{N \to \infty} \uparrow \bbP \left(\bigcup\limits_{k = 1}^N A_k\right) \]
+    \[ \bbP \left(\bigcap\limits_{n \in \bbN} A_n\right) = \lim\limits_{N \to \infty} \downarrow \bbP \left(\bigcap\limits_{k = 1}^N A_k\right) \]
+\end{rqq}
+
+\begin{lem}[Premier lemme de Borel-Cantelli]
+    Soit $(A_n)_{n \in \bbN}$ une suite d'événements dans un espace de probabilité $(\Omega, \calF, \bbP)$.
+    Si $\sum\limits_{n = 0}^\infty \bbP(A_n) < +\infty$, alors
+    \[ \bbP \left(\bigcap\limits_{k = 1}^\infty \left(\bigcup\limits_{n = k}^\infty A_n\right)\right) = 0 \]
+\end{lem}
+
+\begin{rqq}
+    L'événement $\bigcap_{k = 1}^\infty \left(\bigcup_{n = k}^\infty A_n\right)$ est réalisé
+    ssi un nombre infini des événements $A_n$ sont réalisés~:
+    \[ \bigcap_{k = 1}^\infty \left(\bigcup_{n = k}^\infty A_n\right) =
+        \{ \omega \in \Omega \mid \text{il existe une infinité de } n \in \bbN \text{ tels que } \omega \in A_n \}. \]
+    Cet événement est dans la tribu $\calF$,
+    car on peut le construire à partir des $A_n$ en utilisant des $\cap$ et $\cup$ dénombrables.
+\end{rqq}
+
+\begin{proof}
+    Soit $B_k = \bigcup_{n = k}^\infty A_n$.
+    La suite d'événements $(B_k)_{k \in \bbN}$ est décroissante.
+    Par la sous-additivité des probabilités, on a
+    \[ \bbP(B_k) \leqslant \sum_{n = k}^\infty \bbP(A_n). \]
+
+    Par la continuité des probabilités, on a
+    \[ \bbP\left(\bigcap_{k = 1}^\infty B_k\right)
+        = \lim_{k \to \infty} \bbP(B_k)
+        \leqslant \lim_{k \to \infty} \sum_{n = k}^\infty \bbP(A_n)
+        = 0, \]
+    car la série $\sum_{n = 0}^\infty \bbP(A_n)$ converge.
+\end{proof}
+
+\begin{rqq}[Interprétation probabiliste]
+    Si les probabilités d'une suite d'événements décroissent \textit{assez vite}
+    ($\iff \sum_{n = 0}^\infty \bbP(A_n) < +\infty$),
+    alors presque sûrement seul un nombre fini des événements $A_n$ sont réalisés, c'est-à-dire
+    \[ \bbP\left(\{ \omega \in \Omega \mid \omega \in A_n \text{ pour seulement un nombre fini de } n \in \bbN \}\right) = 1. \]
+\end{rqq}
+
+\begin{exem}[d'application]
+    Un joueur joue à une suite infinie de jeux tel que pour tout $n \geqslant 1$,
+    la probabilité qu'il gagne au $n$-ième jeu est $\frac{1}{2^n}$.
+
+    (Par ex, on lance $n$ pièces de monnaie au $n$-ième jeu,
+    et le joueur gagne seulement si toutes ces pièces tombent sur ``face'')
+
+    Alors presque sûrement, le joueur ne gagne qu'un nombre fini de jeux.
+    Càd presque sûr il existe $k \in \bbN^*$ tel que le joueur perd à tous les jeux à partir du $k$-ième jeu.
+\end{exem}
+
+\begin{rqq}
+    Les résultats de la suite infinie des jeux ne sont pas nécessairement indépendants.
+\end{rqq}
+
+\section{Probabilité conditionnelle et indépendance}
+
+Soit $(\Omega, \calF, \bbP)$ un espace de probabilité.
+Soit $A \in \calF$ un événement.
+
+\textbf{Idée~:} $(\Omega, \calF, \bbP)$ modélise notre connaissance sur l'expérience aléatoire avant toute observation de son résultat.
+
+\textbf{Question~:} si on observe que l'événement $A$ est réalisé, comment doit-on changer notre modèle de l'expérience aléatoire~?
+
+Pour calculer la probabilité d'un événement $B$ après l'observation de $A$,
+on va utiliser $\bbP(B \cap A)$, et la normaliser par $\bbP(A)$.
+
+\begin{deff}
+    Soit $A \in \calF$ tel que $\bbP(A) > 0$.
+    Pour tout $B \in \calF$, on pose $\bbP(B \mid A) := \frac{\bbP(B \cap A)}{\bbP(A)}$.
+    Le nombre $\bbP(B \mid A)$ est appelé \textbf{probabilité conditionnelle} de $B$ sachant $A$.
+\end{deff}
+
+\begin{thm}
+    Pour $A \in \calF$ tel que $\bbP(A) > 0$, l'application
+    $\bbP_A:
+        \begin{array}[t]{ccc} \calF & \to & [0, 1] \\ B & \tp & \bbP(B \mid A)
+        \end{array}
+    $
+    est une mesure de probabilité sur $(\Omega, \calF)$.
+\end{thm}
+
+\begin{proof}
+    On vérifie les deux axiomes de la mesure de probabilité.
+    \begin{enumerate}
+        \item
+              Soit $(B_n)_{n \in \bbN}$ une suite d'événements disjoints deux à deux,
+              alors $\forall i \neq j, (B_i \cap A) \cap (B_j \cap A) = (B_i \cap B_j) \cap A = \varnothing$.
+              Donc $(B_n \cap A)_{n \in \bbN}$ est aussi disjoint deux à deux.
+              \[ \bbP \left(\bigcup\limits_{n \in \bbN}(B_n \cap A)\right) = \sum\limits_{n \in \bbN} \bbP(B_n \cap A) = \bbP \left(\left(\bigcup\limits_{n \in \bbN} B_n\right) \cap A\right) \]
+              \[ \implies \bbP \left(\bigcup\limits_{n \in \bbN} B_n \mid A\right) = \sum\limits_{n \in \bbN} \bbP(B_n \mid A) \]
+        \item
+              \[ \bbP_A(\Omega) = \frac{\bbP(A \cap \Omega)}{\bbP(A)} = 1 \]
+    \end{enumerate}
+\end{proof}
+
+\begin{rqq}
+    $\ $
+    \begin{enumerate}
+        \item En fait $\bbP_A(A) = 1$ càd $\bbP(A \mid A) = 1$. On a aussi $\bbP(A^C \mid A) = 0$.
+        \item Soit $B \in \calF$, alors $\bbP(B^C \mid A) = 1 - \bbP(B \mid A)$.
+              En général, il n'y a pas de relation similaire entre $\bbP(B \mid A)$ et $\bbP(B \mid A^C)$.
+    \end{enumerate}
+\end{rqq}
+
+\begin{rqq}[Formule de probabilités composées]
+    Soient $n \geqslant 2$ et $A_1, A_2, \ldots, A_n \in \calF$ tels que $\bbP(A_1 \cap A_2 \cap \cdots \cap A_n) > 0$.
+    Alors
+    \[ \bbP(A_1 \cap A_2 \cap \cdots \cap A_n) =
+        \bbP(A_1) \cdot \prod_{k = 2}^n \bbP\left(A_k \mathrel{\Big|} \bigcap_{j = 1}^{k-1} A_j\right). \]
+\end{rqq}
+
+\begin{rqq}
+    Par exemple, pour $n = 3$~:
+    \[ \bbP(A_1 \cap A_2 \cap A_3) = \bbP(A_1) \cdot \bbP(A_2 \mid A_1) \cdot \bbP(A_3 \mid A_1 \cap A_2). \]
+
+    La formule des probabilités composées permet de calculer la probabilité que $n$ événements soient réalisés
+    simultanément comme un produit de probabilités conditionnelles.
+\end{rqq}
+
+\begin{deff}
+    Une famille au plus dénombrable $(A_i)_{i \in I}$ est appelée un système quasi-complet d'événements si
+    \begin{enumerate}
+        \item $\forall i \in I, A_i \in \calF$.
+        \item $\forall i \neq j, A_i \cap A_j = \varnothing$ (càd disjoints deux à deux).
+        \item $\sum\limits_{i \in I} \bbP(A_i) = 1$.
+    \end{enumerate}
+\end{deff}
+
+\begin{thm}[Formule des probabilités totales]
+    Si $(A_i)_{i \in I}$ est un système quasi-complet d'événements tel que $\bbP(A_i) > 0$ pour tout $i \in I$,
+    alors pour tout $B \in \calF$, on a $\bbP(B) = \sum\limits_{i \in I} \bbP(B \mid A_i) \cdot \bbP(A_i)$.
+\end{thm}
+
+\begin{thm}[Formule de Bayes]
+    Soient $A, B \in \calF$ tels que $\bbP(A) > 0$ et $\bbP(B) > 0$,
+    alors $\bbP(A \mid B) = \frac{\bbP(B \mid A) \cdot \bbP(A)}{\bbP(B)}$.
+\end{thm}
+
+\subsection*{Indépendance de deux événements}
+
+\begin{rqq}
+    Deux événements $A, B$ sont indépendants si l'observation d'un événement ne change pas la probabilité de l'autre.
+    Si $\bbP(A) > 0$, cela signifie $\bbP(B \mid A) = \bbP(B) = \frac{\bbP(B \cap A)}{\bbP(A)}$.
+\end{rqq}
+
+\begin{deff}
+    Soient $A, B \in \calF$ deux événements, ils sont indépendants si $\bbP(A \cap B) = \bbP(A) \bbP(B)$.
+\end{deff}
+
+\begin{rqq}
+    $\ $
+    \begin{enumerate}
+        \item La relation d'indépendance entre deux événements est symétrique.
+        \item Si deux événements disjoints sont indépendants,
+              alors au moins un des deux événements est négligeable.
+        \item Un événement de probabilité 0 ou 1 est indépendant de tous les événements.
+    \end{enumerate}
+\end{rqq}
+
+\subsection*{Indépendance d'une famille d'événements}
+
+\begin{deff}
+    Soit $(A_i)_{i \in I}$ une famille d'événements ($\forall i \in I, A_i \in \calF$).
+    \begin{itemize}
+        \item $(A_i)_{i \in I}$ est \textbf{indépendante deux à deux},
+              si pour tout $i, j \in I$ tel que $i \neq j$, $A_i$ et $A_j$ sont indépendants.
+        \item $(A_i)_{i \in I}$ est \textbf{mutuellement indépendante},
+              si pour tout sous-ensemble fini $J \subseteq I$, on a
+              \[ \bbP \left(\bigcap_{i \in J} A_i\right) = \prod_{i \in J} \bbP(A_i) \]
+    \end{itemize}
+\end{deff}
+
+\begin{rqq}
+    Mutuellement indépendante $\implies$ indépendante deux à deux.
+\end{rqq}
+
+\begin{exem}
+    On lance deux pièces de monnaie.
+    $A =$ ``la première pièce tombe sur face'',
+    $B =$ ``la deuxième pièce tombe sur face'',
+    $C =$ ``les deux pièces tombent sur le même côté''.
+
+    Alors
+    \begin{align*}
+        \bbP(A) = \bbP(B) = \bbP(C) &= \frac{1}{2}, \\
+        \bbP(A \cap B) = \bbP(B \cap C) = \bbP(C \cap A) &= \frac{1}{4}, \\
+        \bbP(A \cap B \cap C) &= \frac{1}{4}.
+    \end{align*}
+
+    On voit que $A, B, C$ sont deux à deux indépendants, mais pas mutuellement indépendants.
+\end{exem}
+
+\begin{rqq}
+    $\ $
+    \begin{enumerate}
+        \item Pour vérifier l'indépendance mutuelle d'une famille $(A_1, A_2, \ldots, A_n)$,
+              il ne suffit pas de vérifier que $\bbP(A_1 \cap A_2 \cap \cdots \cap A_n) = \prod_{i=1}^n \bbP(A_i)$.
+        \item Si $(A_i)_{i \in I}$ est mutuellement indépendante,
+              alors toute famille $(B_i)_{i \in I}$ de la forme
+              \[ \forall i \in I, B_i = A_i \text{ ou } B_i = A_i^C \]
+              est mutuellement indépendante.
+    \end{enumerate}
+\end{rqq}
+
+\begin{rqq}
+    Quand on dit ``indépendant'' tout court, cela signifie ``mutuellement indépendant''.
+\end{rqq}
+
+\begin{lem}[Deuxième lemme de Borel-Cantelli]
+    Soit $(A_n)_{n \in \bbN}$ une suite d'événements indépendants.
+    Si $\sum_{n \in \bbN} \bbP(A_n) = +\infty$, alors $\bbP\left(\limsup_{n \to \infty} A_n\right) = 1$.
+\end{lem}
+
+\begin{rqq}
+    Rappel~:
+    \[ \limsup_{n \to \infty} A_n = \bigcap_{k=1}^{\infty} \bigcup_{n=k}^{\infty} A_n. \]
+\end{rqq}
+
+\begin{rqq}[Interprétation]
+    Si les probabilités d'une suite d'événements indépendants décroissent \textit{assez lentement}
+    (càd $\sum_{n \in \bbN} \bbP(A_n) = +\infty$),
+    alors presque sûrement une infinité de ces événements sont réalisés.
+\end{rqq}
+
+\begin{proof}
+    On considère l'événement
+    \[ \left(\limsup_{n \to \infty} A_n\right)^C =
+        \left(\bigcap_{k = 1}^\infty \bigcup_{n = k}^\infty A_n\right)^C =
+        \bigcup_{k = 1}^\infty \left(\bigcap_{n = k}^\infty A_n^C\right). \]
+
+    Pour chaque $k$, soit $C_k = \bigcap_{n = k}^\infty A_n^C$.
+    La famille $(A_n^C)_{n \in \bbN}$ est indépendante, donc
+    \[ \bbP(C_k) = \prod_{n = k}^\infty (1 - \bbP(A_n))
+        \leqslant \prod_{n = k}^\infty \exp(-\bbP(A_n))
+        = \exp\left(-\sum_{n = k}^\infty \bbP(A_n)\right) = 0. \]
+
+    Par la continuité des probabilités, on a
+    \[ \bbP\left(\bigcup_{k = 1}^\infty C_k\right) = \lim_{k \to \infty} \bbP(C_k) = 0. \]
+
+    Donc $\bbP\left(\limsup_{n \to \infty} A_n\right) = 1$.
+\end{proof}
+
+\begin{rqq}
+    Le deuxième lemme de Borel-Cantelli serait faux sans la condition d'indépendance.
+\end{rqq}
+
+\begin{exem}
+    Soit $A \in \calF$ tel que $\bbP(A) \notin \{ 0, 1 \}$ et $\forall n \in \bbN, A_n = A$.
+    Alors $\sum_{n = 0}^\infty \bbP(A_n) = +\infty$,
+    mais $\bbP\left(\limsup_{n \to \infty} A_n\right) = \bbP(A) \neq 1$.
+\end{exem}
+
+\begin{exem}[Suite de pile ou face infinie]
+    On pose $\Omega = \{ 0, 1 \}^{\bbN^*}$, $\calF = \sigma(C_n)$ où $C_n = \{ \omega \in \Omega \mid \omega_n = 0 \}$.
+
+    \textbf{Interprétation~:} expérience aléatoire~: une suite infinie de lancers d'une pièce de monnaie.
+    $\calF = \sigma(C_n)$~: on peut observer le résultat du $n$-ième lancer,
+    et tous les autres événements constructibles à partir des $C_n$ à l'aide de $(\quad)^C, \cap, \cup$ dénombrables.
+    En particulier, tout événement qui ne dépend que des $n$ premiers lancers est dans $\calF$.
+    Mais $\calF$ contient aussi d'autres événements.
+
+    Par ex~:
+    \[ A = \{ \text{la pièce tombe sur pile une infinité de fois} \}, \]
+    \[ B = \left\{ \lim_{n \to \infty} \frac{P_n}{n} = \frac{1}{2} \right\}
+        \text{ où } P_n = \text{le nombre de pile dans les } n \text{ premiers lancers}. \]
+\end{exem}
+
+\begin{thm}[Résultat admis]
+    Pour tout $p \in [0, 1]$, il existe une probabilité $\bbP: \calF \to [0, 1]$ telle que
+    \begin{itemize}
+        \item la famille $(C_n)_{n \in \bbN}$ est indépendante~;
+        \item $\forall n \in \bbN$, $\bbP(C_n) = p$.
+    \end{itemize}
+
+    Dans le cas particulier d'une pièce de monnaie équilibrée, on a $p = \frac{1}{2}$ et
+    \[ \forall (\varepsilon_1, \varepsilon_2, \ldots, \varepsilon_n) \in \{ 0, 1 \}^n,
+        \bbP\left((\omega_1, \omega_2, \ldots, \omega_n) = (\varepsilon_1, \varepsilon_2, \ldots, \varepsilon_n)\right)
+        = \frac{1}{2^n}. \]
+\end{thm}
+
+\begin{prop}[Application du deuxième lemme de Borel-Cantelli]
+    Dans le modèle de pile ou face infini, on a
+    \[ \bbP\left(\{ \omega \in \Omega \mid \exists \text{ une infinité de } n \in \bbN^* \text{ tels que } \omega_n = 0 \}\right) = 1. \]
+    Càd presque sûr la pièce tombe sur pile une infinité de fois.
+\end{prop}
+
+\begin{proof}
+    Soit $I = \limsup_{n \to \infty} C_n$.
+    Dans ce modèle, la suite $(C_n)_{n \in \bbN^*}$ est indépendante et $\sum_{n \in \bbN} \bbP(C_n) = +\infty$.
+    Donc le deuxième lemme de Borel-Cantelli donne $\bbP(I) = 1$.
+\end{proof}
