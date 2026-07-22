@@ -1,0 +1,345 @@
+\chapter{Variables aléatoires}
+
+\section{Variables aléatoires et leurs lois}
+
+Soient $(E, \calE)$ et $(F, \calF)$ deux espaces probabilisables
+($E, F$~: ensembles, $\calE, \calF$~: tribus sur $E, F$).
+
+\begin{deff}
+    Une application $f: E \to F$ est \textbf{mesurable} si pour tout $B \in \calF$, on a $f^{-1}(B) \in \calE$.
+\end{deff}
+
+Si $(\Omega, \calA, \bbP)$ est un espace de probabilité,
+alors une variable aléatoire à valeurs dans $(E, \calE)$ est une application $X: (\Omega, \calA) \to (E, \calE)$.
+Autrement dit, une variable aléatoire est simplement une fonction mesurable définie sur un espace de probabilité.
+
+\begin{lem}
+    Soient $(E, \calE), (F, \calF), (G, \calG)$ trois espaces probabilisables.
+    Si $f: E \to F$ et $g: F \to G$ sont deux fonctions mesurables,
+    alors $g \circ f: E \to G$ est aussi mesurable.
+\end{lem}
+
+\begin{proof}
+    Si $f$ et $g$ sont mesurables,
+    alors $\forall C \in \calG, g^{-1}(C) \in \calF, \forall B \in \calF, f^{-1}(B) \in \calE$.
+    Alors $(g \circ f)^{-1}(C) = \{ x \in E \mid g(f(x)) \in C \}
+        = \{ x \in E \mid f(x) \in g^{-1}(C) \} = f^{-1}(g^{-1}(C))$.
+    $B := g^{-1}(C) \in \calF$, donc $f^{-1}(B) \in \calE$.
+    Donc $\forall C \in \calG, (g \circ f)^{-1}(C) \in \calE$.
+    Càd $g \circ f$ est mesurable.
+\end{proof}
+
+\begin{cor}
+    Si $X: (\Omega, \calA, \bbP) \to (E, \calE)$ est une variable aléatoire,
+    et $f: (E, \calE) \to (F, \calF)$ est une fonction mesurable,
+    alors $f(X) := f \circ X$ est une variable aléatoire à valeurs dans $(F, \calF)$.
+\end{cor}
+
+\begin{rqq}
+    Si $X: (\Omega, \calA, \bbP) \to (E, \calE)$ est une variable aléatoire,
+    alors pour tout ensemble mesurable $B \in \calE$
+    (``question mesurable par rapport à la valeur de la variable aléatoire''),
+    l'ensemble $\{ X \in B \} := \{ \omega \in \Omega \mid X(\omega) \in B \}$ est un événement
+    (i.e. mesurable dans $\calA$).
+\end{rqq}
+
+\begin{rqq}
+    Rappel~: la tribu borélienne de $\bbR$ est définie par
+    \[ B(\bbR) := \sigma \left(\{ ]-\infty, t] \mid t \in \bbR \}\right). \]
+    Intuitivement, la tribu $B(\bbR)$ peut ``répondre'' à toutes les questions que vous pouvez construire à partir de
+    ``est-ce que $x \leqslant t$''.
+\end{rqq}
+
+\begin{deff}
+    Lorsque $X$ est une variable aléatoire à valeurs dans $(\bbR, B(\bbR))$,
+    on l'appelle une variable aléatoire \textbf{réelle}.
+\end{deff}
+
+\begin{prop}
+    Soit une application $X: (\Omega, \calA, \bbP) \to (\bbR, B(\bbR))$,
+    alors $X$ est mesurable (càd $X$ est une variable aléatoire réelle) ssi
+    \[ \{ X \leqslant t \} := \{ \omega \in \Omega \mid X(\omega) \leqslant t \} \in \calA. \]
+\end{prop}
+
+\begin{proof}
+    ``$\Rightarrow$''~: Si $X$ est mesurable, alors
+    \[ \{ X \leqslant t \} = X^{-1}(]-\infty, t]) \in \calA. \]
+
+    ``$\Leftarrow$''~: Supposons $\{ X \leqslant t \} \in \calA, \forall t \in \bbR$.
+    Soit $\calC = \{ B \subseteq \bbR \mid X^{-1}(B) \in \calA \}$.
+    Alors~:
+    \begin{itemize}
+        \item $\calA$ est une tribu sur $\Omega$, donc $\Omega \in \calA
+                  \implies \bbR \in \calC \implies X^{-1}(\bbR) = \Omega \in \calA$.
+        \item Soit $(B_n)$ une suite d'événements dans $\calC$,
+              donc pour tout $n$, $X^{-1}(B_n) \in \calA$.
+              Donc $\bigcap\limits_{n \in \bbN} X^{-1}(B_n) = X^{-1} \left(\bigcap\limits_{n \in \bbN} B_n\right) \in \calA$,
+              $\left(X^{-1}(B_n)\right)^C = X^{-1}(B_n^C) \in \calA$.
+              Donc $\bigcap\limits_{n \in \bbN} B_n \in \calC$, $B_n^C \in \calC$.
+              Donc $\calC$ est stable par intersection dénombrable et par complémentaire.
+              $\calC$ est une tribu sur $\bbR$.
+              Mais puisque $\{ X \leqslant t \} = X^{-1}(]-\infty, t]) \in \calA$,
+              on a $\{ ]-\infty, t] \mid t \in \bbR \} \subseteq \calC$.
+              Donc $\sigma(\{ ]-\infty, t] \mid t \in \bbR \}) \subseteq \calC$.
+              Càd $B(\bbR) \subseteq \calC \iff \forall B \in B(\bbR), X^{-1}(B) \in \calA$
+              $\iff X$ est une variable aléatoire réelle.
+    \end{itemize}
+\end{proof}
+
+\begin{exem}
+    $\ $
+    \begin{enumerate}
+        \item Toute application constante $X:
+                  \begin{array}[t]{ccc}
+                      \Omega & \to & E                                        \\
+                      \omega & \tp & c \in E (\text{ne dépend pas de } \omega)
+                  \end{array}
+              $ est une variable aléatoire.
+
+              Une telle variable aléatoire est dite ``déterministe''.
+        \item Si $A \in \calA$ est un événement dans l'espace de probabilité $(\Omega, \calA, \bbP)$,
+              alors $\bbI_A:
+                  \begin{array}[t]{ccc}
+                      \Omega & \to & \bbR                        \\
+                      \omega & \tp & 1 \text{ si } \omega \in A    \\
+                      \omega & \tp & 0 \text{ si } \omega \notin A
+                  \end{array}
+              $ est une variable aléatoire réelle.
+        \item Si $([0, 1], B([0, 1]), \bbP)$ est un espace de probabilité sur $[0, 1]$,
+              alors $\id_{[0, 1]}: ([0, 1], B([0,1])) \to ([0, 1], B([0, 1]))$ est une variable aléatoire.
+              Cette variable aléatoire peut prendre une infinité non dénombrable de valeurs (i.e. $[0, 1]$).
+    \end{enumerate}
+\end{exem}
+
+\begin{proof}
+    $\ $
+    \begin{enumerate}
+        \item Pour tout $B \subseteq E$, on a $X^{-1}(B) =
+                  \begin{cases}
+                      \varnothing, & \text{si } c \notin B \\
+                      \Omega,      & \text{si } c \in B
+                  \end{cases}
+              $
+
+              $\varnothing$ et $\Omega$ appartiennent toujours à une tribu sur $\Omega$.
+              Donc $X$ est mesurable.
+        \item Soit $t \in \bbR$,
+              \[ \bbI_A^{-1}(]-\infty, t]) =
+                  \begin{cases}
+                      \Omega,      & \text{si } t \geqslant 1     \\
+                      A^C,         & \text{si } 0 \leqslant t < 1 \\
+                      \varnothing, & \text{si } t < 0
+                  \end{cases}
+                  \in \calA \] pour tout $t \in \bbR$.
+              D'après la proposition précédente, $\bbI_A: (\Omega, \calA, \bbP) \to (\bbR, B(\bbR))$ est mesurable,
+              donc c'est une variable aléatoire réelle.
+    \end{enumerate}
+\end{proof}
+
+\begin{rqq}[Notation]
+    Soit $X: (\Omega, \calA, \bbP) \to (E, \calE)$ une variable aléatoire à valeurs dans $(E, \calE)$.
+    \begin{itemize}
+        \item Pour $B \in \calE$, on écrit
+              \[ \{ X \in B \} := \{ \omega \in \Omega \mid X(\omega) \in B \} = X^{-1}(B). \]
+        \item Pour une variable aléatoire réelle (i.e. $(E, \calE) = (\bbR, B(\bbR))$), on écrit
+              \[ \{ X > x_0 \} := \{ \omega \in \Omega \mid X(\omega) > x_0 \}, \]
+              \[ \{ a < X \leqslant b \} := \{ \omega \in \Omega \mid a < X(\omega) \leqslant b \}. \]
+    \end{itemize}
+\end{rqq}
+
+\begin{deff}
+    Soit $X: (\Omega, \calA, \bbP) \to (E, \calE)$ une variable aléatoire.
+    Sa loi, notée $\bbP_X$, est l'application
+    \[ \bbP_X:
+        \begin{array}[t]{ccc}
+            \calE & \to & [0, 1]        \\
+            B     & \tp & \bbP(X \in B)
+        \end{array}
+    \]
+
+    ($\bbP_X$ est bien définie car pour tout $B \in \calE$, on a $\{ X \in B \} = X^{-1}(B) \in \calA$.
+    Donc $\bbP(X^{-1}(B))$ est bien définie.)
+\end{deff}
+
+\begin{thm}
+    La loi $\bbP_X$ est une mesure de probabilité sur $(E, \calE)$.
+\end{thm}
+
+\begin{proof}
+    $\ $
+    \begin{enumerate}
+        \item $\bbP_X(E) = \bbP(X \in E) = \bbP(\Omega) = 1$.
+        \item Soit $(E_n)_{n \in \bbN}$ une suite d'éléments de $\calE$ deux à deux disjoints.
+              Alors $(X^{-1}(E_n))_{n \in \bbN}$ est une suite d'ensembles deux à deux disjoints dans $\calA$.
+              Donc par la $\sigma$-additivité de $\bbP$,
+              \[ \bbP \left(\bigcup\limits_{n \in \bbN} X^{-1}(E_n) \right) = \sum\limits_{n \in \bbN} \bbP(X^{-1}(E_n)). \]
+              Donc $\bbP_X \left(\bigcup\limits_{n \in \bbN} E_n\right) = \sum\limits_{n \in \bbN} \bbP_X(E_n)$.
+              Càd $\bbP_X$ est aussi $\sigma$-additive (sur $(E, \calE)$).
+              Donc $\bbP_X$ est une probabilité sur $(E, \calE)$.
+    \end{enumerate}
+\end{proof}
+
+\begin{rqq}
+    Pour n'importe quelle mesure de probabilité $\mu$ sur l'espace probabilisable $(E, \calE)$,
+    il existe une variable aléatoire $X: (\Omega, \calA, \bbP) \to (E, \calE)$ telle que $\mu = \bbP_X$.
+
+    Il suffit de considérer $(\Omega, \calA, \bbP) = (E, \calE, \mu)$ et $X = \id_E$.
+    i.e. $X$ est une variable aléatoire à valeurs dans $(E, \calE)$ et la loi de $X$ est $\mu$.
+\end{rqq}
+
+\begin{deff}
+    Soient $X, Y$ deux variables aléatoires à valeurs dans le même espace probabilisable $(E, \calE)$.
+    On dit que $X$ et $Y$ ont \textbf{la même loi} (ou~: $X$ et $Y$ sont \textbf{équiréparties}) si $\bbP_X = \bbP_Y$.
+    Dans ce cas, on écrit $X \overset{\text{loi}}{=} Y$ (``$X$ est égale à $Y$'' en loi) ou
+    $X \overset{\text{(d)}}{=} Y$ (``$X$ est égale à $Y$'' en distribution).
+\end{deff}
+
+\begin{rqq}
+    $X$ et $Y$ ne sont pas nécessairement définies sur le même espace de probabilité $(\Omega, \calA, \bbP)$.
+\end{rqq}
+
+\subsection{Variable aléatoire discrète}
+
+\begin{deff}
+    Une variable aléatoire $X: \Omega \to E$ est \textbf{discrète},
+    si son image $X(\Omega) = \{ X(\omega) \mid \omega \in \Omega \}$ est au plus dénombrable.
+
+    Si $X(\Omega)$ est finie, $X$ est appelée une variable aléatoire finie.
+\end{deff}
+
+\begin{rqq}[Hypothèse]
+    Dans la suite,
+    on suppose que les singletons $\{ x \}$ ($x \in E$) dans l'espace d'arrivée $(E, \calE)$ sont mesurables.
+    (càd $\forall x \in E, \{ x \} \in \calE$).
+    En particulier, cette hypothèse est vraie si $E = \bbR^n$ et $\calE = B(\bbR^n)$ ou $\calE = \calP(E)$.
+\end{rqq}
+
+\begin{prop}
+    Soit $X$ une variable aléatoire discrète à valeurs dans $(E, \calE)$.
+    Alors $\forall B \in \calE, \bbP(X \in B) = \sum\limits_{x \in B \cap X(\Omega)} \bbP(X = x)$.
+\end{prop}
+
+\begin{proof}
+    On a
+    \[ \{ X \in B \} = \{ \omega \in \Omega \mid X(\omega) \in B \} =
+        \bigcup_{x \in B \cap X(\Omega)} \{ \omega \in \Omega \mid X(\omega) = x \}. \]
+    Les ensembles $\{ \omega \in \Omega \mid X(\omega) = x \}$ (pour $x \in B \cap X(\Omega)$) sont deux à deux disjoints,
+    donc par la $\sigma$-additivité de $\bbP$,
+    \[ \bbP(X \in B) = \sum_{x \in B \cap X(\Omega)} \bbP(X = x). \qedhere \]
+\end{proof}
+
+\begin{exem}
+    Si $X = \bbI_A$ (avec $A \in \calA$),
+    alors
+    \begin{itemize}
+        \item $\bbP(X = 1) = \bbP(A)$.
+        \item $\bbP(X = 0) = \bbP(A^C) = 1 - \bbP(A)$.
+        \item $X$ est une variable réelle et discrète.
+    \end{itemize}
+\end{exem}
+
+\subsection{Fonction de répartition}
+
+\begin{deff}
+    Soit $X$ une variable aléatoire réelle.
+    La fonction de répartition de $X$ est l'application
+    \[ F_X:
+        \begin{array}[t]{ccc}
+            \bbR & \to & [0, 1]              \\
+            t    & \tp & \bbP(X \leqslant t)
+        \end{array}
+    \]
+\end{deff}
+
+\begin{prop}
+    Toute fonction de répartition $F_X$ vérifie
+    \begin{enumerate}
+        \item $F_X$ est croissante. ($\forall x \leqslant y, F_X(x) \leqslant F_X(y)$)
+        \item $F_X$ est continue à droite. ($\forall t \in \bbR, \lim\limits_{s \to t^+} F_X(s) = F_X(t)$)
+        \item $\lim\limits_{x \to +\infty} F_X(x) = 1$ et $\lim\limits_{x \to -\infty} F_X(x) = 0$.
+    \end{enumerate}
+\end{prop}
+
+\begin{proof}
+    $\ $
+    \begin{enumerate}
+        \item Pour $x \leqslant y$, $\{ X \leqslant x \} \subseteq \{ X \leqslant y \}$,
+              donc $\bbP(X \leqslant x) \leqslant \bbP(X \leqslant y)$.
+              i.e. $F_X(x) \leqslant F_X(y)$.
+        \item Soit $(x_n)$ une suite décroissante telle que $x_n \underset{n \to +\infty}{\to} t$.
+              Alors $\{ X \leqslant x_n \}$ est une suite décroissante d'événements.
+              Par la continuité de la probabilité,
+              \[ \bbP(X \leqslant t) = \lim_{n \to \infty} \downarrow \bbP(X \leqslant x_n)
+                  = \bbP \left(\bigcap_{n \in \bbN} \{ X \leqslant x_n \}\right). \]
+              Mais
+              \[ \bigcap_{n \in \bbN} \{ X \leqslant x_n \} = \{ \forall n \in \bbN, X \leqslant x_n \}
+                  = \{ X \leqslant \inf_{n \in \bbN} x_n \} = \{ X \leqslant t \}. \]
+              Donc $F_X(t) = \lim\limits_{n \to \infty} \downarrow F_X(x_n)$.
+        \item On remplace la suite $(x_n)$ dans la partie 2 par une suite $x_n \to +\infty$ croissante,
+              ou une suite $x_n \to -\infty$ décroissante.
+              \begin{itemize}
+                  \item Si $(x_n)$ est croissante et $x_n \to \infty$,
+                        \[ \lim_{n \to \infty} \uparrow \bbP(X \leqslant x_n) =
+                            \bbP \left(\bigcup_{n \in \bbN} \{ X \leqslant x_n \}\right) = \bbP(\Omega) = 1. \]
+                  \item Si $(x_n)$ est décroissante et $x_n \to -\infty$,
+                        \[ \lim_{n \to \infty} \downarrow \bbP(X \leqslant x_n) =
+                            \bbP \left(\bigcap_{n \in \bbN} \{ X \leqslant x_n \}\right) = \bbP(\varnothing) = 0. \qedhere \]
+              \end{itemize}
+    \end{enumerate}
+\end{proof}
+
+\begin{thm}[admis]
+    La fonction de répartition d'une variable aléatoire réelle détermine sa loi.
+\end{thm}
+
+\begin{proof}[Idée de la preuve] $\ $
+    \begin{itemize}
+        \item $F_X$ détermine $\bbP(X \in ]-\infty, t])$.
+        \item $B(\bbR) = \sigma(\{ ]-\infty, t]: t \in \bbR \})$. \qedhere
+    \end{itemize}
+\end{proof}
+
+\begin{prop}
+    Soit $X$ une variable aléatoire.
+    Alors pour tout $x \in \bbR$,
+    \[ \bbP(X = x) = F_X(x) - \lim_{y \to x^-} F_X(y). \]
+\end{prop}
+
+\begin{proof}
+    \[ \{ X = x \} = \{ X \leqslant x \} \setminus \{ X < x \} =
+        \{ X \leqslant x \} \setminus \left( \bigcup_{n \in \bbN} \{ X \leqslant x - \tfrac{1}{n} \} \right). \]
+    \[ \implies \bbP(X = x) = \bbP(X \leqslant x) - \lim_{n \to \infty} \uparrow \bbP\left(X \leqslant x - \tfrac{1}{n}\right). \]
+    \[ \implies \bbP(X = x) = F_X(x) - \lim_{n \to \infty} \uparrow F_X\left(x - \tfrac{1}{n}\right). \]
+    \[ \implies \bbP(X = x) = F_X(x) - \lim_{y \to x^-} F_X(y). \qedhere \]
+\end{proof}
+
+\begin{rqq}[Interprétation]
+    Pour tout $x \in \bbR$,
+    la loi $\bbP_X$ donne une mesure non nulle au singleton $\{ x \}$ ssi $F_X$ a une discontinuité à $x$.
+\end{rqq}
+
+\begin{rqq}
+    Si $\bbP_X$ donne une mesure nulle à un intervalle $]a, b[$,
+    alors $F_X$ est constante sur $]a, b[$.
+    Pour tout $x < y$ et $x, y \in ]a, b[$,
+    \[ F_X(y) - F_X(x) = \bbP(x < X \leqslant y) \leqslant \bbP(X \in ]a, b[) = \bbP_X(]a, b[) = 0. \]
+\end{rqq}
+
+\subsection{Fonction de répartition des variables aléatoires discrètes}
+
+\begin{prop}
+    Soient $X, Y$ deux variables aléatoires à valeurs dans $(E, \calE)$.
+    Soit $f: (E, \calE) \to (F, \calF)$ une fonction mesurable.
+    Si $X \overset{\text{loi}}{=} Y$, alors $f(X) \overset{\text{loi}}{=} f(Y)$.
+\end{prop}
+
+\begin{rqq}
+    Autrement dit, la loi de $f(X)$ ne dépend que de la loi de $X$.
+\end{rqq}
+
+\begin{proof}
+    Soit $C \in \calF$. On a $f(X) = f \circ X$.
+    Alors \[ \bbP_{f(X)}(C) = \bbP(f(X) \in C) = \bbP(\{ \omega \in \Omega \mid f(X(\omega)) \in C \})
+        = \bbP(\{ \omega \in \Omega \mid X(\omega) \in f^{-1}(C) \})
+        = \bbP_X(f^{-1}(C)). \qedhere \]
+\end{proof}
