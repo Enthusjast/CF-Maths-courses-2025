@@ -706,3 +706,239 @@ Soient $X, Y$ deux variables aléatoires, et $y$ une valeur de $Y$ telle que $\b
     càd la loi uniforme sur $\llb 1, 6 \rrb$~:
     \[ \bbP_{X \mid S = 7} = \bbP_X = \unif(\llb 1, 6 \rrb). \]
 \end{exem}
+
+\section{Indépendance de variables aléatoires}
+
+Soit $(\Omega, \calF, \bbP)$ un espace de probabilité.
+
+\begin{deff}[Indépendance de deux événements] $\ $
+    \begin{itemize}
+        \item On dit que $A, B$ sont indépendants, si
+        \[ \bbP(A \cap B) = \bbP(A) \bbP(B). \]
+        \item On dit que $n$ événements $A_1, A_2, \ldots, A_n$ sont mutuellement indépendants, si
+        \[ \forall I \subseteq \llb 1, n \rrb, \bbP \left(\bigcap_{i \in I} A_i\right) = \prod_{i \in I} \bbP(A_i). \]
+    \end{itemize}
+\end{deff}
+
+\begin{deff}[Indépendance de deux variables aléatoires] $\ $
+    Soit $X: (\Omega, \calF) \to (\bbR^n, \calB(\bbR^n))$
+    et $Y: (\Omega, \calF) \to (\bbR^m, \calB(\bbR^m))$.
+
+    On dit que $X$ et $Y$ sont indépendantes si pour tous $A \in \calB(\bbR^n), B \in \calB(\bbR^m)$,
+    \[ \bbP(X \in A, Y \in B) = \bbP(X \in A) \bbP(Y \in B). \]
+
+    On note $X \perp Y$.
+\end{deff}
+
+\begin{rqq}[Conséquence]
+    Si $X \perp Y$, alors $\bbP(X \in A \mid Y \in B) = \bbP(X \in A), (\bbP(Y \in B) > 0)$.
+\end{rqq}
+
+\begin{prop}
+    Si $X, Y$ sont discrètes, alors $X \perp Y$ ssi
+    \[ \forall x \in X(\Omega), y \in Y(\Omega), \bbP(X = x, Y = y) = \bbP(X = x) \bbP(Y = y) \]
+\end{prop}
+
+\begin{proof}
+    Le sens ``$\Rightarrow$'' s'obtient en prenant
+    \[ A = \{ x \}, B = \{ y \} \]
+
+    ``$\Leftarrow$''~: Réciproquement, posons $D = X(\Omega), D' = Y(\Omega)$, $D, D'$ sont au plus dénombrables.
+    Pour tous ensembles mesurables $A, B$, on a
+    \begin{align*}
+        \bbP(X \in A, Y \in B) &= \sum_{\substack{x \in D \\ y \in D'}} \bbP(X = x, Y = y)
+        = \sum_{\substack{x \in D \\ y \in D'}} \bbP(X = x) \bbP(Y = y) \\
+        &= \left(\sum_{x \in D} \bbP(X = x)\right)\left(\sum_{y \in D'} \bbP(Y = y)\right)
+        = \bbP(X \in A) \bbP(Y \in B).
+    \end{align*}
+\end{proof}
+
+\begin{prop}[Indépendance par les fonctions de répartition]
+    Deux variables $X, Y$ (à valeurs réelles) sont indépendantes ssi
+    \[ F_{X, Y}(x, y) = F_X(x) F_Y(y), \quad \forall x, y \in \bbR, \]
+    c'est-à-dire
+    \[ \bbP(X \leqslant x, Y \leqslant y) = \bbP(X \leqslant x) \bbP(Y \leqslant y). \]
+\end{prop}
+
+\begin{prop}[Indépendance par transformation]
+    Soient $X, Y$ deux variables aléatoires indépendantes.
+    Soit $f, g: \bbR^n \to \bbR$ deux applications mesurables.
+    Alors $f(X)$ et $g(Y)$ sont indépendantes.
+\end{prop}
+
+\begin{proof}
+    Pour tous ensembles mesurables $A, B \in \calB(\bbR^n)$,
+    \[ \bbP(f(X) \in A, g(Y) \in B) = \bbP(X \in f^{-1}(A), Y \in g^{-1}(B))
+    = \bbP(X \in f^{-1}(A)) \bbP(Y \in g^{-1}(B)) = \bbP(f(X) \in A) \bbP(g(Y) \in B). \]
+
+    Donc $f(X)$ et $g(Y)$ sont indépendantes.
+\end{proof}
+
+\subsection{Indépendance d'une famille de variables}
+
+Soit $I$ un ensemble d'indices.
+
+\begin{deff}
+    Soit $(X_i)_{i \in I}$ une famille de variables aléatoires.
+    On dit que $(X_i)_{i \in I}$ sont mutuellement indépendantes,
+    si pour toute partie finie $J \subseteq I$,
+    pour tous ensembles mesurables $A_j$, on a
+    \[ \bbP \left(\bigcap_{j \in J} A_j\right) = \prod_{j \in J} \bbP(A_j) \]
+\end{deff}
+
+\begin{rqq}
+    $(X_i)_{i \in I}$ sont indépendantes deux à deux,
+    si pour tout $i \neq j$, $X_i$ et $X_j$ sont indépendantes.
+\end{rqq}
+
+\begin{exem}
+    Soit $\Omega = \{ 0, 1 \}$.
+
+    \begin{table}[htb]
+        \centering
+        \begin{tabular}{c|c|c}
+            \diagbox{X}{Y} & 0           & 1           \\
+            \hline
+            0   & $\frac{1}{4}$ & $\frac{1}{4}$ \\
+            \hline
+            1   & $\frac{1}{4}$ & $\frac{1}{4}$
+        \end{tabular}
+    \end{table}
+
+    \[ \bbP(X = i, Y = j) = \frac{1}{2^2}, \quad i, j \in \{ 0, 1 \}. \]
+    Les lois marginales sont
+    \[ \bbP(X = 0) = \bbP(X = 1) = \bbP(Y = 0) = \bbP(Y = 1) = \frac{1}{2}. \]
+    
+    Donc $X \perp Y$.
+    
+    On définit $Z = \bbI_{X = Y}$, alors
+    \[ \bbP(Z = 1) = \bbP(Z = 0) = \frac{1}{2}. \]
+
+    Et
+    \begin{align*}
+        \bbP(X = 0, Z = 0) &= \bbP(X = 0, Y = 1) = \frac{1}{4}, &
+        \bbP(X = 0, Z = 1) &= \bbP(X = 0, Y = 0) = \frac{1}{4}, \\
+        \bbP(X = 1, Z = 0) &= \bbP(X = 1, Y = 0) = \frac{1}{4}, &
+        \bbP(X = 1, Z = 1) &= \bbP(X = 1, Y = 1) = \frac{1}{4}.
+    \end{align*}
+
+    Donc $X \perp Z$, par symétrie, $Y \perp Z$.
+    Mais $X, Y, Z$ ne sont pas mutuellement indépendantes.
+\end{exem}
+
+\begin{prop}
+    Soient $X_1, X_2, \ldots, X_n$ variables aléatoires réelles mutuellement indépendantes.
+    Si $f: \bbR^p \to \bbR$, et $g: \bbR^{n - p} \to \bbR$ sont mesurables,
+    alors les deux variables aléatoires
+    \[ f(X_1, X_2, \ldots, X_p), g(X_{p + 1}, X_{p + 2}, \ldots, X_n) \]
+    sont indépendantes.
+\end{prop}
+
+\begin{proof}
+    Posons $U = (X_1, X_2, \ldots, X_p) \in \bbR^p, V = (X_{p + 1}, X_{p + 2}, \ldots, X_n) \in \bbR^{n - p}$.
+    On va démontrer que $U \perp V$.
+    On prend $A = I_1 \times I_2 \times \cdots \times I_p, B = I_{p + 1} \times I_{p + 2} \times \cdots \times I_n$,
+    où $I_j$ sont des intervalles dans $\bbR$.
+    Par l'indépendance,
+    \begin{align*}
+        \bbP(U \in A, V \in B) &= \bbP(X_1 \in I_1, \ldots, X_p \in I_p, X_{p + 1} \in I_{p + 1}, \ldots, X_n \in I_n) \\
+        &= \bbP(X_1 \in I_1, \ldots, X_p \in I_p) \cdot \bbP(X_{p + 1} \in I_{p + 1}, \ldots, X_n \in I_n) \\
+        &= \bbP(U \in A) \bbP(V \in B).
+    \end{align*}
+
+    Comme les produits d'intervalles engendrent les tribus boréliennes,
+    cette égalité se généralise à tous $A \in \calB(\bbR^p), B \in \calB(\bbR^{n - p})$.
+    Donc $U \perp V$.
+\end{proof}
+
+Dans la suite de cours, nous admettons le théorème suivant.
+\begin{thm}[Existence d'une suite de variables aléatoires indépendantes]
+    Pour toute suite $(P_n)$ de lois de probabilité,
+    il existe un espace de probabilité $(\Omega, \calF, \bbP)$,
+    et une suite $(X_n)$ de variables aléatoires indépendantes sur $(\Omega, \calF, \bbP)$,
+    telle que pour tout $n$, la loi de $X_n$ soit $P_n$.
+\end{thm}
+
+\begin{rqq}
+    En pratique, si $P_n = P$, pour tout $n$,
+    (on dit que $(X_n)$ est une suite de variables aléatoires
+    indépendantes, identiquement distribuées ($(X_n)$ i.i.d.)),
+    une telle suite modélise une suite d'épreuves identiques aux résultats indépendants.
+\end{rqq}
+
+\subsection{Applications}
+
+\paragraph{Convolution dans le cas discret}
+
+Soient $f, g: \bbZ \to \bbR$. La convolution discrète est définie par
+\[ (f * g)(n) = \sum_{k \in \bbZ} f(n - k) g(k). \]
+
+convolution discrète pour $f, g$ telles que
+\[ \sum\limits_{n} \lrvert{f(n)} < +\infty, \sum\limits_{n} \lrvert{g(n)} < +\infty \]
+
+Soient $X, Y$ deux variables aléatoires indépendantes à valeurs dans $\bbZ$,
+avec $\mathrm{Loi}(X) = {}p$ et $\mathrm{Loi}(Y) = {}q$, c'est-à-dire
+$\bbP(X = n) = {}p(n)$ et $\bbP(Y = n) = {}q(n)$, où
+${}p, {}q: \bbZ \to [0, +\infty[$ satisfont $\sum_{n \in \bbZ} {}p(n) = \sum_{n \in \bbZ} {}q(n) = 1$.
+
+Question: $\mathrm{Loi}(X + Y) = ?$
+
+On a
+\[ \bbP(X + Y = n) = \sum_{k \in \bbZ} \bbP(X = n - k, Y = k)
+= \sum_{k \in \bbZ} {}p(n - k) {}q(k) = ({}p * {}q)(n). \]
+Donc $\mathrm{Loi}(X + Y) = {}p * {}q$, la convolution discrète de $\mathrm{Loi}(X)$ et $\mathrm{Loi}(Y)$.
+
+\paragraph{Loi binomiale}
+
+\begin{prop}
+    Soient $X_1, X_2, \ldots, X_n$ des variables indépendantes telles que $X_i \sim \ber(p)$ avec $p \in ]0, 1[$.
+    Alors $Y = \sum_{k = 1}^n X_k \sim \calB(n, p)$.
+    Plus précisément, $\bbP(Y = k) = \binom{n}{k} p^k (1-p)^{n-k}, \forall k \in \llb 0, n \rrb$.
+\end{prop}
+
+\begin{proof}
+    $\bbP(X_i = 1) = p, \bbP(X_i = 0) = 1 - p$.
+    La somme $\sum_{k = 1}^n X_k$ compte le nombre de succès,
+    pour $k \in \llb 1, n \rrb, \{ Y = k \} = \{ X_1 + X_2 + \cdots + X_n = k \}$
+    est l'union disjointe sur les parties $J \subseteq \llb 1, n \rrb$ de cardinal $k$
+    des événements $\left(\bigcap_{i \in J} \{ X_i = 1 \}\right) \cap \left(\bigcap_{i \notin J} \{ X_i = 0 \}\right)$
+    pour chaque $J$, on a $\# J = k, \bbP((\bigcap\limits_{i \in J} \{ X_i = 1 \}) \cap (\bigcap\limits_{i \notin J} \{ X_i = 0 \})) = p^k q^{n-k}$
+    Donc $\bbP(Y = k) = \binom{n}{k} p^k q^{n - k} = \binom{n}{k} p^k (1-p)^{n-k}$.
+\end{proof}
+
+\begin{proof}
+    Raisonnement par récurrence.
+
+    Il s'agit d'une propriété $\calP(n)$, on procède en deux étapes.
+
+    Étape 1 (Initialisation)~: $\calP(n)$ est vraie pour $n = n_0$.
+
+    Étape 2 (Hérédité)~: sachant que $\calP(n)$ est vraie, on en déduit que $\calP(n + 1)$ est vraie.
+
+    Conclusion: $\calP(n)$ est vraie pour tout $n$ entier, $n \geqslant n_0$.
+
+    Pour notre exemple.
+    \[ \calP(n): \bbP(Y_n = k) = \binom{n}{k}, \forall k \in \llb 0, n \rrb \]
+
+    Initialisation: $n = 1, k \in \{ 0, 1 \}$.
+    \[ \bbP(Y_1 = 0) = \bbP(X_1 = 0) = q, \bbP(Y_1 = 1) = \bbP(X_1 = 1) = p \]
+    Donc $\calP(1)$ est vraie.
+
+    Hérédité~: supposons que $\calP(n)$ est vraie,
+    \[ Y_{n + 1} = Y_n + X_{n + 1} \]
+    où $Y_n$ et $X_{n + 1}$ sont indépendantes.
+    Pour $1 \leqslant k \leqslant n + 1$, on a
+    \begin{align*}
+        \bbP(Y_{n + 1} = k) &= \bbP(Y_n = k - 1) \bbP(X_{n + 1} = 1) + \bbP(Y_n = k) \bbP(X_{n + 1} = 0) \\
+        &= \binom{n}{k - 1} p^{k - 1} q^{n - k + 1} p + \binom{n}{k} p^k q^{n - k} q \\
+        &= \left(\binom{n}{k - 1} + \binom{n}{k}\right) p^k q^{n - k} \\
+        &= \binom{n + 1}{k} p^k q^{n - k}.
+    \end{align*}
+    
+    Et
+    \[ \bbP(Y_{n + 1} = 0) = \bbP(X_1 = 0, X_2 = 0, \ldots, X_{n + 1} = 0) = q^{n + 1} \]
+
+    Par conséquent, $\calP(n + 1)$ est vraie.
+
+    En conclusion, $\calP(n)$ est vraie pour tout $n \in \bbN^*$.
+\end{proof}
