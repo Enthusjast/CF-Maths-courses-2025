@@ -91,7 +91,7 @@ Autrement dit, une variable aléatoire est simplement une fonction mesurable dé
     \begin{enumerate}
         \item Toute application constante $X:
                   \begin{array}[t]{ccc}
-                      \Omega & \to & E                                        \\
+                      \Omega & \to & E                                         \\
                       \omega & \tp & c \in E (\text{ne dépend pas de } \omega)
                   \end{array}
               $ est une variable aléatoire.
@@ -100,7 +100,7 @@ Autrement dit, une variable aléatoire est simplement une fonction mesurable dé
         \item Si $A \in \calA$ est un événement dans l'espace de probabilité $(\Omega, \calA, \bbP)$,
               alors $\bbI_A:
                   \begin{array}[t]{ccc}
-                      \Omega & \to & \bbR                        \\
+                      \Omega & \to & \bbR                          \\
                       \omega & \tp & 1 \text{ si } \omega \in A    \\
                       \omega & \tp & 0 \text{ si } \omega \notin A
                   \end{array}
@@ -142,8 +142,10 @@ Autrement dit, une variable aléatoire est simplement une fonction mesurable dé
         \item Pour $B \in \calE$, on écrit
               \[ \{ X \in B \} := \{ \omega \in \Omega \mid X(\omega) \in B \} = X^{-1}(B). \]
         \item Pour une variable aléatoire réelle (i.e. $(E, \calE) = (\bbR, B(\bbR))$), on écrit
-              \[ \{ X > x_0 \} := \{ \omega \in \Omega \mid X(\omega) > x_0 \}, \]
-              \[ \{ a < X \leqslant b \} := \{ \omega \in \Omega \mid a < X(\omega) \leqslant b \}. \]
+              \begin{align*}
+                  \{ X > x_0 \}           & := \{ \omega \in \Omega \mid X(\omega) > x_0 \},           \\
+                  \{ a < X \leqslant b \} & := \{ \omega \in \Omega \mid a < X(\omega) \leqslant b \}.
+              \end{align*}
     \end{itemize}
 \end{rqq}
 
@@ -308,9 +310,12 @@ Autrement dit, une variable aléatoire est simplement une fonction mesurable dé
 \begin{proof}
     \[ \{ X = x \} = \{ X \leqslant x \} \setminus \{ X < x \} =
         \{ X \leqslant x \} \setminus \left( \bigcup_{n \in \bbN} \{ X \leqslant x - \tfrac{1}{n} \} \right). \]
-    \[ \implies \bbP(X = x) = \bbP(X \leqslant x) - \lim_{n \to \infty} \uparrow \bbP\left(X \leqslant x - \tfrac{1}{n}\right). \]
-    \[ \implies \bbP(X = x) = F_X(x) - \lim_{n \to \infty} \uparrow F_X\left(x - \tfrac{1}{n}\right). \]
-    \[ \implies \bbP(X = x) = F_X(x) - \lim_{y \to x^-} F_X(y). \qedhere \]
+    Donc
+    \begin{align*}
+        \bbP(X = x) & = \bbP(X \leqslant x) - \lim_{n \to \infty} \uparrow \bbP\left(X \leqslant x - \tfrac{1}{n}\right) \\
+                    & = F_X(x) - \lim_{n \to \infty} \uparrow F_X\left(x - \tfrac{1}{n}\right)                           \\
+                    & = F_X(x) - \lim_{y \to x^-} F_X(y). \qedhere
+    \end{align*}
 \end{proof}
 
 \begin{rqq}[Interprétation]
@@ -320,8 +325,8 @@ Autrement dit, une variable aléatoire est simplement une fonction mesurable dé
 
 \begin{rqq}
     Si $\bbP_X$ donne une mesure nulle à un intervalle $]a, b[$,
-    alors $F_X$ est constante sur $]a, b[$.
-    Pour tout $x < y$ et $x, y \in ]a, b[$,
+                    alors $F_X$ est constante sur $]a, b[$.
+                    Pour tout $x < y$ et $x, y \in ]a, b[$,
     \[ F_X(y) - F_X(x) = \bbP(x < X \leqslant y) \leqslant \bbP(X \in ]a, b[) = \bbP_X(]a, b[) = 0. \]
 \end{rqq}
 
@@ -343,3 +348,361 @@ Autrement dit, une variable aléatoire est simplement une fonction mesurable dé
         = \bbP(\{ \omega \in \Omega \mid X(\omega) \in f^{-1}(C) \})
         = \bbP_X(f^{-1}(C)). \qedhere \]
 \end{proof}
+
+\section{Lois discrètes usuelles}
+
+\subsection{Loi uniforme discrète}
+
+Soit $E$ un ensemble non vide.
+
+\begin{deff}
+    Une variable aléatoire $X$ à valeurs dans $(E, \calP(E))$ suit la loi uniforme sur $E$,
+    si $\forall x \in E, \bbP(X = x) = \frac{1}{\lrvert{E}}$.
+    Alors on note $X \sim \unif(E)$. (``$X$ suit la loi uniforme sur $E$.'')
+\end{deff}
+
+\begin{exem}
+    Si $a, b \in \bbZ$ avec $a < b$ et si $X \sim \unif(\llb a, b \rrb)$,
+    alors $\forall a \leqslant k \leqslant b, \bbP(X = k) = \frac{1}{\lrvert{b - a + 1}}$.
+\end{exem}
+
+\subsection{Loi de Bernoulli}
+
+Soit $p \in [0, 1]$ (paramètre).
+
+\begin{deff}
+    Une variable aléatoire à valeurs dans $\{ 0, 1 \}$ suit la loi de Bernoulli de paramètre $p$,
+    si $\bbP(X = 1) = p, \bbP(X = 0) = 1 - p$.
+    Alors on note $X \sim \ber(p)$. (``$X$ suit la loi de Bernoulli de paramètre $p$.'')
+\end{deff}
+
+\begin{exem}
+    Si $A$ est un événement de probabilité $p$,
+    alors $\bbI_A \sim \ber(p)$.
+\end{exem}
+
+\subsection{Loi binomiale}
+
+Soient $n \in \bbN^*$ et $p \in [0, 1]$.
+
+\begin{deff}
+    Une variable aléatoire à valeurs dans $\llb 0, n \rrb$ suit la loi binomiale de paramètres $n$ et $p$,
+    si $\forall k \in \llb 0, n \rrb, \bbP(X = k) = \binom{n}{k} p^k(1 - p)^{n - k}$.
+    Alors on note $X \sim \calB(n, p)$.
+\end{deff}
+
+\begin{rqq}
+    Cette loi est bien définie, car
+    \[ \sum_{k = 0}^n \bbP(X = k) = \sum_{k = 0}^n \binom{n}{k} p^k(1 - p)^{n - k} = 1. \]
+\end{rqq}
+
+\begin{rqq}[Interprétation]
+    La loi binomiale est la loi du nombre de ``succès'' dans $n$ épreuves / tests de Bernoulli indépendantes
+    qui ont la même probabilité de succès $p$.
+    Càd~: supposons $A_1, A_2, \ldots, A_n$~: $n$ événements mutuellement indépendants tels que
+    $\forall k \in \llb 1, n \rrb, \bbP(A_k) = p$, et
+    \[ X = \card \{ k \in \llb 1, n \rrb \mid A_k \text{ est réalisé} \} = \sum_{k = 1}^n \bbI_{A_k}. \]
+    Alors $X \sim \calB(n, p)$.
+\end{rqq}
+
+\subsection{Loi géométrique}
+Soit $p \in ]0, 1[$.
+
+\begin{deff}
+    Une variable aléatoire à valeurs dans $\bbN^*$ suit la loi géométrique de paramètre $p$,
+    si $\forall k \in \bbN^*, \bbP(X = k) = p(1 - p)^{k - 1}$.
+    Alors on note $X \sim \calG(p)$.
+\end{deff}
+
+\begin{rqq}[Interprétation]
+    $X$ représente le rang (l'indice) du premier succès dans une suite (infinie)
+    d'épreuves de Bernoulli indépendantes de même probabilité de succès $p$.
+    Càd si
+    \begin{itemize}
+        \item $A_1, A_2, \ldots$ suite d'événements indépendants.
+        \item $\forall n \in \bbN^*, \bbP(A_n) = p$.
+        \item $X = \inf \{ n \in \bbN^* \mid A_n \text{ est réalisée} \}$.
+    \end{itemize}
+    Alors $X \sim \calG(p)$.
+\end{rqq}
+
+\begin{prop}[Absence de mémoire de la loi géométrique]
+    Si $X \sim \calG(p)$, alors pour tout $k, l \in \bbN$,
+    \begin{itemize}
+        \item $\bbP(X > k) = (1 - p)^k$.
+        \item $\bbP(X > k + l \mid X > k) = \bbP(X > l)$.
+    \end{itemize}
+\end{prop}
+
+\begin{rqq}[Interprétation]
+    \begin{itemize}
+        \item $\{ X > k \}$~: le premier succès arrive après le temps $k$.
+        \item $\{ X > k + l \}$~: le premier succès arrive après le temps $k + l$.
+    \end{itemize}
+\end{rqq}
+
+\begin{proof}
+    $\ $
+    \begin{itemize}
+        \item \[ \bbP(X > k) = \bbP \left( \bigcup_{n > k} \{ X = n \} \right)
+                  = \sum_{n = k + 1}^\infty \bbP(X = n) = \sum_{n = k + 1}^\infty p(1 - p)^{n - 1} = (1 - p)^k \]
+        \item \[ \bbP(X > k + l \mid X > k) = \frac{\bbP(X > k + l)}{\bbP(X > l)}
+                  = \frac{(1 - p)^{k + l}}{(1 - p)^k} = (1 - p)^l = \bbP(X > l) \qedhere \]
+    \end{itemize}
+\end{proof}
+
+\subsection{Loi de Poisson}
+
+Soit $\lambda > 0$.
+
+\begin{deff}
+    Une variable aléatoire à valeurs dans $\bbN$ suit la loi de Poisson de paramètre $\lambda$,
+    si $\forall k \in \bbN, \bbP(X = k) = e^{-\lambda} \frac{\lambda^k}{k!}$.
+    Alors on note $X \sim \calP(\lambda)$.
+\end{deff}
+
+\begin{rqq}
+    Cette loi est bien définie, car
+    \[ \sum_{k = 0}^\infty e^{-\lambda} \frac{\lambda^k}{k!} = 1. \]
+\end{rqq}
+
+\begin{rqq}[Approximation de Poisson]
+    Une loi binomiale comportant un grand nombre de tests,
+    et une faible probabilité de succès est approximativement une loi de Poisson.
+\end{rqq}
+
+\begin{thm}
+    Soit $(p_n)_{n \geqslant 1}$ une suite telle que
+    \[ \forall n \in \bbN^*, p_n \in [0, 1], n \cdot p_n \underset{n \to \infty}{\to} \lambda > 0 \]
+
+    Soit $X_n$ une variable aléatoire avec $X_n \sim \calB(n, p_n)$,
+    alors $\forall k \in \bbN, \bbP(X_n = k) \underset{n \to \infty}{\to} e^{-\lambda} \frac{\lambda^k}{k!}$
+\end{thm}
+
+\begin{proof}
+    Pour tout $n > k$, on a
+    \[ \bbP(X_n = k) = \binom{n}{k} p_n^k(1 - p_n)^{n - k}
+        = \frac{n(n - 1) \cdots (n - k + 1)}{k!} p_n^k(1 - p_n)^{n - k}. \]
+    On peut réécrire
+    \[ \bbP(X_n = k) = \frac{1}{k!} \cdot \frac{(np_n)^k}{(1 - p_n)^{k}} \cdot (1 - p_n)^n \cdot \frac{n(n - 1) \cdots (n - k + 1)}{n^k}. \]
+
+    \begin{itemize}
+        \item $\ln\left((1 - p_n)^n\right) = n \cdot \ln(1 - p_n) \underset{n \to \infty}{\sim} -n \cdot p_n
+                  \underset{n \to \infty}{\to} -\lambda$, donc $(1 - p_n)^n \underset{n \to \infty}{\sim} e^{-\lambda}$.
+        \item $\frac{n(n - 1) \cdots (n - k + 1)}{n^k} = \prod_{j = 0}^{k - 1} \frac{n - j}{n} \underset{n \to \infty}{\to} 1$.
+    \end{itemize}
+
+    On en déduit que $\bbP(X_n = k) \underset{n \to \infty}{\to} \frac{1}{k!} \lambda^k e^{-\lambda}$.
+\end{proof}
+
+\section{Vecteurs aléatoires et lois conjointes}
+
+\begin{deff}
+    Pour $n \geqslant 1$, on pose
+    \[ B(\bbR^n) = \sigma(\{ I_1 \times I_2 \times \cdots \times I_n \mid
+        I_1, I_2, \ldots, I_n \text{ sont des intervalles de } \bbR \}). \]
+
+    On admet que $B(\bbR^n)$ contient tous les ensembles ouverts et tous les ensembles fermés de $\bbR^n$.
+\end{deff}
+
+$B(\bbR^n)$ est appelée la tribu borélienne de $\bbR^n$.
+
+\begin{deff}
+    Un \textbf{vecteur aléatoire} de dimension $n$ est une application mesurable
+    \[ V: (\Omega, \calA, \bbP) \to (\bbR^n, B(\bbR^n)) \]
+\end{deff}
+
+\begin{thm}
+    Soit $X_1, X_2, \ldots, X_n: \Omega \to \bbR$.
+    L'application $X:
+        \begin{array}[t]{ccc}
+            \Omega & \to & \bbR^n                                                     \\
+            \omega & \tp & \left(X_1(\omega), X_2(\omega), \ldots, X_n(\omega)\right)
+        \end{array}
+    $ est un vecteur aléatoire
+    ssi $X_1, X_2, \ldots, X_n$ sont des variables aléatoires réelles.
+\end{thm}
+
+\begin{rqq}
+    Autrement dit~:
+    $X$ est mesurable par rapport à $B(\bbR^n)$ ssi les $X_i$ sont mesurables par rapport à $B(\bbR)$.
+\end{rqq}
+
+\begin{lem}
+    Toute fonction continue $f: \bbR^n \to \bbR^m$ est mesurable par rapport aux $B(\bbR^n)$ et $B(\bbR^m)$.
+\end{lem}
+
+\begin{proof}
+    Par définition de la continuité,
+    \[ \forall U \text{ ouvert dans } \bbR^m, f^{-1}(U) \text{ est ouvert dans } \bbR^n. \]
+
+    Donc $f^{-1}(U) \in B(\bbR^n)$,
+    car $B(\bbR^n) = \sigma(\{ U: \text{ ouvert de } \bbR^n \})$.
+    Et on a
+    \begin{align*}
+        f^{-1}\left(\bigcap_{n \in \bbN} A_n\right) & = \bigcap_{n \in \bbN} f^{-1}(A_n), \\
+        f^{-1}\left(\bigcup_{n \in \bbN} A_n\right) & = \bigcup_{n \in \bbN} f^{-1}(A_n), \\
+        f^{-1}\left(A^C\right)                      & = \left(f^{-1}(A)\right)^C.
+    \end{align*}
+
+    Donc $\{ A \subseteq \bbR^m \mid f^{-1}(A) \in B(\bbR^n) \}$ est une tribu,
+    Donc $B(\bbR^m) \subseteq \{ A \subseteq \bbR^m \mid f^{-1}(A) \in B(\bbR^n) \}$.
+\end{proof}
+
+\begin{proof}[Démonstration du théorème]
+    ``$\Rightarrow$'':
+    Pour tout $k \in \llb 1, n \rrb, \pi_k:
+        \begin{array}[t]{ccc}
+            \bbR^n                  & \to & \bbR \\
+            (x_1, x_2, \ldots, x_n) & \tp & x_k
+        \end{array}
+    $ est une fonction continue, donc mesurable.
+    Si $X: \Omega \to \bbR^n$ est mesurable (i.e. $X$ est un vecteur aléatoire),
+    alors $\forall k \in \bbN^*, \pi_k \circ X: \Omega \to \bbR$ est mesurable,
+    i.e. $X_k$ est une variable aléatoire réelle.
+
+    ``$\Leftarrow$'':
+    Supposons que $X_1, X_2, \ldots, X_n: \Omega \to \bbR$ sont mesurables.
+    Soit $\calC = \{ B \subseteq \bbR^n \mid X^{-1}(B) \in \calA \}$,
+    alors $\calC$ est une tribu.
+    Donc pour montrer que $\calC \supseteq B(\bbR^n)$,
+    il suffit de montrer que pour tous les intervalles $I_1, I_2, \ldots, I_n \subseteq \bbR$,
+    on a $I_1 \times I_2 \times \cdots \times I_n \in \calC$.
+    Mais \[ X^{-1}(I_1 \times I_2 \times \cdots \times I_n)
+        = \{ \omega \in \Omega \mid \forall k \in \llb 1, n \rrb, X_k(\omega) \in I_k \}
+        = \bigcap\limits_{k = 1}^n \{ X_k \in I_k \}
+        = \bigcap\limits_{k = 1}^n X_k^{-1}(I_k) \in \calA \]
+    Donc $I_1 \times I_2 \times \cdots \times I_n \in \calC$.
+    Puisque $B(\bbR^n) = \sigma(\{ I_1 \times I_2 \times \cdots \times I_n \mid
+        I_1, I_2, \ldots, I_n \text{ sont des intervalles} \})$,
+    on en déduit $\calC \supseteq B(\bbR^n)$.
+    Donc $X: (\Omega, \calA) \to (\bbR^n, B(\bbR^n))$ est mesurable. \qedhere
+\end{proof}
+
+\begin{cor}
+    Si $X_1, X_2, \ldots, X_n$ sont des variables aléatoires réelles et $f: \bbR^n \to \bbR^m$ est continue,
+    alors $f(X_1, X_2, \ldots, X_n):
+        \begin{array}[t]{ccc}
+            \Omega & \to & \bbR^m                                           \\
+            \omega & \tp & f(X_1(\omega), X_2(\omega), \ldots, X_n(\omega))
+        \end{array}
+    $ est un vecteur aléatoire.
+\end{cor}
+
+\begin{proof}
+    Parce que la composée de deux fonctions mesurables est mesurable,
+    \[ \Omega \overset{X = (X_1, X_2, \ldots, X_n)}{\to} \bbR^n \overset{f}{\to} \bbR^m \qedhere \]
+\end{proof}
+
+\begin{rqq}
+    Si $X, Y$ sont deux variables aléatoires réelles,
+    alors $X + Y, X - Y, XY, \lrvert{X}, \min(X, Y), \max(X, Y)$ sont des variables aléatoires réelles.
+\end{rqq}
+
+\begin{deff}
+    Deux variables aléatoires $X, Y$ définies sur le même espace de probabilité sont dites égales presque sûrement,
+    si $\bbP(X = Y) = 1$.
+\end{deff}
+
+\begin{rqq}
+    Càd $X, Y: (\Omega, \calA, \bbP) \to E$,
+    on dit $X = Y$ presque sûrement si $\bbP(\{ \omega \mid X(\omega) = Y(\omega) \}) = 1$.
+\end{rqq}
+
+\begin{prop}
+    Si $X = Y$ presque sûrement, alors $X \overset{\text{loi}}{=} Y$.
+\end{prop}
+
+\begin{proof}
+    Soit $N = \{ X \neq Y \} = \{ \omega \in \Omega \mid X(\omega) \neq Y(\omega) \}$.
+    Soit $B \in \calE$.
+
+    Alors $\bbP_X(B) = \bbP(\{ X \in B \}) = \bbP(\{ X \in B \} \setminus N) + \bbP(\{ X \in B \} \cap N)$.
+
+    D'une part,
+    \[ \{ X \in B \} \setminus N = \{ X \in B \} \cap \{ X = Y \}
+        = \{ Y \in B \} \cap \{ X = Y \} = \{ Y \in B \} \setminus N, \]
+    donc $\bbP(\{ X \in B \} \setminus N) = \bbP(\{ Y \in B \} \setminus N)$.
+
+    D'autre part, $\{ X \in B \} \cap N \subseteq N$,
+    et $\bbP(N) = \bbP(X \neq Y) = 0$.
+
+    Donc
+    \[ \bbP_X(B) = \bbP(\{ X \in B \} \setminus N) = \bbP(\{ Y \in B \} \setminus N) = \bbP_Y(B). \]
+
+    Donc $\bbP_X = \bbP_Y$, càd $X \overset{\text{loi}}{=} Y$. \qedhere
+\end{proof}
+
+\begin{rqq}
+    Problème~: en général, $\{ X = Y \}$ n'est pas nécessairement mesurable.
+
+    \begin{itemize}
+        \item Cas réel~: si $X, Y$ sont à valeurs dans $(\bbR^n, B(\bbR^n))$,
+              alors $\{ X = Y \} = \{ X - Y \in \{0_{\bbR^n}\} \}$.
+        \item Cas général~: on définit $X = Y$ presque sûrement ssi
+              \[ \exists A \in \calA, A \subseteq \{ X = Y \}, \bbP(A) = 1. \]
+    \end{itemize}
+\end{rqq}
+
+\begin{deff}
+    La \textbf{loi conjointe} des variables aléatoires réelles $X_1, X_2, \ldots, X_n$
+    est la loi du vecteur aléatoire $(X_1, X_2, \ldots, X_n)$.
+    Elle est notée $\bbP_{(X_1, X_2, \ldots, X_n)}$ (mesure de probabilité sur $\bbR^n$).
+    Dans ce contexte, les lois de $X_1, X_2, \ldots, X_n$ (i.e. $\bbP_{X_1}, \bbP_{X_2}, \ldots, \bbP_{X_n}$)
+    sont appelées les lois marginales du vecteur aléatoire.
+\end{deff}
+
+\begin{exer}
+    Pour $A, B \in B(\bbR)$, et $X, Y$ deux variables aléatoires réelles,
+    on a
+    \begin{align*}
+        \bbP_{(X, Y)} (A \times B) & = \bbP(X \in A \text{ et } Y \in B), \\
+        \bbP_X(A)                  & = \bbP_{(X, Y)}(A \times \bbR),      \\
+        \bbP_Y(B)                  & = \bbP_{(X, Y)}(\bbR \times B).
+    \end{align*}
+\end{exer}
+
+\begin{rqq}[Cas discret]
+    Soient $X, Y$ deux variables discrètes.
+    Soient $D = X(\Omega), D' = Y(\Omega)$ ($D, D'$ sont au plus dénombrables).
+    Soit $p_{xy} = \bbP(X = x, Y = y), \forall (x, y) \in D \times D'$.
+    Alors on a
+    \begin{align*}
+         & \sum_{(x, y) \in D \times D'} p_{xy} = 1,                    \\
+         & \forall x \in D, \quad \bbP(X = x) = \sum_{y \in D'} p_{xy}, \\
+         & \forall y \in D', \quad \bbP(Y = y) = \sum_{x \in D} p_{xy}.
+    \end{align*}
+\end{rqq}
+
+\begin{proof}
+    \[ \bbP(Y = y) = \bbP \left(\bigsqcup_{x \in D} \{ X = x, Y = y \}\right) = \sum_{x \in D} \bbP(X = x, Y = y). \qedhere \]
+\end{proof}
+
+\subsection{Loi conditionnelle sachant une valeur de probabilité positive}
+
+Soient $X, Y$ deux variables aléatoires, et $y$ une valeur de $Y$ telle que $\bbP(Y = y) > 0$.
+
+\begin{deff}
+    La loi conditionnelle de $X$ sachant $Y = y$ est définie par
+    \[ \forall A \in \calE, \bbP_{X \mid Y = y}(A) = \bbP(X \in A \mid Y = y) \]
+\end{deff}
+
+\begin{rqq}
+    Càd
+    \[ \bbP_{X \mid Y = y}(A) = \frac{\bbP(\{ X \in A \} \cap \{ Y = y \})}{\bbP(Y = y)} \]
+\end{rqq}
+
+\begin{exem}
+    On lance deux dés équilibrés.
+    Soient $X = \text{résultat du premier dé} \in \llb 1, 6 \rrb$,
+    $S = \text{la somme des résultats des deux dés} \in \llb 2, 12 \rrb$.
+    On considère l'événement $\{ S = 7 \}$.
+
+    Pour tout $k \in \llb 1, 6 \rrb$,
+    \[ \bbP(X = k, S = 7) = \bbP(X = k) \cdot \bbP(S - X = 7 - k) = \left(\frac{1}{6}\right)^2. \]
+    Donc $\bbP(S = 7) = \sum\limits_{k = 1}^6 \bbP(X = k, S = 7) = \frac{1}{6}$, et
+    \[ \bbP(X = k \mid S = 7) = \frac{\frac{1}{36}}{\frac{1}{6}} = \frac{1}{6}. \]
+    Càd la loi conditionnelle $\bbP_{X \mid S = 7}$ est la même que la loi de $X$,
+    càd la loi uniforme sur $\llb 1, 6 \rrb$~:
+    \[ \bbP_{X \mid S = 7} = \bbP_X = \unif(\llb 1, 6 \rrb). \]
+\end{exem}
