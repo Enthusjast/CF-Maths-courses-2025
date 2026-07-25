@@ -271,11 +271,12 @@ Autrement dit, une variable aléatoire est simplement une fonction mesurable dé
         \item Soit $(x_n)$ une suite décroissante telle que $x_n \underset{n \to +\infty}{\to} t$.
               Alors $\{ X \leqslant x_n \}$ est une suite décroissante d'événements.
               Par la continuité de la probabilité,
-              \[ \bbP(X \leqslant t) = \lim_{n \to \infty} \downarrow \bbP(X \leqslant x_n)
-                  = \bbP \left(\bigcap_{n \in \bbN} \{ X \leqslant x_n \}\right). \]
-              Mais
-              \[ \bigcap_{n \in \bbN} \{ X \leqslant x_n \} = \{ \forall n \in \bbN, X \leqslant x_n \}
-                  = \{ X \leqslant \inf_{n \in \bbN} x_n \} = \{ X \leqslant t \}. \]
+              \begin{align*}
+                  \bbP(X \leqslant t)                        & = \lim_{n \to \infty} \downarrow \bbP(X \leqslant x_n)
+                  = \bbP \left(\bigcap_{n \in \bbN} \{ X \leqslant x_n \}\right),                                     \\
+                  \bigcap_{n \in \bbN} \{ X \leqslant x_n \} & = \{ \forall n \in \bbN, X \leqslant x_n \}
+                  = \{ X \leqslant \inf_{n \in \bbN} x_n \} = \{ X \leqslant t \}.
+              \end{align*}
               Donc $F_X(t) = \lim\limits_{n \to \infty} \downarrow F_X(x_n)$.
         \item On remplace la suite $(x_n)$ dans la partie 2 par une suite $x_n \to +\infty$ croissante,
               ou une suite $x_n \to -\infty$ décroissante.
@@ -397,7 +398,7 @@ Soient $n \in \bbN^*$ et $p \in [0, 1]$.
 \end{rqq}
 
 \begin{rqq}[Interprétation]
-    La loi binomiale est la loi du nombre de ``succès'' dans $n$ épreuves / tests de Bernoulli indépendantes
+    La loi binomiale est la loi du nombre de ``succès'' dans $n$ épreuves / tests de Bernoulli indépendants
     qui ont la même probabilité de succès $p$.
     Càd~: supposons $A_1, A_2, \ldots, A_n$~: $n$ événements mutuellement indépendants tels que
     $\forall k \in \llb 1, n \rrb, \bbP(A_k) = p$, et
@@ -446,7 +447,7 @@ Soit $p \in ]0, 1[$.
     \begin{itemize}
         \item \[ \bbP(X > k) = \bbP \left( \bigcup_{n > k} \{ X = n \} \right)
                   = \sum_{n = k + 1}^\infty \bbP(X = n) = \sum_{n = k + 1}^\infty p(1 - p)^{n - 1} = (1 - p)^k \]
-        \item \[ \bbP(X > k + l \mid X > k) = \frac{\bbP(X > k + l)}{\bbP(X > l)}
+        \item \[ \bbP(X > k + l \mid X > k) = \frac{\bbP(X > k + l)}{\bbP(X > k)}
                   = \frac{(1 - p)^{k + l}}{(1 - p)^k} = (1 - p)^l = \bbP(X > l) \qedhere \]
     \end{itemize}
 \end{proof}
@@ -714,9 +715,9 @@ Soit $(\Omega, \calF, \bbP)$ un espace de probabilité.
 \begin{deff}[Indépendance de deux événements] $\ $
     \begin{itemize}
         \item On dit que $A, B$ sont indépendants, si
-        \[ \bbP(A \cap B) = \bbP(A) \bbP(B). \]
+              \[ \bbP(A \cap B) = \bbP(A) \bbP(B). \]
         \item On dit que $n$ événements $A_1, A_2, \ldots, A_n$ sont mutuellement indépendants, si
-        \[ \forall I \subseteq \llb 1, n \rrb, \bbP \left(\bigcap_{i \in I} A_i\right) = \prod_{i \in I} \bbP(A_i). \]
+              \[ \forall I \subseteq \llb 1, n \rrb, \bbP \left(\bigcap_{i \in I} A_i\right) = \prod_{i \in I} \bbP(A_i). \]
     \end{itemize}
 \end{deff}
 
@@ -746,9 +747,9 @@ Soit $(\Omega, \calF, \bbP)$ un espace de probabilité.
     ``$\Leftarrow$''~: Réciproquement, posons $D = X(\Omega), D' = Y(\Omega)$, $D, D'$ sont au plus dénombrables.
     Pour tous ensembles mesurables $A, B$, on a
     \begin{align*}
-        \bbP(X \in A, Y \in B) &= \sum_{\substack{x \in D \\ y \in D'}} \bbP(X = x, Y = y)
-        = \sum_{\substack{x \in D \\ y \in D'}} \bbP(X = x) \bbP(Y = y) \\
-        &= \left(\sum_{x \in D} \bbP(X = x)\right)\left(\sum_{y \in D'} \bbP(Y = y)\right)
+        \bbP(X \in A, Y \in B) & = \sum_{\substack{x \in D                                                         \\ y \in D'}} \bbP(X = x, Y = y)
+        = \sum_{\substack{x \in D                                                                                  \\ y \in D'}} \bbP(X = x) \bbP(Y = y) \\
+                               & = \left(\sum_{x \in D} \bbP(X = x)\right)\left(\sum_{y \in D'} \bbP(Y = y)\right)
         = \bbP(X \in A) \bbP(Y \in B).
     \end{align*}
 \end{proof}
@@ -769,7 +770,7 @@ Soit $(\Omega, \calF, \bbP)$ un espace de probabilité.
 \begin{proof}
     Pour tous ensembles mesurables $A, B \in \calB(\bbR^n)$,
     \[ \bbP(f(X) \in A, g(Y) \in B) = \bbP(X \in f^{-1}(A), Y \in g^{-1}(B))
-    = \bbP(X \in f^{-1}(A)) \bbP(Y \in g^{-1}(B)) = \bbP(f(X) \in A) \bbP(g(Y) \in B). \]
+        = \bbP(X \in f^{-1}(A)) \bbP(Y \in g^{-1}(B)) = \bbP(f(X) \in A) \bbP(g(Y) \in B). \]
 
     Donc $f(X)$ et $g(Y)$ sont indépendantes.
 \end{proof}
@@ -783,7 +784,7 @@ Soit $I$ un ensemble d'indices.
     On dit que $(X_i)_{i \in I}$ sont mutuellement indépendantes,
     si pour toute partie finie $J \subseteq I$,
     pour tous ensembles mesurables $A_j$, on a
-    \[ \bbP \left(\bigcap_{j \in J} A_j\right) = \prod_{j \in J} \bbP(A_j) \]
+    \[ \bbP \left(\bigcap_{j \in J} \{X_j \in A_j\}\right) = \prod_{j \in J} \bbP(X_j \in A_j) \]
 \end{deff}
 
 \begin{rqq}
@@ -797,29 +798,29 @@ Soit $I$ un ensemble d'indices.
     \begin{table}[htb]
         \centering
         \begin{tabular}{c|c|c}
-            \diagbox{X}{Y} & 0           & 1           \\
+            \diagbox{X}{Y} & 0             & 1             \\
             \hline
-            0   & $\frac{1}{4}$ & $\frac{1}{4}$ \\
+            0              & $\frac{1}{4}$ & $\frac{1}{4}$ \\
             \hline
-            1   & $\frac{1}{4}$ & $\frac{1}{4}$
+            1              & $\frac{1}{4}$ & $\frac{1}{4}$
         \end{tabular}
     \end{table}
 
     \[ \bbP(X = i, Y = j) = \frac{1}{2^2}, \quad i, j \in \{ 0, 1 \}. \]
     Les lois marginales sont
     \[ \bbP(X = 0) = \bbP(X = 1) = \bbP(Y = 0) = \bbP(Y = 1) = \frac{1}{2}. \]
-    
+
     Donc $X \perp Y$.
-    
+
     On définit $Z = \bbI_{X = Y}$, alors
     \[ \bbP(Z = 1) = \bbP(Z = 0) = \frac{1}{2}. \]
 
     Et
     \begin{align*}
-        \bbP(X = 0, Z = 0) &= \bbP(X = 0, Y = 1) = \frac{1}{4}, &
-        \bbP(X = 0, Z = 1) &= \bbP(X = 0, Y = 0) = \frac{1}{4}, \\
-        \bbP(X = 1, Z = 0) &= \bbP(X = 1, Y = 0) = \frac{1}{4}, &
-        \bbP(X = 1, Z = 1) &= \bbP(X = 1, Y = 1) = \frac{1}{4}.
+        \bbP(X = 0, Z = 0) & = \bbP(X = 0, Y = 1) = \frac{1}{4}, &
+        \bbP(X = 0, Z = 1) & = \bbP(X = 0, Y = 0) = \frac{1}{4},   \\
+        \bbP(X = 1, Z = 0) & = \bbP(X = 1, Y = 0) = \frac{1}{4}, &
+        \bbP(X = 1, Z = 1) & = \bbP(X = 1, Y = 1) = \frac{1}{4}.
     \end{align*}
 
     Donc $X \perp Z$, par symétrie, $Y \perp Z$.
@@ -841,9 +842,9 @@ Soit $I$ un ensemble d'indices.
     où $I_j$ sont des intervalles dans $\bbR$.
     Par l'indépendance,
     \begin{align*}
-        \bbP(U \in A, V \in B) &= \bbP(X_1 \in I_1, \ldots, X_p \in I_p, X_{p + 1} \in I_{p + 1}, \ldots, X_n \in I_n) \\
-        &= \bbP(X_1 \in I_1, \ldots, X_p \in I_p) \cdot \bbP(X_{p + 1} \in I_{p + 1}, \ldots, X_n \in I_n) \\
-        &= \bbP(U \in A) \bbP(V \in B).
+        \bbP(U \in A, V \in B) & = \bbP(X_1 \in I_1, \ldots, X_p \in I_p, X_{p + 1} \in I_{p + 1}, \ldots, X_n \in I_n)            \\
+                               & = \bbP(X_1 \in I_1, \ldots, X_p \in I_p) \cdot \bbP(X_{p + 1} \in I_{p + 1}, \ldots, X_n \in I_n) \\
+                               & = \bbP(U \in A) \bbP(V \in B).
     \end{align*}
 
     Comme les produits d'intervalles engendrent les tribus boréliennes,
@@ -885,7 +886,7 @@ Question: $\mathrm{Loi}(X + Y) = ?$
 
 On a
 \[ \bbP(X + Y = n) = \sum_{k \in \bbZ} \bbP(X = n - k, Y = k)
-= \sum_{k \in \bbZ} {}p(n - k) {}q(k) = ({}p * {}q)(n). \]
+    = \sum_{k \in \bbZ} {}p(n - k) {}q(k) = ({}p * {}q)(n). \]
 Donc $\mathrm{Loi}(X + Y) = {}p * {}q$, la convolution discrète de $\mathrm{Loi}(X)$ et $\mathrm{Loi}(Y)$.
 
 \paragraph{Loi binomiale}
@@ -918,7 +919,7 @@ Donc $\mathrm{Loi}(X + Y) = {}p * {}q$, la convolution discrète de $\mathrm{Loi
     Conclusion: $\calP(n)$ est vraie pour tout $n$ entier, $n \geqslant n_0$.
 
     Pour notre exemple.
-    \[ \calP(n): \bbP(Y_n = k) = \binom{n}{k}, \forall k \in \llb 0, n \rrb \]
+    \[ \calP(n): \bbP(Y_n = k) = \binom{n}{k} p^k (1 - p)^{n - k}, \forall k \in \llb 0, n \rrb \]
 
     Initialisation: $n = 1, k \in \{ 0, 1 \}$.
     \[ \bbP(Y_1 = 0) = \bbP(X_1 = 0) = q, \bbP(Y_1 = 1) = \bbP(X_1 = 1) = p \]
@@ -929,12 +930,12 @@ Donc $\mathrm{Loi}(X + Y) = {}p * {}q$, la convolution discrète de $\mathrm{Loi
     où $Y_n$ et $X_{n + 1}$ sont indépendantes.
     Pour $1 \leqslant k \leqslant n + 1$, on a
     \begin{align*}
-        \bbP(Y_{n + 1} = k) &= \bbP(Y_n = k - 1) \bbP(X_{n + 1} = 1) + \bbP(Y_n = k) \bbP(X_{n + 1} = 0) \\
-        &= \binom{n}{k - 1} p^{k - 1} q^{n - k + 1} p + \binom{n}{k} p^k q^{n - k} q \\
-        &= \left(\binom{n}{k - 1} + \binom{n}{k}\right) p^k q^{n - k} \\
-        &= \binom{n + 1}{k} p^k q^{n - k}.
+        \bbP(Y_{n + 1} = k) & = \bbP(Y_n = k - 1) \bbP(X_{n + 1} = 1) + \bbP(Y_n = k) \bbP(X_{n + 1} = 0) \\
+                            & = \binom{n}{k - 1} p^{k - 1} q^{n - k + 1} p + \binom{n}{k} p^k q^{n - k} q \\
+                            & = \left(\binom{n}{k - 1} + \binom{n}{k}\right) p^k q^{n - k}                \\
+                            & = \binom{n + 1}{k} p^k q^{n - k}.
     \end{align*}
-    
+
     Et
     \[ \bbP(Y_{n + 1} = 0) = \bbP(X_1 = 0, X_2 = 0, \ldots, X_{n + 1} = 0) = q^{n + 1} \]
 
@@ -942,3 +943,390 @@ Donc $\mathrm{Loi}(X + Y) = {}p * {}q$, la convolution discrète de $\mathrm{Loi
 
     En conclusion, $\calP(n)$ est vraie pour tout $n \in \bbN^*$.
 \end{proof}
+
+\section{Espérance, Variance, et Convergence}
+
+Soit $(\Omega, \calF, \bbP)$ un espace de probabilité.
+
+\subsection{}
+
+On admet la construction de l'intégrale (cours de mesures et intégrales)
+pour toute variable aléatoire, non négative: $X: \Omega \to [0, +\infty[$,
+\[ X \tp \int_\Omega X \dif \bbP \in [0, +\infty] \]
+On note $\bbE[X]$ l'espérance de la variable aléatoire $X$.
+
+Esquisse de la construction de l'intégrale
+
+Étape 1. Intégrale pour des variables étagées positives.
+
+\[ X(\omega) = \sum_{j = 1}^n a_j \bbI_{A_j}(\omega) \]
+où $a_j \geqslant 0$, $A_j$ sont deux à deux disjoints.
+
+\[ \bbE[X] = \int_\Omega X \dif \bbP := \sum_{j = 1}^n a_j \bbP(A_j) \]
+
+L'espérance vérifie la propriété de linéarité: pour $X, Y$ variables aléatoires étagées positives,
+pour tout $a, b \geqslant 0$, $\bbE[aX + bY] = a \bbE[X] + b \bbE[Y]$.
+
+Étape 2. Intégrales pour des variables aléatoires bornées, non négatives
+
+Pour $X \geqslant 0$, bornée,
+\[ \bbE[X] := \sup_{\substack{\tilde{X} \geqslant 0, \text{étagée} \\ \tilde{X} \leqslant X}} \bbE[\tilde{X}] \]
+
+Étape 3. Intégrales pour des variables aléatoires non négatives
+
+Pour $X \geqslant 0$,
+\[ \bbE[X] = \lim_{n \to \infty} \bbE[\min(X, n)] \]
+grâce au théorème de convergence monotone de Lévy.
+
+\begin{rqq}
+    $\bbE[X] = +\infty$ est permise.
+\end{rqq}
+
+Étape 4. Le cas général
+
+Pour $X: \Omega \to \bbR$,
+on note $X^+ = \max \{ X, 0 \}, X^- = -\min \{ X, 0 \}$.
+Donc on a $X = X^+ - X^-, \lrvert{X} = X^+ + X^-$.
+Si au moins l'un des deux nombres $\bbE[X^+], \bbE[X^-]$ est fini, on définit
+\[ \bbE[X] = \bbE[X^+] - \bbE[X^-] \in [-\infty, +\infty] \]
+
+\begin{rqq}
+    On ne peut pas définir $\bbE[X]$, si $\bbE[X^+] = \bbE[X^-] = +\infty$.
+\end{rqq}
+
+\begin{exem}
+    Soit $X$ une variable aléatoire telle que
+    \[ X, \bbP(X = n) = \bbP(X = -n) = \frac{1}{2n(n + 1)}, n \in \bbN^* \]
+
+    On a
+    \[ \bbE[X^+] = \sum_{n = 1}^\infty \frac{n}{2n(n + 1)} = +\infty, \bbE[X^-] = +\infty \]
+\end{exem}
+
+\subsection{Propriétés des variables intégrables}
+
+\begin{deff}
+    On dit qu'une variable aléatoire $X$ est intégrable, ou d'espérance finie, si
+    \[ \bbE[\lrvert{X}] < +\infty \]
+
+    On note $\bbE[X]$ l'espérance de $X$, et $X \in L^1(\Omega, \calF, \bbP)$,
+    ou $L^1(\Omega, \calF, \bbP) = \{ Y \text{ variable aléatoire }: \bbE[\lrvert{Y}] < +\infty \}$
+\end{deff}
+
+\begin{rqq}
+    $X \in L^1(\Omega), X \in L^1$.
+\end{rqq}
+
+\begin{prop}
+    $\ $
+    \begin{enumerate}
+        \item Pour tout $A \in \calF$, on a $\bbE[\bbI_A] = \bbP(A)$.
+        \item Linéarité: Si $X, Y \in L^1(\Omega), a, b \in \bbR$, alors
+              \[ \bbE[aX + bY] = a \bbE[X] + b \bbE[Y] \]
+        \item Si $X \geqslant 0$ presque sûrement, on a $\bbE[X] \geqslant 0$.
+              De plus, si $\bbE[X] = 0$, alors $X = 0$ presque sûrement.
+        \item Si $X, Y \in L^1(\Omega)$ et $X \leqslant Y$ presque sûrement, alors
+              \[ \bbE[X] \leqslant \bbE[Y] \]
+        \item Si $X \in L^1(\Omega)$, alors
+              \[ \lrvert{\bbE[X]} \leq \bbE[\lrvert{X}] \]
+    \end{enumerate}
+\end{prop}
+
+Question: Comment calculer l'espérance ?
+
+\paragraph{Le cas discret} Soit $X$ variable aléatoire, $X(\Omega) \in \bbZ$.
+$f: \bbR \to \bbR$ mesurable telle que $\bbE[\lrvert{f(X)}] < +\infty$.
+\[ \bbE[f(X)] = \sum_{n \in \bbZ} f(n) \bbP(X = n) \]
+
+En particulier, $f = \id$, alors $\bbE[X] = \sum_{n \in \bbZ} n \bbP(X = n)$.
+
+$F_X(t) = \bbP(X \leqslant t)$ est fonction de répartition de $X$,
+alors $\bbP(X = n) = F_X(n) - F_X(n^-)$,
+donc $\bbE[f(X)] = \int_{-\infty}^{+\infty} f(x) \dif F_X(x)$.
+
+\begin{prop}
+    Soit $X: (\Omega, \calF, \bbP) \to (\bbR, \calB(\bbR))$ une variable aléatoire.
+    Soit $f: \bbR \to \bbR$ une fonction mesurable.
+    Si $f(X)$ est intégrable, alors
+    \[ \bbE[f(X)] = \int_{-\infty}^{+\infty} f(x) \dif F_X(x) \]
+    où $F_X(x)$ est la fonction de répartition de $X$.
+\end{prop}
+
+\paragraph{Le cas continu} Soit $x \tp F_X(x), F_X \in \calC^1, F_X'(x) = {}p_X(x)$, densité
+\[ \bbP(X \in [x, x + \dif x]) = {}p_X(x) \dif x = \dif F_X(x) \]
+
+Donc
+\[ \bbE[f(X)] = \int_{-\infty}^{+\infty} f(x) {}p_X(x) \dif x \]
+
+\paragraph{Espérance d'un produit de variables aléatoires indépendantes}
+
+\begin{prop}
+    Soient $X, Y \in L^1(\Omega)$ deux variables aléatoires indépendantes.
+    Alors $XY \in L^1(\Omega)$ et
+    \[ \bbE[XY] = \bbE[X] \bbE[Y] \]
+\end{prop}
+
+\begin{rqq}[Esquisse de la preuve]
+    On note $F_{X, Y}(x, y)$ fonction de répartition de $(X, Y)$.
+    Puisque $X$ et $Y$ sont indépendantes, $F_{X, Y}(x, y) = F_X(x) F_Y(y)$.
+    Donc
+    \begin{align*}
+        \bbE[\lrvert{XY}] & = \iint_{\bbR^2} \lrvert{xy} \dif F_{X, Y}(x, y)
+        = \iint_{\bbR^2} \lrvert{xy} \dif F_X(x) \dif F_Y(y)                                                                        \\
+                          & = \left(\int_\bbR \lrvert{x} \dif F_X(x)\right) \left(\int_\bbR \lrvert{y} \dif F_Y(y)\right) < +\infty
+    \end{align*}
+
+    Donc
+    \begin{align*}
+        \bbE[XY] & = \iint_{\bbR^2} xy \dif F_X(x) \dif F_Y(y)
+        = \left(\int_\bbR x \dif F_X(x)\right) \left(\int_\bbR y \dif F_Y(y)\right)
+        = \bbE[X] \bbE[Y].
+    \end{align*}
+\end{rqq}
+
+\subsection{Moments et variance}
+
+\begin{deff}
+    Soit $Y \in \bbN^*$ et $X$ une variable aléatoire réelle.
+    On dit que $X$ admet un moment d'ordre $r$, si $X^r$ est d'espérance finie:
+    \[ \bbE[\lrvert{X}^r] < +\infty \]
+
+    Le moment d'ordre $r$ de $X$ est $\bbE[X^r]$.
+\end{deff}
+
+Il s'avère que le moment d'ordre 2 est le plus fréquemment utilisé.
+Il s'agit de la notion de variance.
+
+\begin{deff}
+    Soit $X$ une variable aléatoire d'espérance finie,
+    et si la variable aléatoire $X - \bbE[X]$ admet un moment d'ordre 2,
+    on appelle variance de $X$ le nombre défini par
+    \[ \var(X) := \bbE[\lrvert{X - \bbE[X]}^2] \]
+\end{deff}
+
+\begin{rqq}
+    $\ $
+    \begin{enumerate}
+        \item On dit qu'une variable aléatoire intégrable $X$ est centrée, si $\bbE[X] = 0$.
+              Donc la variance est aussi appelée moment centré d'ordre 2.
+        \item $\var(X) = \bbE[X^2] - (\bbE[X])^2$.
+    \end{enumerate}
+\end{rqq}
+
+\begin{prop}[Inégalité de Cauchy-Schwarz]
+    Si $X, Y \in L^2(\Omega)$, alors $X, Y \in L^1(\Omega)$ et
+    \[ \lrvert{\bbE[XY]} \leqslant \sqrt{\bbE[X^2] \bbE[Y^2]} \]
+\end{prop}
+
+\begin{rqq}
+    Pour $r \in [1, +\infty[$, on note
+    \[ L^r(\Omega) = \{ X: \bbE(\lrvert{X}^r) < +\infty \} \]
+
+    Et
+    \[ \lrVert{X}_{L^r(\Omega)} = \left(\bbE[\lrvert{X}^r]\right)^{\frac{1}{r}} \]
+\end{rqq}
+
+Plus généralement, on a
+\begin{prop}[Inégalité de Hölder]
+    Soient $p, q \in ]1, +\infty[$ vérifiant la relation de conjugaison
+    \[ \frac{1}{p} + \frac{1}{q} = 1 \]
+
+    Soient $X \in L^p(\Omega), Y \in L^q(\Omega)$, alors $XY \in L^1(\Omega)$, et
+    \begin{align*}
+        \lrVert{XY}_{L^1(\Omega)} & \leqslant \lrVert{X}_{L^p(\Omega)} \lrVert{Y}_{L^q(\Omega)},                                           \\
+        \bbE[\lrvert{XY}]         & \leqslant \left(\bbE[\lrvert{X}^p]\right)^{\frac{1}{p}} \left(\bbE[\lrvert{Y}^q]\right)^{\frac{1}{q}}.
+    \end{align*}
+\end{prop}
+
+\begin{proof}
+    On rappelle que pour tout $a, b \geqslant 0, \frac{1}{p} + \frac{1}{q} = 1$, on a
+    \[ (*) \quad ab \leqslant \frac{a^p}{p} + \frac{b^q}{q} \quad (\text{consequence de Jensen}) \]
+
+    Supposons que $\lrVert{X}_{L^p(\Omega)} > 0$ et $\lrVert{Y}_{L^q(\Omega)} > 0$,
+    sinon, l'inégalité est automatique.
+
+    On pose
+    \[ X_1 = \frac{\lrvert{X}}{\lrVert{X}_{L^p(\Omega)}}, Y_1 = \frac{\lrvert{Y}}{\lrVert{Y}_{L^q(\Omega)}} \]
+    par conséquent,
+    \[ \lrVert{X_1}_{L^p(\Omega)} = \lrVert{Y_1}_{L^q(\Omega)} = 1 \]
+
+    Appliquer $(*)$ aux $a = X_1(\omega), b = Y_1(\omega)$, on obtient
+    \[ \lrvert{X_1(\omega)Y_1(\omega)} \leqslant \frac{1}{p} \lrvert{X_1(\omega)}^p + \frac{1}{q} \lrvert{Y_1(\omega)}^q \]
+    pour tout $\omega \in \Omega$.
+
+    En prenant l'espérance, on obtient
+    \[ \bbE[\lrvert{X_1Y_1}] \leqslant \frac{1}{p} \bbE[\lrvert{X_1}^p] + \frac{1}{q} \bbE[\lrvert{Y_1}^q]
+        = \frac{1}{p} + \frac{1}{q} = 1 \]
+
+    Donc
+    \[ \bbE \left[\frac{\lrvert{XY}}{\lrVert{X}_{L^p(\Omega)} \lrVert{Y}_{L^q(\Omega)}}\right] \leqslant 1
+        \implies \bbE[\lrvert{XY}] = \lrVert{XY}_{L^1(\Omega)} \leqslant \lrVert{X}_{L^p(\Omega)} \lrVert{Y}_{L^q(\Omega)}. \]
+\end{proof}
+
+\begin{rqq}
+    Pour $A_1, A_2, \ldots, A_n, \bbP(A_j) = \frac{1}{n}, A_i \cap A_j = \varnothing, \forall i \neq j$.
+    Posons $X = \sum_{j = 1}^n a_j \bbI_{A_j}, Y = \sum_{j = 1}^n b_j \bbI_{A_j}$.
+
+    \begin{align*}
+        \bbE[XY]                   & = \sum_{j = 1}^n a_jb_j \bbP(A_j) = \frac{1}{n} \sum_{j = 1}^n a_jb_j,                    \\
+        \lrVert{X}_{L^p(\Omega)}^p & = \bbE[\lrvert{X}^p] = \sum_{j = 1}^n a_j^p \bbP(A_j) = \frac{1}{n} \sum_{j = 1}^n a_j^p, \\
+        \lrVert{Y}_{L^q(\Omega)}^q & = \bbE[\lrvert{Y}^q] = \sum_{j = 1}^n b_j^q \bbP(A_j) = \frac{1}{n} \sum_{j = 1}^n b_j^q.
+    \end{align*}
+    Donc
+    \[ \frac{1}{n} \left(\sum_{j = 1}^n a_jb_j\right) \leqslant
+        \left(\frac{1}{n}\sum_{j = 1}^n a_j^p\right)^{\frac{1}{p}} \left(\frac{1}{n}\sum_{j = 1}^n b_j^q\right)^{\frac{1}{q}}
+        = \frac{1}{n} \left(\sum_{j = 1}^n a_j^p\right)^{\frac{1}{p}} \left(\sum_{j = 1}^n b_j^q\right)^{\frac{1}{q}}. \]
+\end{rqq}
+
+\begin{cor}
+    Soit $X \in L^p(\Omega), p \in [1, +\infty[$,
+    alors $X \in L^r(\Omega), \forall 1 \leqslant r \leqslant p$.
+    En particulier, si $X \in L^2(\Omega)$, alors $\var(X)$ existe et
+    \[ \var(X) = \bbE[X^2] - \left(\bbE[X]\right)^2 \]
+\end{cor}
+
+\begin{proof}
+    On suppose que $1 \leqslant r < p$.
+    \[ \bbE[\lrvert{X}^r] = \bbE[\lrvert{X}^r \cdot 1] \leqslant
+        \lrVert{\lrvert{X}^r}_{L^{\frac{p}{r}}(\Omega)} \lrVert{1}_{L^q(\Omega)}
+        = \lrVert{X}_{L^p(\Omega)}^r \bbP(\Omega)^{\frac{1}{q}} = \lrVert{X}_{L^p(\Omega)}^r < +\infty \]
+    ou $q \in ]1, +\infty[$, tel que $\frac{1}{q} + \frac{r}{p} = 1$.
+\end{proof}
+
+\begin{deff}
+    Soit $X \in L^2(\Omega)$, l'écart-type de $X$ est le réel
+    \[ \sigma(X) = \sqrt{\var(X)} \]
+\end{deff}
+
+\begin{rqq}
+    Pour une variable aléatoire $X \in L^2(\Omega)$, si $\bbE[X] = 0, \sigma(X) = 1$,
+    la variable aléatoire $X$ est dite centrée réduite.
+
+    Plus généralement, pour tout $X \in L^2(\Omega), \sigma(X) \neq 0$, la variable
+    \[ X^* = \frac{X - \bbE[X]}{\sigma(X)} \]
+    est centrée réduite.
+\end{rqq}
+
+Soit $X_1, X_2, \ldots, X_n$ i.i.d.
+
+\paragraph{Loi des grands nombres}
+\[ \frac{X_1 + X_2 + \cdots + X_n}{n} \overunderset{?}{n \to \infty}{\to} \bbE[X_1], \qquad
+    \frac{1}{n} \sum_{j = 1}^n (X_j - \bbE[X_j]) \overunderset{?}{n \to \infty}{\to} 0. \]
+
+\paragraph{Théorème de limite centrale}
+Si $X_j \in L^2(\Omega)$, alors
+\[ \frac{1}{\sqrt{n}} \sum_{j = 1}^n \frac{X_j - \bbE[X_j]}{\sigma(X_j)}
+    \overunderset{\text{en loi}}{n \to \infty}{\to} \bbU_{\bbR}(0, 1). \]
+
+\begin{deff}
+    Soient $X$ et $Y$ deux variables aléatoires réelles d'espérance finie.
+    Si la variable
+    \[ (X - \bbE[X])(Y - \bbE[Y]) \in L^1(\Omega) \]
+    on appelle covariance de $X$ et $Y$ (ou du couple $(X, Y)$)
+    le réel noté $\cov(X, Y)$, défini par
+    \[  \cov(X, Y) = \bbE[(X - \bbE[X])(Y - \bbE[Y])] \]
+\end{deff}
+
+\begin{rqq}
+    Si $\cov(X, Y) = 0$, on dit que $X$ et $Y$ sont non corrélées.
+    Si $X$ et $Y$ sont indépendantes, alors $\cov(X, Y) = 0$.
+    Réciproquement, non corrélées n'implique pas indépendance.
+\end{rqq}
+
+\begin{exem}
+    Pour le clarifier, on considère
+    \[ \Omega = \{ -1, 0, 1 \}, X \text{ variable aléatoire sur } \Omega \]
+    \[ \bbP(X = -1) = \bbP(X = 0) = \bbP(X = 1) = \frac{1}{3}, X \sim \unif(\{ -1, 0, 1 \}) \]
+
+    On pose $Y = X^2 \in \{ 0, 1 \}$, $X$ et $Y$ ne sont pas indépendantes, mais
+    \[ \cov(X, Y) = \bbE[(X - \bbE[X])(Y - \bbE[Y])] = \bbE[X(X^2 - \bbE[X^2])] = 0 \]
+\end{exem}
+
+\begin{prop}
+    Soient $X_1, X_2, \ldots, X_n$ variables aléatoires appartenant à $L^2(\Omega)$. Alors
+    \[ \var \left(\sum_{k = 1}^n X_k\right) =
+        \sum_{k = 1}^n \var(X_k) + 2 \sum_{1 \leqslant i < j \leqslant n} \cov(X_i, X_j) \]
+
+    En particulier, si $X_i$ et $X_j$ sont non corrélées pour tous $i \neq j$, on a
+    \[ \var \left(\sum_{k = 1}^n X_k\right) = \sum_{k = 1}^n \var(X_k) \]
+\end{prop}
+
+\begin{proof}
+    Note $m_k = \bbE[X_k], m = \sum_{k = 1}^n m_k$.
+    \begin{align*}
+        \var \left(\sum_{k = 1}^n X_k\right) & = \bbE[\left(\sum_{k = 1}^n (X_k - m_k)\right)^2]                                                \\
+                                             & = \bbE[\sum_{k, l = 1}^n(X_k - m_k)(X_l - m_l)] = \sum_{k, l = 1}^n \bbE[(X_k - m_k)(X_l - m_l)] \\
+                                             & = \sum_{k = l = 1}^n \bbE[(X_k - m_k)(X_l - m_l)] + \sum_{k \neq l} \bbE[(X_k - m_k)(X_l - m_l)] \\
+                                             & = \sum_{k = 1}^n \var(X_k) + 2 \sum_{1 \leqslant k < l \leqslant n} \cov(X_k, X_l).
+    \end{align*}
+\end{proof}
+
+\begin{exem}
+    $\ $
+    \begin{enumerate}
+        \item $X \sim \unif(\llb 1, n \rrb)$.
+              \begin{itemize}
+                  \item Espérance:
+                        \[ \bbE[X] = \sum_{k = 1}^n k \bbP(X = k) = \sum_{k = 1}^n k \cdot \frac{1}{n}
+                            = \frac{1}{n} \cdot \frac{n(n + 1)}{2} = \frac{n + 1}{2}. \]
+                  \item Variance:
+                        \[ \var(X) = \sum_{k = 1}^n \left(k - \frac{n + 1}{2}\right)^2 \bbP(X = k)
+                            = \frac{1}{n} \sum_{k = 1}^n \left(k - \frac{n + 1}{2}\right)^2. \]
+              \end{itemize}
+        \item $X \sim \unif([0, 1])$.
+              \begin{itemize}
+                  \item Espérance:
+                        \[ F_X(x) =
+                            \begin{cases}
+                                0, & x \leqslant 0 \\
+                                x, & 0 < x < 1     \\
+                                1, & x \geqslant 1
+                            \end{cases}
+                        \]
+                        \[ \bbE[X] = \int_{-\infty}^{+\infty} x \dif F_X(x) = \int_0^1 x \dif x = \frac{1}{2} \]
+                  \item Variance:
+                        \[ \var(X) = \bbE\left[\left(X - \frac{1}{2}\right)^2\right] = \int_0^1 \left(x - \frac{1}{2}\right)^2 \dif x = \frac{1}{12}. \]
+              \end{itemize}
+        \item $X \sim \ber(p), p \in ]0, 1[$.
+              \[ \bbE[X] = p, \quad \bbE[(X - p)^2] = pq. \]
+        \item $X \sim \calB(n, p), \bbP(X = k) = \binom{n}{k} p^k q^{n - k}, 0 \leqslant k \leqslant n$.
+              Soient $X_1, X_2, \ldots, X_n$ i.i.d. et $X_i \sim \ber(p)$.
+              \[ X \overset{\text{loi}}{=} X_1 + X_2 + \cdots + X_n, \quad
+                  \bbE[X] = n \bbE[X_1] = np, \quad
+                  \var(X) = n \var(X_1) = npq. \]
+        \item $X \sim \calG(p)$.
+              \begin{align*}
+                  \bbE[X] & = \sum_{k = 1}^\infty k \bbP(X = k) = \sum_{k = 1}^\infty kpq^{k - 1}
+                  = p \sum_{k = 1}^\infty k q^{k - 1} = \frac{p}{(1 - q)^2} = \frac{1}{p}.
+              \end{align*}
+              En effet, pour $0 < x < 1$, $\varphi(x) = \sum_{k = 1}^\infty x^k = \frac{x}{1 - x}$,
+              d'où $\varphi'(x) = \sum_{k = 1}^\infty kx^{k - 1} = \frac{1}{(1 - x)^2}$.
+        \item $X \sim \calP(\lambda), \bbP(X = n) = e^{-\lambda} \frac{\lambda^n}{n!}$
+              \[ \bbE[X] = \sum_{n = 0}^\infty ne^{-\lambda}\frac{\lambda^n}{n!}
+                  = \sum_{n = 1}^\infty e^{-\lambda} \frac{\lambda \cdot \lambda^{n - 1}}{(n - 1)!}
+                  = \lambda e^{-\lambda} \sum_{k = 0}^\infty \frac{\lambda^k}{k!} = \lambda. \]
+    \end{enumerate}
+\end{exem}
+
+\paragraph{Loi gaussienne}
+
+Soit $X: \Omega \to \bbR, m \in \bbR, \sigma > 0$.
+\[ F_X(x) = \bbP(X \leqslant x) = \frac{1}{\sqrt{2 \pi} \sigma} \int_{-\infty}^x e^{-\frac{(t - m)^2}{2 \sigma^2}} \dif t \]
+densité de $X: {}p_X(x) = \frac{1}{\sqrt{2 \pi} \sigma} e^{-\frac{(x - m)^2}{2 \sigma^2}}$.
+$X \sim \calN(m, \sigma)$, loi gaussienne avec les paramètres $m, \sigma$.
+\begin{align*}
+    \bbE[X] & = \int_{-\infty}^{+\infty} x {}p_X(x) \dif x
+    = \frac{1}{\sqrt{2 \pi} \sigma} \int_{-\infty}^{+\infty} x e^{-\frac{(x - m)^2}{2 \sigma^2}} \dif x                \\
+            & = \frac{1}{\sqrt{2 \pi} \sigma} \int_{-\infty}^{+\infty} (y + m) e^{-\frac{y^2}{2 \sigma^2}} \dif y = m.
+\end{align*}
+\begin{align*}
+    \var(X) & = \bbE[(X - m)^2]
+    = \frac{1}{\sqrt{2 \pi} \sigma} \int_{-\infty}^{+\infty} (x - m)^2 e^{-\frac{(x - m)^2}{2 \sigma^2}} \dif x                                                      \\
+            & = \frac{1}{\sqrt{2 \pi} \sigma} \int_{-\infty}^{+\infty} y^2 e^{-\frac{y^2}{2 \sigma^2}} \dif y
+    = \frac{\sigma^2}{\sqrt{2 \pi}} \int_{-\infty}^{+\infty} z^2 e^{-\frac{z^2}{2}} \dif z                                                                           \\
+            & = \frac{2 \sigma^2}{\sqrt{2 \pi}} \int_0^{+\infty} t^{\frac{1}{2}} e^{-\frac{t}{2}} \frac{1}{2} \dif t
+    = \frac{\sigma^2}{\sqrt{2 \pi}} \int_0^{+\infty} t^{\frac{1}{2}} e^{-\frac{t}{2}} \dif t                                                                         \\
+            & = \frac{\sigma^2}{\sqrt{2 \pi}} \int_0^{+\infty} \left(\frac{t}{2}\right)^{\frac{1}{2}} e^{-\frac{t}{2}} 2^{\frac{3}{2}} \dif \left(\frac{t}{2}\right) \\
+            & = \frac{\sigma^2}{\sqrt{2 \pi}} 2^{\frac{3}{2}} \Gamma\left(\frac{3}{2}\right)
+    = \frac{\sigma^2}{\sqrt{2 \pi}} 2^{\frac{3}{2}} \frac{1}{2} \Gamma\left(\frac{1}{2}\right)
+    = \sigma^2.
+\end{align*}
