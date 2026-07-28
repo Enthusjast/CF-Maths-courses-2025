@@ -1139,7 +1139,7 @@ Plus généralement, on a
 
 \begin{proof}
     On rappelle que pour tout $a, b \geqslant 0, \frac{1}{p} + \frac{1}{q} = 1$, on a
-    \[ (*) \quad ab \leqslant \frac{a^p}{p} + \frac{b^q}{q} \quad (\text{consequence de Jensen}) \]
+    \[ (*) \quad ab \leqslant \frac{a^p}{p} + \frac{b^q}{q} \quad (\text{conséquence de Jensen}) \]
 
     Supposons que $\lrVert{X}_{L^p(\Omega)} > 0$ et $\lrVert{Y}_{L^q(\Omega)} > 0$,
     sinon, l'inégalité est automatique.
@@ -1330,3 +1330,191 @@ $X \sim \calN(m, \sigma)$, loi gaussienne avec les paramètres $m, \sigma$.
     = \frac{\sigma^2}{\sqrt{2 \pi}} 2^{\frac{3}{2}} \frac{1}{2} \Gamma\left(\frac{1}{2}\right)
     = \sigma^2.
 \end{align*}
+
+\subsection{Inégalités probabilistes et applications}
+
+\begin{thm}[Inégalité de Markov]
+    Soit $X$ une variable aléatoire d'espérance finie, pour tout $\lambda > 0$,
+    \[ \bbP(\lrvert{X} \geqslant \lambda) \leqslant \frac{1}{\lambda} \bbE[\lrvert{X}] \]
+\end{thm}
+
+\begin{proof}
+    Pour $\omega \in \Omega$ et $\lambda > 0$, on a
+    \[ \lrvert{X(\omega)} \geqslant \lambda \bbI_{\lrvert{X} \geqslant \lambda}(\omega) \]
+
+    En prenant l'espérance et par linéarité de l'espérance, on obtient
+    \[ \bbE[\lrvert{X}] \geqslant \lambda \bbE(\bbI_{\lrvert{X} \geqslant \lambda})
+        = \lambda \bbP(\lrvert{X} \geqslant \lambda). \qedhere \]
+\end{proof}
+
+\begin{rqq}[Interprétation]
+    Si $X \geqslant 0$ et $0 < \bbE[X] < +\infty$, et $c > 0$, alors
+    \[ \bbP(X \geqslant c \bbE[X]) \leqslant \frac{1}{c}. \]
+\end{rqq}
+
+Une variable positive dépasse rarement son espérance par un facteur grand.
+
+\begin{cor}[Inégalité de Chebyshev]
+    Soit $X \in L^2(\Omega)$, pour tout $\lambda > 0$, on a
+    \[ \bbP(\lrvert{X - \bbE[X]} \geqslant \lambda) \leqslant \frac{\var(X)}{\lambda^2} \]
+\end{cor}
+
+\begin{proof}
+    Posons $Y = (X - \bbE[X])^2 \geqslant 0$, puisque $X \in L^2(\Omega)$, $Y$ est d'espérance finie.
+    D'après le théorème de Markov, on a
+    \[ \bbP(\lrvert{X - \bbE[X]} \geqslant \lambda) = \bbP(Y \geqslant \lambda^2)
+        \leqslant \frac{\bbE[Y]}{\lambda^2} = \frac{\var(X)}{\lambda^2}. \]
+\end{proof}
+
+\begin{rqq}[Interprétation]
+    La variance mesure l'ordre de grandeur des fluctuations autour de l'espérance.
+    (moyenne d'une variable aléatoire)
+\end{rqq}
+
+\paragraph{Application~: loi faible des grands nombres}
+
+\begin{thm}
+    Soit $(X_n)$ une suite de variables aléatoires, deux à deux non corrélées,
+    de même loi, admettant un moment d'ordre 2.
+
+    On pose $m = \bbE[X_1]$ et pour tout $n \in \bbN^*$, $S_n = \sum\limits_{k = 1}^n X_k$.
+    Alors pour tout $\varepsilon > 0$,
+    \[ \lim_{n \to \infty} \bbP \left(\lrvert{\frac{S_n}{n} - m} \geqslant \varepsilon\right) = 0\]
+\end{thm}
+
+\begin{proof}
+    Par linéarité, $\bbE[\frac{S_n}{n}] = m$.
+    D'autre part, comme les variables sont deux à deux non corrélées, on a
+    \[ \var \left(\frac{S_n}{n}\right) = \frac{1}{n^2} \sum_{k = 1}^n \var(X_k) = \frac{\var(X_1)}{n} \]
+
+    En appliquant l'inégalité de Chebyshev, on obtient
+    \[ \bbP \left(\lrvert{\frac{S_n}{n} - m} \geqslant \varepsilon\right) \leqslant \frac{\var \left(\frac{S_n}{n}\right)}{\varepsilon^2}
+        = \frac{\var(X_1)}{n \varepsilon^2} \to 0. \]
+\end{proof}
+
+\section{Fonctions génératrices}
+
+Soit $(\Omega, \calF, \bbP)$ un espace de probabilité,
+$X: \Omega \to \bbN$ une variable aléatoire à valeurs dans $\bbN$.
+
+\begin{deff}
+    La fonction génératrice de $X$ est l'application
+    \[ G_X: [-1, 1] \to \bbR, \quad G_X(t) = \bbE[t^X] = \sum_{n=0}^\infty t^n \bbP(X = n). \]
+\end{deff}
+
+\begin{rqq}
+    Pour $t \in [-1, 1]$, $\sum\limits_{n = 0}^\infty t^n \bbP(X = n)$ est une série convergente absolument.
+    Et on a $\lrvert{G_X(t)} \leqslant 1$.
+\end{rqq}
+
+\begin{rqq}
+    $t \tp G_X(t)$ est analytique avec le rayon de convergence $R \geqslant 1$.
+\end{rqq}
+
+\begin{prop}[La fonction génératrice détermine la loi]
+    Pour tout $k \in \bbN$, on a
+    \[ \bbP(X = k) = \frac{G_X^{(k)}(0)}{k!} \]
+\end{prop}
+
+\begin{proof}
+    $G_X(t) = \sum\limits_{k = 0}^\infty t^k \bbP(X = k)$.
+    Les nombres $\bbP(X = k)$ sont les coefficients de la série entière.
+    Par limite des coefficients d'une série entière,
+    on a $\bbP(X = k) = \frac{G_X^{(k)}(0)}{k!}$.
+\end{proof}
+
+\begin{prop}[Espérance et variance] $\ $
+    \begin{enumerate}
+        \item Une variable aléatoire $X$ (à valeurs dans $\bbN$) est d'espérance finie,
+              ssi $G_X(t)$ est dérivable en $t = 1$, et l'on a alors $\bbE[X] = G_X'(1)$.
+        \item Une variable aléatoire $X$ possède un moment d'ordre 2,
+              ssi $G_X(t)$ est deux fois dérivable en $t = 1$, et l'on a alors $G_X''(1) = \bbE[X(X - 1)]$.
+              Par conséquent, $\var(X) = \bbE[X^2] - (\bbE[X])^2 = (G_X''(1) + G_X'(1))^2 - (G_X'(1))^2$.
+    \end{enumerate}
+\end{prop}
+
+\begin{lem}
+    Soit $(a_n)$ une suite positive ($a_n \geqslant 0$) telle que la série $\sum\limits_{n = 1}^\infty a_n$ converge.
+    On note $f(t) = \sum\limits_{n = 1}^\infty a_nt^n$ la série entière.
+    Alors la fonction $f: [-1, 1] \to \bbR$ est dérivable en $t = 1$,
+    ssi la série $\sum\limits_{n = 1}^\infty na_n$ converge,
+    et l'on a alors $f'(1) = \sum\limits_{n = 1}^\infty na_n$.
+\end{lem}
+
+\begin{proof}
+    On note $R \geqslant 1$ le rayon de convergence de la série entière $\sum\limits_{n = 1}^\infty a_nt^n$.
+    La fonction $f(t)$ est lisse pour $\lrvert{t} < R$.
+    En particulier,
+    \[ f'(t) = \sum_{n = 1}^\infty na_n t^{n-1}, \lrvert{t} < R \]
+
+    Sans perdre de généralité, on suppose que $R = 1$. (Sinon, on prend $t = 1$ et la preuve se termine.)
+    Pour tout $t \in [0, 1[$, on a
+    \[ \frac{f(t) - f(1)}{t - 1} = \sum_{n = 1}^\infty a_n \frac{t^n - 1}{t - 1}
+        = \sum_{n = 1}^\infty a_n(1 + t + t^2 + \cdots + t^{n-1}) \]
+
+    Si $f(t)$ est dérivable en $t = 1$, alors pour tout $N \in \bbN^*$, on a
+    \[ \sum_{n = 1}^N a_n(1 + t + t^2 + \cdots + t^{n-1}) \leqslant \frac{f(t) - f(1)}{t - 1} \]
+    Donc
+    \[ \sum_{n = 1}^N na_n = \limsup_{t \to 1} \sum_{n = 1}^N a_n(1 + t + t^2 + \cdots + t^{n-1})
+        \leqslant f'(1) < +\infty \]
+
+    Réciproquement, si la série $\sum\limits_{n = 1}^\infty na_n$ converge, la fonction
+    \[ g(t) := \frac{f(t) - f(1)}{t - 1} = \sum_{n = 1}^\infty a_n(1 + t + t^2 + \cdots + t^{n-1}) \]
+    est croissante et $0 \leqslant g(t) \leqslant \sum\limits_{n = 1}^\infty na_n < +\infty$.
+    Donc la limite $\lim\limits_{t \to 1} g(t)$ existe.
+    Autrement dit $f(t)$ est dérivable en $t = 1$.
+\end{proof}
+
+\begin{prop}[Fonction génératrice de la somme des variables aléatoires indépendantes] $\ $
+    \begin{enumerate}
+        \item Soit $X$ et $Y$ deux variables aléatoires indépendantes à valeurs dans $\bbN$.
+              Alors, pour tout réel $t \in \bbR$ tel que $G_X(t)$ et $G_Y(t)$ soient définis,
+              $G_{X+Y}$ est défini et
+              \[ G_{X+Y}(t) = G_X(t)G_Y(t) \]
+        \item Plus généralement, soit $X_1, X_2, \ldots, X_n$ des variables aléatoires indépendantes.
+              On pose $X = X_1 + X_2 + \cdots + X_n$, alors
+              \[ G_X(t) = \prod_{k = 1}^n G_{X_k}(t) \]
+    \end{enumerate}
+\end{prop}
+
+\begin{proof}
+    $\ $
+    \begin{enumerate}
+        \item $t^{X + Y} = t^X t^Y$ est le produit de deux fonctions de deux variables aléatoires indépendantes.
+              D'après la proposition dans le cours précédent, $t^{X + Y}$ est d'espérance finie. Donc
+              \[ \bbE[t^{X + Y}] = \bbE[t^X \cdot t^Y] = \bbE[t^X] \cdot \bbE[t^Y] = G_X(t) \cdot G_Y(t) \]
+              On a $G_{X + Y}(t)$ existe et $G_{X + Y}(t) = G_X(t) \cdot G_Y(t)$.
+        \item Le même raisonnement. \qedhere
+    \end{enumerate}
+\end{proof}
+
+\begin{exem}[Fonctions génératrices des lois usuelles] $\ $
+    \begin{enumerate}
+        \item $X \sim \ber(p), q = 1 - p$.
+              \[ G_X(t) = \bbE[t^X] = q + pt, \quad G_X'(1) = p = \bbE[X], \quad G_X''(1) = 0, \quad \var(X) = pq. \]
+        \item $X \sim \calB(n, p), X = X_1 + X_2 + \cdots + X_n, X_i \sim \ber(p)$.
+              \begin{align*}
+                  G_X(t)  & = (G_{X_1}(t))^n = (q + pt)^n,                                        \\
+                  G_X'(1) & = np, \quad G_X''(1) = n(n - 1)p^2,                                   \\
+                  \var(X) & = G_X''(1) + G_X'(1) - (G_X'(1))^2 = n(n - 1)p^2 + np - n^2p^2 = npq.
+              \end{align*}
+        \item $X \sim \calG(p)$.
+              \begin{align*}
+                  G_X(t)   & = \sum_{n = 1}^\infty t^n \bbP(X = n) = \sum_{n = 1}^\infty t^npq^{n - 1} = \frac{pt}{1 - qt},                    \\
+                  G_X'(1)  & = \frac{p(1 - qt) + ptq}{(1 - qt)^2}\bigg|_{t = 1} = \frac{p^2 + pq}{p^2} = \frac{1}{p},                          \\
+                  G_X''(t) & = \left(\frac{p}{(1 - qt)^2}\right)' = \frac{2pq}{(1 - qt)^3}, \quad G_X''(1) = \frac{2pq}{q^3} = \frac{2q}{p^2}, \\
+                  \var(X)  & = \frac{2q}{p^2} + \frac{1}{p} - \frac{1}{p^2}.
+              \end{align*}
+        \item $X \sim \calP(\lambda)$.
+              \begin{align*}
+                  G_X(t)  & = \bbE[t^X] = \sum_{n = 0}^\infty t^ne^{-\lambda} \frac{\lambda^n}{n!} = e^{\lambda(t - 1)}, \\
+                  G_X'(t) & = \lambda e^{\lambda(t - 1)}, \quad G_X''(t) = \lambda^2 e^{\lambda(t - 1)},                 \\
+                  \bbE[X] & = \lambda, \quad \var(X) = \lambda^2 + \lambda - \lambda^2 = \lambda.
+              \end{align*}
+              Si $X_j \sim \calP(\lambda_j), j = 1, 2, \ldots, n$, $X_j$ sont indépendantes.
+              On pose $X = \sum\limits_{j = 1}^n X_j$, alors
+              \[ G_X(t) = \prod_{j = 1}^n G_{X_j}(t) = \prod_{j = 1}^n e^{\lambda_j (t - 1)} = e^{\lambda (t - 1)}, \]
+              où $\lambda = \sum\limits_{j = 1}^n \lambda_j$.
+              Donc on en déduit que $X \sim \calP(\lambda)$.
+    \end{enumerate}
+\end{exem}
