@@ -1,0 +1,220 @@
+\chapter{Loi des grands nombres}
+
+Question: $X_1, X_2, \ldots, X_n, \ldots$ i.i.d.
+la moyenne $\frac{1}{n} \sum\limits_{k = 1}^n \xrightarrow[]{?} \bbE[X_1]$
+
+\section{Loi faible des grands nombres}
+
+\paragraph{Notion de convergence en probabilité}
+
+\begin{deff}
+    Soit $(Y_n)$ une suite de variables aléatoires, $Y$ une variable aléatoire.
+    On dit que $Y_n$ converge vers $Y$ en probabilité, et on note $Y_n \xrightarrow[]{\bbP} Y$,
+    si pour tout $\varepsilon > 0$, on a $\lim\limits_{n \to \infty} \bbP(\lrvert{Y_n - Y} \geqslant \varepsilon) = 0$.
+\end{deff}
+
+\begin{thm}[Loi faible des grands nombres, Khinchin]
+    Soit $X_n: \Omega \to \bbR$ une suite de variables aléatoires de même loi (i.i.d.).
+    On pose $S_n = \sum\limits_{k = 1}^n X_k$ et $m = \bbE[X_1] (= \bbE[X_k])$.
+    Alors $\frac{S_n}{n} \xrightarrow[]{\bbP} m$.
+\end{thm}
+
+\begin{rqq}
+    Si $X_k \in L^2$, alors ce théorème est une conséquence simple de l'inégalité de Chebyshev.
+    En fait, si $X_k \in L^2$, alors
+    \[ \bbP(\lrvert{\frac{S_n}{n} - m} \geqslant \varepsilon) \leqslant \frac{1}{\varepsilon^2} \var\Bigl(\frac{S_n}{n}\Bigr)
+        = \frac{1}{n^2 \varepsilon^2} n \var(X_1) = \frac{\var(X_n)}{n \varepsilon^2} \xrightarrow[n \to \infty]{} 0. \]
+\end{rqq}
+
+\begin{proof}
+    Idée~: introduire la troncation~:
+    Pour tout $n$, on définit les troncatures de $X_k$, $1 \leqslant k \leqslant n$, par
+    \[ X_k^{(n)} = X_k \cdot \bbI_{\lrvert{X_k} \leqslant n} =
+        \begin{cases}
+            X_k, & \text{si} \lrvert{X_k} \leqslant n \\
+            0,   & \text{sinon}
+        \end{cases}
+    \]
+
+    On définit $m_n = \bbE[X_k^{(n)}] = \bbE[X_1^{(n)}]$, $T_n = \sum\limits_{k = 1}^n X_k^{(n)}$.
+    Objet à contrôler~:
+    \[ \frac{S_n}{n} - m = \frac{S_n - T_n}{n} + \frac{T_n}{n} - m_n + m_n - m \]
+    et on va démontrer que $\frac{S_n - T_n}{n}, \frac{T_n}{n} - m_n, m_n - m \to 0$ en probabilité.
+\end{proof}
+
+\begin{lem}
+    Soit $X$ une variable aléatoire d'espérance finie ($\bbE[X] < +\infty$). Alors
+    \begin{enumerate}
+        \item \[ \lim_{n \to \infty} \bbE[\lrvert{X} \bbI_{\lrvert{X} > n}] = 0 \]
+        \item \[ \lim_{n \to \infty} \frac{1}{n} \bbE[X^2 \bbI_{\lrvert{X} \leqslant n}] = 0 \]
+    \end{enumerate}
+\end{lem}
+
+\begin{proof}
+    $\ $
+    \begin{enumerate}
+        \item On a
+              \[ \bbE[\lrvert{X}] = \bbE[\lrvert{X} \bbI_{\lrvert{X} \leqslant n}] + \bbE[\lrvert{X} \bbI_{\lrvert{X} > n}]. \]
+              Par le théorème de convergence monotone,
+              \[ \bbE[\lrvert{X} \bbI_{\lrvert{X} \leqslant n}] \xrightarrow[n \to \infty]{} \bbE[\lrvert{X}] < +\infty, \]
+              par conséquent
+              \[ \bbE[\lrvert{X} \bbI_{\lrvert{X} > n}] \xrightarrow[n \to \infty]{} 0. \]
+        \item Fixons $M > 0$ et
+              \[ \frac{1}{n} \bbE[X^2 \bbI_{\lrvert{X} \leqslant n}] = \frac{1}{n} \bbE[X^2 \bbI_{\lrvert{X} \leqslant M}]
+                  + \frac{1}{n} \bbE[X^2 \bbI_{\lrvert{X} > M}] \leqslant \frac{M^2}{n} + \bbE[\lrvert{X} \bbI_{\lrvert{X} > M}]. \]
+              En faisant d'abord $n \to +\infty$ puis $M \to +\infty$, on obtient
+              \[ \lim_{n \to \infty} \frac{1}{n} \bbE[\lrvert{X}^2 \bbI_{\lrvert{X} \leqslant n}] = 0. \]
+    \end{enumerate}
+\end{proof}
+
+\begin{proof}[Preuve du théorème]
+    Étape 1.
+    On décompose
+    \[ \frac{S_n}{n} - m = \frac{T_n}{n} - m_n + \frac{S_n - T_n}{n} + m_n - m. \]
+    Pour tout $\varepsilon > 0$,
+    \[ \{ \lrvert{\frac{S_n}{n} - m} \geqslant \varepsilon \}
+        \subseteq \{ \lrvert{\frac{T_n}{n} - m_n} \geqslant \frac{\varepsilon}{3} \}
+        \cup \{ \lrvert{\frac{S_n - T_n}{n}} \geqslant \frac{\varepsilon}{3} \}
+        \cup \{ \lrvert{m_n - m} \geqslant \frac{\varepsilon}{3} \}. \]
+
+    On note
+    \begin{align*}
+        A_n & = \{ \lrvert{\frac{T_n}{n} - m_n} \geqslant \frac{\varepsilon}{3} \}, \\
+        B_n & = \{ \lrvert{\frac{S_n - T_n}{n}} \geqslant \frac{\varepsilon}{3} \}, \\
+        C_n & = \{ \lrvert{m_n - m} \geqslant \frac{\varepsilon}{3} \}.
+    \end{align*}
+
+    Par conséquent,
+    \[ \bbP(\lrvert{\frac{S_n}{n} - m} \geqslant \varepsilon) \leqslant \bbP(A_n) + \bbP(B_n) + \bbP(C_n). \]
+
+    Étape 2.
+
+    On a
+    \[ |m_n - m| = \left| \bbE\left[ X_1 \bbI_{\{|X_1| > n\}} \right] \right| \xrightarrow[n \to \infty]{} 0 \]
+    par le Lemme.
+
+    Pour $\varepsilon > 0$, il existe $N \in \bbN^*$ tel que pour tout $n \ge N$ :
+    \[ |m_n - m| < \frac{\varepsilon}{3}, \quad \text{c'est-à-dire que } \bbP(C_n) = 0. \]
+
+    Par ailleurs, $S_n - T_n = \sum_{k=1}^{n} X_k \bbI_{\{|X_k| > n\}}$. Par l'inégalité de Markov :
+    \begin{align*}
+        \bbP(B_n) = \bbP\left(|S_n - T_n| > n \frac{\varepsilon}{3}\right)
+         & \le \frac{3}{n\varepsilon} \, \bbE\left[ |S_n - T_n| \right]                                            \\
+         & \le \frac{3}{n\varepsilon} \cdot n \cdot \bbE\left[ |X_1| \bbI_{\{|X_1| > n\}} \right]                  \\
+         & = \frac{3}{\varepsilon} \, \bbE\left[ |X_1| \bbI_{\{|X_1| > n\}} \right] \xrightarrow[n \to \infty]{} 0
+    \end{align*}
+
+    De plus, par l'inégalité de Chebyshev :
+    \begin{align*}
+        \bbP(A_n) = \bbP\left( \left| \frac{T_n}{n} - m_n \right| \ge \frac{\varepsilon}{3} \right)
+         & \le \frac{9}{\varepsilon^2} \var\left(\frac{T_n}{n}\right)                                                                                     \\
+         & = \frac{9}{n^2 \varepsilon^2} \cdot n \cdot \var\left(X_1^{(n)}\right) \quad \text{par le Lemme 0}                                             \\
+         & \le \frac{9}{n \varepsilon^2} \bbE\left[ X_1^2 \bbI_{\{|X_1| \le n\}} \right] \xrightarrow[n \to \infty]{} 0 \quad \text{par (ii) du Lemme 0.}
+    \end{align*}
+
+    En conclusion, pour tout $\varepsilon > 0$ :
+    \[ \lim_{n \to \infty} \bbP\left(\left| \frac{S_n}{n} - m \right| \ge \varepsilon \right) = 0. \]
+
+\end{proof}
+
+\section{Loi forte des grands nombres}
+
+\begin{deff}[Convergence presque sûrement]
+    Soit $Y_n$ une suite de variables aléatoires et $Y$ une variable aléatoire sur $(\Omega, \calF, \bbP)$.
+    On dit que $Y_n$ converge presque sûrement vers $Y$, et on note $Y_n \to Y$ presque sûrement,
+    si $\bbP(\lim\limits_{n \to \infty} Y_n = Y) = 1$.
+\end{deff}
+
+\begin{rqq}
+    Convergence presque sûrement implique convergence en probabilité.
+    Mais la convergence en probabilité n'implique pas convergence presque sûrement.
+\end{rqq}
+
+\begin{prop}
+    Soit $(Y_n)$ une suite de variables aléatoires et $Y$ une variable aléatoire sur $(\Omega, \calF, \bbP)$.
+    Si pour tout $\varepsilon > 0$,
+    \[ \lim_{n \to \infty} \bbP \left(\bigcup_{k = n}^\infty \lrvert{Y_k - Y} \geqslant \varepsilon\right) = 0, \]
+    alors $Y_n \to Y$ presque sûrement.
+\end{prop}
+
+\begin{proof}
+    On a
+    \begin{align*}
+         & \{ \omega \in \Omega: \lim_{n \to \infty} Y_n(\omega) \neq Y(\omega) \}
+        = \{ \omega \in \Omega: \lim_{n \to \infty} \lrvert{Y_n(\omega) - Y(\omega)} > 0 \}                                 \\
+         & = \bigcup_{\varepsilon \in \bbQ_+} \{ \omega \in \Omega: \limsup_{n \to \infty} \lrvert{Y_n(\omega) - Y(\omega)}
+        \geqslant \varepsilon \}                                                                                            \\
+         & = \bigcup_{\varepsilon \in \bbQ_+} \limsup_{n \to \infty} \{ \omega \in \Omega: \lrvert{Y_n(\omega) - Y(\omega)}
+        \geqslant \varepsilon \}                                                                                            \\
+         & = \bigcup_{\varepsilon \in \bbQ_+} \bigcap_{n = 1}^\infty \bigcup_{k = n}^\infty
+        \{ \omega \in \Omega: \lrvert{Y_k(\omega) - Y(\omega)} \geqslant \varepsilon \}.
+    \end{align*}
+
+    Si
+    \[ \lim\limits_{n \to \infty} \bbP \left(\bigcup_{k = n}^\infty \{ \lrvert{Y_k - Y} \geqslant \varepsilon \}\right) = 0, \]
+    on a
+    \[ \bbP \left(\bigcap_{n = 1}^\infty \bigcup_{k = n}^\infty
+        \{\lrvert{Y_k - Y} \geqslant \varepsilon \}\right) = 0, \]
+    donc
+    \[ \bbP(\lim_{n \to \infty} Y_n \neq Y) = 0. \]
+\end{proof}
+
+\begin{prop}[La version faible de la loi forte des grands nombres]
+    Soit $X_1, X_2, \ldots, X_n, \ldots$ une suite de variables aléatoires de même loi et $X_1 \in L^4(\Omega)$.
+    On pose $m = \bbE[X_1]$, et $S_n = \sum\limits_{k = 1}^n X_k$.
+    Alors $\frac{S_n}{n} \to m$ presque sûrement.
+\end{prop}
+
+\begin{proof}
+    Étape 1.
+    Pour tout $n \in \bbN$, on pose
+    \[ B_n = \bigcup_{k = n^2}^{(n + 1)^2 - 1} \{ \lrvert{\frac{S_k}{k} - m} \geqslant \varepsilon \}. \]
+
+    Notre objectif est de démontrer que la série $\sum\limits_{n} \bbP(B_n)$ converge.
+    \begin{align*}
+        B_n       & \subseteq \{ \lrvert{\frac{S_{n^2}}{n^2} - m} \geqslant \frac{\varepsilon}{2} \}
+        \cup \bigcup_{k = n^2 + 1}^{(n + 1)^2 - 1} \{ \lrvert{\frac{S_k}{k} - \frac{S_{n^2}}{n^2}}
+        \geqslant \frac{\varepsilon}{2} \} = C_n \cup \bigcup_{k = n^2 + 1}^{(n + 1)^2 - 1} D_k,     \\
+        \bbP(B_n) & \leqslant \bbP(C_n) + \sum_{k = n^2 + 1}^{(n + 1)^2 - 1} \bbP(D_k).
+    \end{align*}
+
+    Étape 2.
+
+    \begin{align*}
+        \bbP(C_n) & \leqslant \frac{4}{\varepsilon^2} \var\Bigl(\frac{S_{n^2}}{n^2}\Bigr)
+        = \frac{4}{n^4 \varepsilon^2} \var(S_{n^2}) = \frac{4}{n^2 \varepsilon^2} \var(X_1),                                       \\
+        \bbP(D_k) & = \bbP\Bigl(\lrvert{\bigl(\frac{S_k}{k} - m\bigr) - \frac{S_{n^2}}{n^2}} \geqslant \frac{\varepsilon}{2}\Bigr)
+        = \bbP\Bigl(\lrvert{\frac{1}{k} \sum_{j = 1}^k Y_j - \frac{1}{n^2} \sum_{j = 1}^{n^2} Y_j}
+        \geqslant \frac{\varepsilon}{2}\Bigr)                                                                                      \\
+                  & \leqslant \bbP\Bigl(\frac{1}{k} \lrvert{\sum_{j = n^2}^k Y_j} \geqslant \frac{\varepsilon}{4}\Bigr)
+        + \bbP\Bigl(\lrvert{\sum_{j = 1}^n Y_j} \cdot \lrvert{\frac{1}{k} - \frac{1}{n^2}} \geqslant \frac{\varepsilon}{4}\Bigr).
+    \end{align*}
+
+    Pour le premier terme~:
+    \[ \bbP\Bigl(\frac{1}{k} \lrvert{\sum_{j = n^2}^k Y_j} \geqslant \frac{\varepsilon}{4}\Bigr)
+        \leqslant \frac{16}{k^2 \varepsilon^2} \var\Bigl(\sum_{j = n^2}^k Y_j\Bigr)
+        \leqslant \frac{C}{k^2 \varepsilon^2} n \cdot \var(X_1)
+        \leqslant \frac{C}{n^3 \varepsilon^2} \var(X_1). \]
+    où $C > 0$ est une constante absolue.
+
+    Pour le second terme~:
+    \[ \bbP\Bigl(\lrvert{\bigl(\sum_{j = 1}^{n^2} Y_j\bigr)\bigl(\frac{1}{k} - \frac{1}{n^2}\bigr)} \geqslant \frac{\varepsilon}{4}\Bigr)
+        \leqslant \frac{C}{\varepsilon^2} \var\Bigl(\sum_{j = 1}^{n^2} Y_j\Bigr) \Bigl(\frac{1}{k} - \frac{1}{n^2}\Bigr)^2
+        = \frac{Cn^2}{\varepsilon^2} \var(X_1) \cdot \frac{C}{n^6}
+        = \frac{C}{n^4 \varepsilon^2} \var(X_1). \]
+    Car pour $n^2 < k < (n+1)^2$, on a $\lrvert{\frac{1}{k} - \frac{1}{n^2}} \leqslant \frac{C}{n^3}$.
+    En résumé, $\bbP(D_k) \leqslant \frac{C \var(X_1)}{n^3 \varepsilon^2}$.
+
+    Donc on obtient $\bbP(B_n) \leqslant \frac{C \var(X_1)}{n^2 \varepsilon^2}$.
+    En conclusion, pour $B_n = \bigcup\limits_{k = n^2}^{(n + 1)^2 - 1} \{ \lrvert{\frac{S_k}{k} - m}
+        \geqslant \varepsilon \}$, la série $\sum\limits_{n} \bbP(B_n)$ converge.
+    Par conséquent, $\lim\limits_{n \to \infty} \bbP(\bigcup\limits_{j = n}^\infty B_j) = 0$,
+    et $\lim\limits_{n \to \infty} \bbP(\bigcup\limits_{j = n}^\infty \{ \lrvert{\frac{1}{j} S_j - m}
+        \geqslant \varepsilon \}) = 0$.
+    On en déduit que $\frac{S_n}{n} \to m$ presque sûrement.
+\end{proof}
+
+\begin{rqq}
+    La condition que $X_1 \in L^2(\Omega)$ n'est pas nécessaire.
+    La loi forte des grands nombres est vraie si $X_1 \in L^1(\Omega)$.
+\end{rqq}

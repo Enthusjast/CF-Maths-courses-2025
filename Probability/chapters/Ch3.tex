@@ -310,11 +310,11 @@ Autrement dit, une variable aléatoire est simplement une fonction mesurable dé
 
 \begin{proof}
     \[ \{ X = x \} = \{ X \leqslant x \} \setminus \{ X < x \} =
-        \{ X \leqslant x \} \setminus \left( \bigcup_{n \in \bbN} \{ X \leqslant x - \tfrac{1}{n} \} \right). \]
+        \{ X \leqslant x \} \setminus \left( \bigcup_{n \in \bbN} \{ X \leqslant x - \frac{1}{n} \} \right). \]
     Donc
     \begin{align*}
-        \bbP(X = x) & = \bbP(X \leqslant x) - \lim_{n \to \infty} \uparrow \bbP\left(X \leqslant x - \tfrac{1}{n}\right) \\
-                    & = F_X(x) - \lim_{n \to \infty} \uparrow F_X\left(x - \tfrac{1}{n}\right)                           \\
+        \bbP(X = x) & = \bbP(X \leqslant x) - \lim_{n \to \infty} \uparrow \bbP\left(X \leqslant x - \frac{1}{n}\right) \\
+                    & = F_X(x) - \lim_{n \to \infty} \uparrow F_X\left(x - \frac{1}{n}\right)                           \\
                     & = F_X(x) - \lim_{y \to x^-} F_X(y). \qedhere
     \end{align*}
 \end{proof}

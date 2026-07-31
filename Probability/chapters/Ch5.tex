@@ -1,0 +1,141 @@
+\chapter{Théorème central limite}
+
+Loi des grands nombres~:
+\[ \frac{X_1 + X_2 + \cdots + X_n}{n} \xrightarrow[n \to \infty]{\text{p.s.}} \bbE[X_1] = m, \quad
+    \frac{1}{n} \sum_{j = 1}^n (X_j - m) \xrightarrow[n \to \infty]{\text{p.s.}} 0. \]
+
+Théorème central limite~:
+\begin{align*}
+     & X_j \in L^2, \quad \var(X_j) = \sigma^2, \quad Y_n = \frac{\sum_{j = 1}^n (X_j - m)}{\sqrt{n} \cdot \sigma}, \quad
+    \bbE[Y_n] = 0, \quad \var(Y_n) = 1,                                                                                   \\
+     & Y_n \xrightarrow[]{\text{loi}} \xi \sim \calN(0,1).
+\end{align*}
+
+\section{Convergence en loi}
+
+\begin{deff}
+    Soient $X_1, X_2, \ldots, X_n, \ldots$ des variables aléatoires à valeurs dans $\bbR$
+    (qui ne sont pas forcément dans le même espace de probabilité).
+    On dit que $X_n$ converge en loi vers $X$, et on note $X_n \xrightarrow[]{\text{loi}} X$,
+    si pour toute fonction continue, bornée $f: \bbR \to \bbR$,
+    on a
+    \[ \bbE[f(X_n)] \xrightarrow[n \to \infty]{} \bbE[f(X)]. \]
+\end{deff}
+
+\begin{rqq}
+    $X$ variable aléatoire réelle correspond à une mesure de probabilité $\mu$ sur $(\bbR, \calB(\bbR))$.
+    La convergence en loi est une notion de convergence faible pour une suite de mesures.
+    \begin{align*}
+        \loi(X_n) & = \mu_n, \quad \bbE[f(X_n)] = \langle \mu_n, f \rangle = \int_{\bbR} f(x) \, \mu_n(\dif x),                                              \\
+        X_n \xrightarrow[]{\text{loi}} X
+                  & \iff \loi(X) = \mu \iff \langle \mu_n, f \rangle \xrightarrow[n \to \infty]{} \langle \mu, f \rangle, \quad \forall f \in \calC_b(\bbR).
+    \end{align*}
+\end{rqq}
+
+\section{Les fonctions caractéristiques}
+
+\begin{deff}
+    Soit $X$ une variable aléatoire à valeurs dans $\bbR^n$, sa fonction caractéristique est une application
+    \[ \varphi_X:
+        \begin{array}[t]{ccc}
+            \bbR^n & \to & \bbC                         \\
+            z      & \tp & \varphi_X(z) = \bbE[e^{izX}]
+        \end{array}
+    \]
+\end{deff}
+
+\begin{rqq}
+    $\loi(X) = \mu$~: une mesure sur $(\bbR^n, \calB(\bbR^n))$.
+    $\varphi_X(z) = \hat{\mu}(z)$~: la transformée de Fourier de $\mu$.
+\end{rqq}
+
+\begin{prop}
+    La fonction $\varphi_X(z)$ est continue.
+\end{prop}
+
+\begin{prop}
+    Soient $X$ et $Y$ deux variables aléatoires à valeurs dans $\bbR^n$.
+    $X$ et $Y$ ont la même loi ssi $\varphi_X(z) = \varphi_Y(z)$ pour tout $z \in \bbR^n$.
+\end{prop}
+
+\begin{prop}
+    Si $X$ et $Y$ sont indépendantes, réelles, alors
+    \[ \varphi_{(X, Y)}(x, y) = \varphi_X(x) \varphi_Y(y). \]
+\end{prop}
+
+\begin{proof}
+    \[ \varphi_{(X, Y)}(x, y) = \bbE[e^{ixX + iyY}] = \bbE[e^{ixX}] \bbE[e^{iyY}] = \varphi_X(x) \varphi_Y(y). \]
+\end{proof}
+
+\begin{thm}[Théorème de continuité de Lévy]
+    Soient $X_1, X_2, \ldots, X_n$ une suite de variables aléatoires réelles,
+    avec les fonctions caractéristiques $\varphi_{X_1}, \varphi_{X_2}, \ldots, \varphi_{X_n}$.
+    On suppose que pour tout $z \in \bbR$,
+    \[ \lim_{n \to \infty} \varphi_n(z) = \varphi(z). \]
+    Alors les assertions suivantes sont équivalentes~:
+    \begin{enumerate}
+        \item $X_n \xrightarrow[]{\text{loi}} X$, pour toute variable aléatoire $X$.
+        \item $\varphi(z)$ est continue.
+        \item $\varphi(z)$ est la fonction caractéristique d'une variable aléatoire $X$.
+    \end{enumerate}
+\end{thm}
+
+\begin{exem}
+    \begin{align*}
+         & \xi \sim \calN(0, 1), \quad \bbP(\xi \leqslant x) = \int_{-\infty}^x p_{\xi}(y) \dif y,
+        \quad p_{\xi}(x) = \frac{1}{\sqrt{2\pi}} \exp(-x^2/2),                                     \\
+         & \varphi_{\xi}(s) = \bbE[e^{is\xi}] = \int_{-\infty}^{+\infty} e^{isx} p_{\xi}(x) \dif x
+        = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{+\infty} e^{isx - \frac{x^2}{2}} \dif x,           \\
+         & \int_{-\infty}^{+\infty} e^{isx - \frac{x^2}{2}} \dif x = \sqrt{2\pi} \exp(-s^2/2).
+    \end{align*}
+\end{exem}
+
+\begin{lem}
+    Pour $\xi \sim \calN(0,1)$, $\varphi_{\xi}(s) = e^{-\frac{s^2}{2}}$.
+\end{lem}
+
+\begin{prop}
+    $S_n \sim \calN(0, \sqrt{n})$, $S_n$ est gaussienne, $\bbE[S_n] = 0$, $\var(S_n) = \sqrt{n}$.
+\end{prop}
+
+\begin{thm}
+    Soit $X_1, X_2, \ldots, X_n, \ldots$ une suite de variables aléatoires indépendantes, de même loi
+    (définies sur le même espace de probabilité).
+    On suppose que $X_1 \in L^2(\Omega)$,
+    on pose $m = \bbE[X_1]$, $\sigma^2 = \var(X_1)$, $S_n = \sum_{j = 1}^n X_j$. Alors
+    \[ \frac{S_n - nm}{\sqrt{n} \sigma} \xrightarrow[n \to \infty]{\text{loi}} \xi \sim \calN(0, 1). \]
+\end{thm}
+
+\begin{rqq}
+    \[ Y_n = \frac{S_n - nm}{\sqrt{n} \sigma}, \quad \bbE[Y_n] = 0, \quad \var(Y_n) = 1. \]
+\end{rqq}
+
+\begin{proof}
+    On pose $Y_n = \frac{S_n - nm}{\sqrt{n} \sigma}$ et on note $\varphi_{Y_n}(z)$ la fonction caractéristique.
+    \begin{align*}
+        \varphi_{Y_n}(z) & = \bbE\Bigl[\exp\Bigl(\sum_{k = 1}^n \frac{iz(X_k - m)}{\sqrt{n} \sigma}\Bigr)\Bigr]
+        = \prod_{k = 1}^n \bbE\Bigl[\exp\Bigl(\frac{iz(X_k - m)}{\sqrt{n} \sigma}\Bigr)\Bigr] = \varphi_1\Bigl(\frac{z}{\sqrt{n} \sigma}\Bigr)^n, \\
+        \intertext{où}
+        \varphi_1(s)     & = \bbE[e^{is(X_1 - m)}], \quad \varphi_{Y_n}(z) = \Bigl(\varphi_1\Bigl(\frac{z}{\sqrt{n} \sigma}\Bigr)\Bigr)^n.
+    \end{align*}
+    Comme $X_1 \in L^2(\Omega)$, on en déduit que $\varphi_1 \in \calC^2(\bbR)$.
+    En effet,
+    \[ \varphi_1(s) = \bbE[e^{is(X_1 - m)}], \quad \varphi_1''(s) = \bbE[(i(X_1 - m))^2 e^{is(X_1 - m)}],
+        \quad \lrvert{\varphi_1''(s)} \leqslant \var(X_1). \]
+
+    Par le développement limité~:
+    \[ \varphi_1(s) = \varphi_1(0) + \varphi_1'(0)s + \frac{\varphi_1''(0)}{2}s^2 + o(s^2), \quad s \to 0. \]
+    On a
+    \begin{align*}
+        \varphi_1\Bigl(\frac{z}{\sqrt{n} \sigma}\Bigr)
+         & = \varphi_1(0) + \varphi_1'(0) \frac{z}{\sqrt{n} \sigma}
+        + \frac{\varphi_1''(0)}{2} \frac{z^2}{n \sigma^2} + o\Bigl(\frac{z^2}{n \sigma^2}\Bigr) \\
+         & = 1 - \frac{z^2}{2n} + \frac{\varepsilon_n(z)}{n},
+    \end{align*}
+    car $\varphi_1(0) = 1$, $\varphi_1'(0) = 0$, $\varphi_1''(0) = -\sigma^2$. Ainsi,
+    \[ \varphi_{Y_n}(z) = \Bigl(\varphi_1\Bigl(\frac{z}{\sqrt{n} \sigma}\Bigr)\Bigr)^n
+        = \Bigl(1 - \frac{z^2}{2n} + \frac{\varepsilon_n(z)}{n}\Bigr)^n
+        \sim \Bigl(1 - \frac{z^2}{2n}\Bigr)^n \xrightarrow[n \to \infty]{} e^{-\frac{z^2}{2}} = \varphi_{\xi}(z). \]
+
+    D'après le théorème de continuité de Lévy, $Y_n \xrightarrow[n \to \infty]{\text{loi}} \xi$.
+\end{proof}
